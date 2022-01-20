@@ -6,6 +6,8 @@ import {
   Text,
   ScrollView,
   Image,
+  Platform,
+  StatusBar,
 } from "react-native";
 import Card from "../components/Card";
 import Line from "../components/Line";
@@ -15,8 +17,10 @@ import { startTimer } from "../math/TimeLeft";
 import booksImage from "../assets/book.jpeg";
 import showerImage from "../assets/shower.jpeg";
 import thumbnailImage from "../assets/thumbnail.jpg";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Hamburger from "../components/Hamburger";
+
 const cards = [
   {
     image: booksImage,
@@ -60,30 +64,68 @@ const thumbnailData = [
 ];
 function Dashboard(props) {
   return (
-    <SafeAreaView style={{ backgroundColor: colors.background }}>
-      <ScrollView>
+    <View style={styles.safearea}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <View style={styles.container}>
-          <View style={{ position: "absolute", width: "100%", paddingTop: 30 }}>
-            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
-              <Ionicons
-                name="menu"
-                size={40}
-                style={{ color: "white", left: 30 }}
-              />
-            </TouchableOpacity>
-          </View>
+          <Hamburger {...props} />
           <MainProgressBar />
           <Line color="grey" thickness={1} />
-          <ScrollView horizontal>
+          <Toolbar />
+          <Line color="grey" thickness={1} />
+          <Suggestions />
+          <Line color="grey" thickness={1} />
+
+          <ScrollView
+            horizontal
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+          >
             <CardList data={cards} />
           </ScrollView>
           <Line color="grey" thickness={1} />
           <ThumbnailList />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
+
+const Suggestions = () => {
+  return (
+    <View>
+      <Text style={styles.toolhead}>Loose 13 days</Text>
+    </View>
+  );
+};
+const Toolbar = () => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+        paddingHorizontal: 20,
+      }}
+    >
+      <View style={{ alignItems: "center" }}>
+        <Text style={styles.toolhead}>Best</Text>
+        <Text style={styles.toolsubhead}>3 days</Text>
+      </View>
+      <View style={{ alignItems: "center", marginLeft: 30 }}>
+        <TouchableOpacity>
+          <MaterialCommunityIcons name="meditation" size={40} color={"white"} />
+        </TouchableOpacity>
+      </View>
+      <View style={{ alignItems: "center" }}>
+        <Text style={styles.toolhead}>Attempts</Text>
+        <Text style={styles.toolsubhead}>3 times</Text>
+      </View>
+    </View>
+  );
+};
 
 const CardList = (props) => {
   return (
@@ -118,11 +160,11 @@ const MainProgressBar = () => {
   return (
     <View style={{ alignItems: "center" }}>
       <ProgressBar
-        radius={130}
+        radius={110}
         color={"#2ecc71"}
         activeColor="green"
         value={80}
-        thickness={30}
+        thickness={15}
       />
       <Text style={styles.countdown}>
         {timer[0]} days {timer[1]} h {timer[2]} m {timer[3]} s left
@@ -132,6 +174,17 @@ const MainProgressBar = () => {
 };
 
 const styles = StyleSheet.create({
+  toolhead: {
+    fontSize: 15,
+    color: "white",
+    fontWeight: "700",
+  },
+  toolsubhead: {
+    fontSize: 13,
+    color: "white",
+    fontWeight: "500",
+  },
+
   discover: {
     paddingVertical: 50,
   },
@@ -139,6 +192,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     alignItems: "center",
     flex: 1,
+    marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 40,
   },
   countdown: {
     color: "white",
@@ -164,6 +218,9 @@ const styles = StyleSheet.create({
     height: 210,
     resizeMode: "contain",
     marginVertical: 20,
+  },
+  safearea: {
+    backgroundColor: colors.background,
   },
 });
 export default Dashboard;
