@@ -12,7 +12,7 @@ function ProgressBar(props) {
         textColor="white"
         fontSize={20}
         valueSuffix={"%"}
-        inActiveStrokeColor={props.color}
+        inActiveStrokeColor={props.color ? props.color : "pink"}
         activeStrokeColor={props.activeColor}
         activeStrokeWidth={props.thickness}
         inActiveStrokeOpacity={0.2}

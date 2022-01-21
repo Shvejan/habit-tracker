@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, version } from "react";
 import {
   View,
   StyleSheet,
@@ -8,45 +8,45 @@ import {
   Image,
   Platform,
   StatusBar,
+  Modal,
+  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import Card from "../components/Card";
 import Line from "../components/Line";
 import ProgressBar from "../components/ProgressBar";
+import ActivityModel from "../components/ActivityModel";
 import colors from "../config/colors";
 import { startTimer } from "../math/TimeLeft";
 import booksImage from "../assets/book.jpeg";
 import showerImage from "../assets/shower.jpeg";
 import thumbnailImage from "../assets/thumbnail.jpg";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Hamburger from "../components/Hamburger";
+import HabitModel from "../components/HabitModel";
 
-const cards = [
+const data = [
   {
     image: booksImage,
     title: "READING",
-    color: "pink",
     activeColor: "purple",
     data: [1, 3],
   },
   {
     image: showerImage,
     title: "COLDSHOWER",
-    color: "red",
     activeColor: "cyan",
     data: [1, 3],
   },
   {
     image: booksImage,
     title: "READING",
-    color: "pink",
     activeColor: "purple",
     data: [7, 9],
   },
   {
     image: showerImage,
     title: "COLDSHOWER",
-    color: "red",
     activeColor: "cyan",
     data: [30, 44],
   },
@@ -63,6 +63,9 @@ const thumbnailData = [
   },
 ];
 function Dashboard(props) {
+  const [cards, addCards] = useState(data);
+  const [habitModel, showHabitModel] = useState(false);
+  const [actionModel, showActionModel] = useState(false);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -73,7 +76,7 @@ function Dashboard(props) {
           <Hamburger {...props} />
           <MainProgressBar />
           <Line color="grey" thickness={1} />
-          <Toolbar />
+          <Toolbar showModel={showActionModel} />
           <Line color="grey" thickness={1} />
           <Suggestions />
           <Line color="grey" thickness={1} />
@@ -83,12 +86,19 @@ function Dashboard(props) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           >
-            <CardList data={cards} />
+            <CardList
+              data={cards}
+              addNew={addCards}
+              showModel={showHabitModel}
+              visible={habitModel}
+            />
           </ScrollView>
           <Line color="grey" thickness={1} />
           <ThumbnailList />
         </View>
       </ScrollView>
+      <ActivityModel visible={actionModel} showModel={showActionModel} />
+      <HabitModel visible={habitModel} showModel={showHabitModel} />
     </View>
   );
 }
@@ -100,7 +110,7 @@ const Suggestions = () => {
     </View>
   );
 };
-const Toolbar = () => {
+const Toolbar = (props) => {
   return (
     <View
       style={{
@@ -115,7 +125,7 @@ const Toolbar = () => {
         <Text style={styles.toolsubhead}>3 days</Text>
       </View>
       <View style={{ alignItems: "center", marginLeft: 30 }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.showModel(true)}>
           <MaterialCommunityIcons name="meditation" size={40} color={"white"} />
         </TouchableOpacity>
       </View>
@@ -133,13 +143,33 @@ const CardList = (props) => {
       {props.data.map((a, i) => (
         <Card
           image={a["image"]}
-          color={a["color"]}
           activeColor={a["activeColor"]}
           title={a["title"]}
           data={a["data"]}
           key={i}
         />
       ))}
+      <View style={styles.card}>
+        <TouchableOpacity onPress={() => props.showModel(!props.visible)}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <MaterialCommunityIcons
+              name="heart-plus"
+              size={60}
+              color={"maroon"}
+            />
+            <Text
+              style={{
+                color: "white",
+                fontSize: 25,
+                marginTop: 20,
+                fontWeight: "bold",
+              }}
+            >
+              Add New
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -200,9 +230,13 @@ const styles = StyleSheet.create({
   },
   card: {
     margin: 5,
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 10,
+    overflow: "hidden",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "rgb(25, 26, 43)",
+    paddingHorizontal: 25,
+    height: 256,
   },
   horizontal: {
     justifyContent: "space-around",

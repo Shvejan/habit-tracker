@@ -35,7 +35,7 @@ const variables = [
 ];
 
 function Settings(props) {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   return (
     <View style={styles.safearea}>
       <ScrollView
