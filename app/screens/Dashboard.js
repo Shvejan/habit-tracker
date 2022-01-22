@@ -26,30 +26,30 @@ import Hamburger from "../components/Hamburger";
 import HabitModel from "../components/HabitModel";
 
 const data = [
-  {
-    image: booksImage,
-    title: "READING",
-    activeColor: "purple",
-    data: [1, 3],
-  },
-  {
-    image: showerImage,
-    title: "COLDSHOWER",
-    activeColor: "cyan",
-    data: [1, 3],
-  },
-  {
-    image: booksImage,
-    title: "READING",
-    activeColor: "purple",
-    data: [7, 9],
-  },
-  {
-    image: showerImage,
-    title: "COLDSHOWER",
-    activeColor: "cyan",
-    data: [30, 44],
-  },
+  // {
+  //   image: booksImage,
+  //   title: "READING",
+  //   activeColor: "purple",
+  //   data: [1, 3],
+  // },
+  // {
+  //   image: showerImage,
+  //   title: "COLDSHOWER",
+  //   activeColor: "cyan",
+  //   data: [1, 3],
+  // },
+  // {
+  //   image: booksImage,
+  //   title: "READING",
+  //   activeColor: "purple",
+  //   data: [7, 9],
+  // },
+  // {
+  //   image: showerImage,
+  //   title: "COLDSHOWER",
+  //   activeColor: "cyan",
+  //   data: [30, 44],
+  // },
 ];
 const thumbnailData = [
   {
