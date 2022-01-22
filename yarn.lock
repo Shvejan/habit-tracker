@@ -4877,6 +4877,11 @@ react-native-circular-progress-indicator@^1.1.1:
   resolved "https://registry.yarnpkg.com/react-native-circular-progress-indicator/-/react-native-circular-progress-indicator-1.1.1.tgz#7db2cbce56160b98eadea43a05191c6130bac90c"
   integrity sha512-AzTyhZGdpKT0U1c3K8cAIWGcacohfHa0KiB1yP5tLCEspFMmuHUIQwnR/Q8lslIRkaE5jI2YaCq+1kLEHOsECg==
 
+react-native-color-palette@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-color-palette/-/react-native-color-palette-2.2.0.tgz#be5dc50c20d22a704dfd7870f4bb43fdfb8df96f"
+  integrity sha512-5sAh7veeSMg7KOijnBTj4/A54JzfFfOjo7r9YYCnEF9HWgpMHr6oSjERM18qzP561FFVMElVOh3nCit1pvq6xQ==
+
 react-native-gesture-handler@~1.10.2:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"

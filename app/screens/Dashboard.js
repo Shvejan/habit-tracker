@@ -11,6 +11,7 @@ import {
   Modal,
   Pressable,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import Card from "../components/Card";
 import Line from "../components/Line";
@@ -25,32 +26,6 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Hamburger from "../components/Hamburger";
 import HabitModel from "../components/HabitModel";
 
-const data = [
-  // {
-  //   image: booksImage,
-  //   title: "READING",
-  //   activeColor: "purple",
-  //   data: [1, 3],
-  // },
-  // {
-  //   image: showerImage,
-  //   title: "COLDSHOWER",
-  //   activeColor: "cyan",
-  //   data: [1, 3],
-  // },
-  // {
-  //   image: booksImage,
-  //   title: "READING",
-  //   activeColor: "purple",
-  //   data: [7, 9],
-  // },
-  // {
-  //   image: showerImage,
-  //   title: "COLDSHOWER",
-  //   activeColor: "cyan",
-  //   data: [30, 44],
-  // },
-];
 const thumbnailData = [
   {
     image: thumbnailImage,
@@ -63,9 +38,14 @@ const thumbnailData = [
   },
 ];
 function Dashboard(props) {
-  const [cards, addCards] = useState(data);
+  const [cards, addCards] = useState([]);
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
+
+  const addNewCard = (info) => {
+    addCards([...cards, info]);
+    showHabitModel(false);
+  };
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -94,11 +74,16 @@ function Dashboard(props) {
             />
           </ScrollView>
           <Line color="grey" thickness={1} />
+
           <ThumbnailList />
         </View>
       </ScrollView>
       <ActivityModel visible={actionModel} showModel={showActionModel} />
-      <HabitModel visible={habitModel} showModel={showHabitModel} />
+      <HabitModel
+        visible={habitModel}
+        showModel={showHabitModel}
+        addNewCard={addNewCard}
+      />
     </View>
   );
 }
@@ -143,7 +128,7 @@ const CardList = (props) => {
       {props.data.map((a, i) => (
         <Card
           image={a["image"]}
-          activeColor={a["activeColor"]}
+          activeColor={a["color"]}
           title={a["title"]}
           data={a["data"]}
           key={i}
