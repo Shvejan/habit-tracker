@@ -9,9 +9,10 @@ import { BlurView } from "expo-blur";
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { AuthContext } from "../utils/context";
+import { AuthContext } from "../context/auth/AuthContext";
+
 export default function CustomDrawer(props) {
-  const setLogin = React.useContext(AuthContext);
+  const { setLogin } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <ImageBackground

@@ -3,10 +3,10 @@ import colors from "../config/colors";
 import TextButton from "../components/TextButton";
 import { BlurView } from "expo-blur";
 import React from "react";
-import { AuthContext } from "../utils/context";
+import { AuthContext } from "../context/auth/AuthContext";
 
 function WelcomeScreen(props) {
-  const setLogin = React.useContext(AuthContext);
+  const { setLogin } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <ImageBackground
