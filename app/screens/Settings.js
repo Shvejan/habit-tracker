@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -10,10 +10,12 @@ import {
 } from "react-native";
 import Hamburger from "../components/Hamburger";
 import colors from "../config/colors";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import TextButton from "../components/TextButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { DataContext } from "../context/data/DataContext";
 
 const variables = [
   {
@@ -35,6 +37,7 @@ const variables = [
 ];
 
 function Settings(props) {
+  const { resetApp, saveCurrentState } = useContext(DataContext);
   const [show, setShow] = useState(false);
   return (
     <View style={styles.safearea}>
@@ -50,6 +53,25 @@ function Settings(props) {
             </TouchableOpacity>
             <TouchableOpacity onPress={() => alert("Downloaded")}>
               <FontAwesome name="cloud-download" size={70} color="white" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.btncontainer}>
+            <TouchableOpacity
+              onPress={() => {
+                resetApp();
+                alert("app reset successful");
+              }}
+            >
+              <MaterialCommunityIcons
+                name="lock-reset"
+                size={70}
+                color="white"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => saveCurrentState().then(() => alert("saved"))}
+            >
+              <FontAwesome5 name="save" size={70} color="white" />
             </TouchableOpacity>
           </View>
           <TextButton

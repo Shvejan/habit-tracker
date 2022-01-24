@@ -65,11 +65,9 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      try {
+      if (streak != null) {
         await AsyncStorage.setItem(localstoreStreak, streak.toString());
         if (best < streak) setbest(streak);
-      } catch (error) {
-        console.log("i'm over it");
       }
     }
     store();
@@ -94,6 +92,22 @@ export default function DataState(props) {
     store();
   }, [lastrelapse]);
 
+  const resetApp = () => {
+    setvalue(0);
+    addCards([]);
+    setstreak(0);
+    setlastrelapse(new Date().getTime());
+    setbest(0);
+    setattempts(0);
+    console.log("appp resetttuuu");
+  };
+  const saveCurrentState = async () => {
+    await AsyncStorage.setItem(localstoreAttempts, attempts.toString());
+    await AsyncStorage.setItem(localstoreBest, best.toString());
+    await AsyncStorage.setItem(localstoreStreak, streak.toString());
+    await AsyncStorage.setItem(localstoreValue, value.toString());
+    await AsyncStorage.setItem(localstoreLastrelapse, lastrelapse.toString());
+  };
   return (
     <DataContext.Provider
       value={{
@@ -109,6 +123,8 @@ export default function DataState(props) {
         setattempts,
         lastrelapse,
         setlastrelapse,
+        resetApp,
+        saveCurrentState,
       }}
     >
       {props.children}
