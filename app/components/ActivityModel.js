@@ -11,6 +11,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 // import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ActivityModel(props) {
+  const fab = () => {
+    props.setlastrelapse(new Date().getTime());
+    props.incAttempts();
+    props.showModel(false);
+  };
   return (
     <Modal animationType="fade" transparent visible={props.visible}>
       <View style={styles.container}>
@@ -20,6 +25,9 @@ export default function ActivityModel(props) {
               <MaterialCommunityIcons name="close" style={styles.close} />
             </Pressable>
           </View>
+          <TouchableOpacity onPress={fab} style={{ alignSelf: "center" }}>
+            <MaterialCommunityIcons name="meditation" style={styles.btns} />
+          </TouchableOpacity>
           <View style={styles.btncontainer}>
             <TouchableOpacity>
               <MaterialCommunityIcons name="instagram" style={styles.btns} />

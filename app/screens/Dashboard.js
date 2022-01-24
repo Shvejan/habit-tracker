@@ -1,30 +1,27 @@
-import React, { useEffect, useRef, useState, version } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
-  SafeAreaView,
   Text,
   ScrollView,
   Image,
   Platform,
   StatusBar,
-  Modal,
-  Pressable,
   TouchableOpacity,
-  Button,
 } from "react-native";
 import Card from "../components/Card";
 import Line from "../components/Line";
 import ProgressBar from "../components/ProgressBar";
 import ActivityModel from "../components/ActivityModel";
 import colors from "../config/colors";
-import { startTimer } from "../math/TimeLeft";
+import { startTimer } from "../math/TimeCalc";
 import booksImage from "../assets/book.jpeg";
 import showerImage from "../assets/shower.jpeg";
 import thumbnailImage from "../assets/thumbnail.jpg";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Hamburger from "../components/Hamburger";
 import HabitModel from "../components/HabitModel";
+import { DataContext } from "../context/data/DataContext";
 
 const thumbnailData = [
   {
@@ -38,14 +35,30 @@ const thumbnailData = [
   },
 ];
 function Dashboard(props) {
-  const [cards, addCards] = useState([]);
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
+  const {
+    value,
+    cards,
+    addCards,
+    streak,
+    setstreak,
+    best,
+    setbest,
+    attempts,
+    setattempts,
+    lastrelapse,
+    setlastrelapse,
+  } = useContext(DataContext);
 
   const addNewCard = (info) => {
-    addCards([...cards, info]);
+    addCards([info]);
     showHabitModel(false);
   };
+  const incAttempts = () => {
+    setattempts(attempts + 1);
+  };
+
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -54,9 +67,18 @@ function Dashboard(props) {
       >
         <View style={styles.container}>
           <Hamburger {...props} />
-          <MainProgressBar />
+          <MainProgressBar
+            value={value}
+            lastrelapse={lastrelapse}
+            streak={streak}
+            setstreak={setstreak}
+          />
           <Line color="grey" thickness={1} />
-          <Toolbar showModel={showActionModel} />
+          <Toolbar
+            showModel={showActionModel}
+            best={best}
+            attempts={attempts}
+          />
           <Line color="grey" thickness={1} />
           <Suggestions />
           <Line color="grey" thickness={1} />
@@ -68,7 +90,6 @@ function Dashboard(props) {
           >
             <CardList
               data={cards}
-              addNew={addCards}
               showModel={showHabitModel}
               visible={habitModel}
             />
@@ -78,7 +99,12 @@ function Dashboard(props) {
           <ThumbnailList />
         </View>
       </ScrollView>
-      <ActivityModel visible={actionModel} showModel={showActionModel} />
+      <ActivityModel
+        visible={actionModel}
+        showModel={showActionModel}
+        setlastrelapse={setlastrelapse}
+        incAttempts={incAttempts}
+      />
       <HabitModel
         visible={habitModel}
         showModel={showHabitModel}
@@ -107,7 +133,7 @@ const Toolbar = (props) => {
     >
       <View style={{ alignItems: "center" }}>
         <Text style={styles.toolhead}>Best</Text>
-        <Text style={styles.toolsubhead}>3 days</Text>
+        <Text style={styles.toolsubhead}>{props.best} days</Text>
       </View>
       <View style={{ alignItems: "center", marginLeft: 30 }}>
         <TouchableOpacity onPress={() => props.showModel(true)}>
@@ -116,7 +142,7 @@ const Toolbar = (props) => {
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={styles.toolhead}>Attempts</Text>
-        <Text style={styles.toolsubhead}>3 times</Text>
+        <Text style={styles.toolsubhead}>{props.attempts} times</Text>
       </View>
     </View>
   );
@@ -169,20 +195,30 @@ const ThumbnailList = () => {
   );
 };
 
-const MainProgressBar = () => {
-  const [timer, setTimer] = useState("0");
-  // useEffect(() => startTimer(setTimer));
+const MainProgressBar = (props) => {
+  const [timer, setTimer] = useState(startTimer(props.lastrelapse));
+  useEffect(() => {
+    const interval = setInterval(() => {
+      let time = startTimer(props.lastrelapse);
+      setTimer(time);
+      if (time[0] != props.streak) {
+        props.setstreak(time[0]);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [props.lastrelapse]);
+
   return (
     <View style={{ alignItems: "center" }}>
       <ProgressBar
         radius={110}
         color={"#2ecc71"}
         activeColor="green"
-        value={80}
+        value={props.value}
         thickness={15}
       />
       <Text style={styles.countdown}>
-        {timer[0]} days {timer[1]} h {timer[2]} m {timer[3]} s left
+        {timer[0]} days {timer[1]}h {timer[2]}m {timer[3]}s
       </Text>
     </View>
   );

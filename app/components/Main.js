@@ -5,12 +5,17 @@ import AppStack from "../routes/AppStack";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { AuthContext } from "../context/auth/AuthContext";
+import DataState from "../context/data/DataState";
 
 export default function Main() {
   const { login } = useContext(AuthContext);
   return (
     <NavigationContainer>
-      {login && <AppStack />}
+      {login && (
+        <DataState>
+          <AppStack />
+        </DataState>
+      )}
       {!login && <AuthStack />}
       <StatusBar style="light" />
     </NavigationContainer>

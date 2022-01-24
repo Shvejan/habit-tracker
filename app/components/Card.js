@@ -14,6 +14,7 @@ function Card(props) {
     <View style={styles.card}>
       <ImageBackground
         source={{ uri: props.image }}
+        // source={props.image}
         resizeMode="cover"
         style={styles.bg}
       >
@@ -23,7 +24,7 @@ function Card(props) {
             radius={50}
             color={props.color}
             activeColor={props.activeColor}
-            value={(props.data[0] * 100) / props.data[1]}
+            value={props.data[1] ? (props.data[0] * 100) / props.data[1] : 0}
             thickness={15}
           />
           <Text style={styles.head}>
