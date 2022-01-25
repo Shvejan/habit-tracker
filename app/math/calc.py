@@ -1,8 +1,8 @@
 import random
 import math
 
-days = 5
-value=5
+days = 4
+value=4
 f=2
 tc=1
 pc=1
@@ -36,25 +36,19 @@ def media(days,value,c,tc):
     return value ,c+1
 
 def po(days,value,c,tc,mc):
-    value = (value-((c+(tc+mc)*0.2)**2)*math.sqrt(days)/20)
+    value = (value-((c+(tc+mc+2)*0.2)**2)*math.sqrt(days)/20)
     percentage(value,days)
     return value ,c+1
 
-value,tc = thought(days,value,tc)
-value,tc = thought(days,value,tc)
-value,tc = thought(days,value,tc)
+def decision (days, value, f):
+  value = value - (f[4] ** 2 * math.sqrt(days)) / 10
+  percentage(value, days)
+  f[4] += 1;
 
-value,mc = media(days,value,mc,tc)
-value,mc = media(days,value,mc,tc)
-
-value,pc = po(days,value,pc,mc,tc)
-value,pc = po(days,value,pc,mc,tc)
-
-value,f=dec(days,value,f)
+  return [value, f]
 
 
-
-
+print(po(2,1.85857,1,1,1))
 
 
 

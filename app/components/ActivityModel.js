@@ -6,14 +6,54 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-// import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { DataContext } from "../context/data/DataContext";
+import {
+  decision,
+  decValMain,
+  media,
+  po,
+  thought,
+} from "../math/Valuefunctions";
 export default function ActivityModel(props) {
+  const {
+    incAttempts,
+    setlastrelapse,
+    fvalue,
+    days,
+    value,
+    setvalue,
+    setfvalue,
+  } = useContext(DataContext);
+
   const fab = () => {
-    props.setlastrelapse(new Date().getTime());
-    props.incAttempts();
+    setlastrelapse(new Date().getTime());
+    incAttempts();
+    props.showModel(false);
+    let newValues = decValMain(days, value, fvalue);
+    setvalue(newValues[0]);
+    setfvalue(newValues[1]);
+  };
+  const actions = (type) => {
+    let newValues = [0, 0];
+    switch (type) {
+      case 1:
+        newValues = decision(days, value, fvalue);
+        break;
+      case 2:
+        newValues = media(days, value, fvalue);
+        break;
+      case 3:
+        newValues = thought(days, value, fvalue);
+        break;
+      case 4:
+        newValues = po(days, value, fvalue);
+        break;
+    }
+    setvalue(newValues[0]);
+    setfvalue(newValues[1]);
     props.showModel(false);
   };
   return (
@@ -29,22 +69,25 @@ export default function ActivityModel(props) {
             <MaterialCommunityIcons name="meditation" style={styles.btns} />
           </TouchableOpacity>
           <View style={styles.btncontainer}>
-            <TouchableOpacity>
-              <MaterialCommunityIcons name="instagram" style={styles.btns} />
+            <TouchableOpacity onPress={() => actions(1)}>
+              <MaterialCommunityIcons
+                name="emoticon-confused"
+                style={styles.btns}
+              />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => actions(2)}>
               <MaterialCommunityIcons
                 name="cellphone-iphone"
                 style={styles.btns}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => actions(3)}>
               <MaterialCommunityIcons
                 name="thought-bubble"
                 style={styles.btns}
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => actions(4)}>
               <MaterialCommunityIcons
                 name="emoticon-tongue"
                 style={styles.btns}

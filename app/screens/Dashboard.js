@@ -44,19 +44,16 @@ function Dashboard(props) {
     streak,
     setstreak,
     best,
-    setbest,
     attempts,
-    setattempts,
     lastrelapse,
-    setlastrelapse,
+    fvalue,
+    days,
+    daychanged,
   } = useContext(DataContext);
 
   const addNewCard = (info) => {
     addCards([info]);
     showHabitModel(false);
-  };
-  const incAttempts = () => {
-    setattempts(attempts + 1);
   };
 
   return (
@@ -68,10 +65,11 @@ function Dashboard(props) {
         <View style={styles.container}>
           <Hamburger {...props} />
           <MainProgressBar
-            value={value}
+            value={days ? (value * 100) / days : 0}
             lastrelapse={lastrelapse}
-            streak={streak}
             setstreak={setstreak}
+            streak={streak}
+            daychanged={daychanged}
           />
           <Line color="grey" thickness={1} />
           <Toolbar
@@ -81,6 +79,9 @@ function Dashboard(props) {
           />
           <Line color="grey" thickness={1} />
           <Suggestions />
+          <Text style={{ color: "white" }}>
+            streak = {streak} value = {value} f = {fvalue} days = {days}
+          </Text>
           <Line color="grey" thickness={1} />
 
           <ScrollView
@@ -99,12 +100,7 @@ function Dashboard(props) {
           <ThumbnailList />
         </View>
       </ScrollView>
-      <ActivityModel
-        visible={actionModel}
-        showModel={showActionModel}
-        setlastrelapse={setlastrelapse}
-        incAttempts={incAttempts}
-      />
+      <ActivityModel visible={actionModel} showModel={showActionModel} />
       <HabitModel
         visible={habitModel}
         showModel={showHabitModel}
@@ -200,10 +196,10 @@ const MainProgressBar = (props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       let time = startTimer(props.lastrelapse);
-      setTimer(time);
-      if (time[0] != props.streak) {
-        props.setstreak(time[0]);
+      if (time[2] != props.streak) {
+        props.setstreak(time[2]);
       }
+      setTimer(time);
     }, 1000);
     return () => clearInterval(interval);
   }, [props.lastrelapse]);
