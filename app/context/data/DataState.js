@@ -4,7 +4,7 @@ import { DataContext } from "./DataContext";
 import {
   localstoreAttempts,
   localstoreBest,
-  localstoreCards,
+  localstorecardsdata,
   localstoredays,
   localstoreFvalue,
   localstoreLastrelapse,
@@ -14,7 +14,7 @@ import {
 import { incValPeriodic } from "../../math/Valuefunctions";
 export default function DataState(props) {
   const [value, setvalue] = useState(0);
-  const [cards, addCards] = useState([]);
+  const [cards, addCards] = useState(null);
   const [streak, setstreak] = useState(0);
   const [lastrelapse, setlastrelapse] = useState(null);
   const [best, setbest] = useState(0);
@@ -28,7 +28,7 @@ export default function DataState(props) {
         if (data) {
           setstreak(parseInt(data));
         }
-        data = await AsyncStorage.getItem(localstoreCards);
+        data = await AsyncStorage.getItem(localstorecardsdata);
         if (data) {
           addCards(JSON.parse(data));
         }
@@ -120,7 +120,8 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      await AsyncStorage.setItem(localstoreCards, JSON.stringify(cards));
+      if (cards !== null)
+        await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
     }
     store();
   }, [cards]);
@@ -138,7 +139,7 @@ export default function DataState(props) {
 
   const resetApp = () => {
     setvalue(0);
-    addCards([]);
+    addCards(null);
     setstreak(0);
     setlastrelapse(new Date().getTime());
     setbest(0);
@@ -156,6 +157,7 @@ export default function DataState(props) {
     await AsyncStorage.setItem(localstoreLastrelapse, lastrelapse.toString());
     await AsyncStorage.setItem(localstoreFvalue, fvalue.toString());
     await AsyncStorage.setItem(localstoredays, days.toString());
+    await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
   };
 
   const incAttempts = () => {
@@ -166,7 +168,7 @@ export default function DataState(props) {
     setdays(days + 1);
     setvalue(incValPeriodic(days, value, fvalue));
     setfvalue([2, 1, 1, 1, 1]);
-    console.log("day changed");
+    // console.log("day changed");
   };
   return (
     <DataContext.Provider

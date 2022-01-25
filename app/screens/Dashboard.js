@@ -52,7 +52,11 @@ function Dashboard(props) {
   } = useContext(DataContext);
 
   const addNewCard = (info) => {
-    addCards([info]);
+    if (cards === null) {
+      addCards([info]);
+    } else {
+      addCards([...cards, info]);
+    }
     showHabitModel(false);
   };
 
@@ -147,15 +151,17 @@ const Toolbar = (props) => {
 const CardList = (props) => {
   return (
     <View style={styles.horizontal}>
-      {props.data.map((a, i) => (
-        <Card
-          image={a["image"]}
-          activeColor={a["color"]}
-          title={a["title"]}
-          data={a["data"]}
-          key={i}
-        />
-      ))}
+      {props.data != null &&
+        typeof props.data != "string" &&
+        props.data.map((a, i) => (
+          <Card
+            image={a["image"]}
+            activeColor={a["color"]}
+            title={a["title"]}
+            data={a["data"]}
+            key={i}
+          />
+        ))}
       <View style={styles.card}>
         <TouchableOpacity onPress={() => props.showModel(!props.visible)}>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
