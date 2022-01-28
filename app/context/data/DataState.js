@@ -16,6 +16,7 @@ export default function DataState(props) {
   const [value, setvalue] = useState(0);
   const [cards, addCards] = useState(null);
   const [streak, setstreak] = useState(0);
+
   const [lastrelapse, setlastrelapse] = useState(null);
   const [best, setbest] = useState(0);
   const [attempts, setattempts] = useState(0);
@@ -25,7 +26,8 @@ export default function DataState(props) {
     async function load() {
       try {
         let data = await AsyncStorage.getItem(localstoreStreak);
-        if (data) {
+        if (data && streak != data) {
+          console.log("from the mount feef");
           setstreak(parseInt(data));
         }
         data = await AsyncStorage.getItem(localstorecardsdata);
@@ -88,7 +90,9 @@ export default function DataState(props) {
         await AsyncStorage.setItem(localstoreStreak, streak.toString());
         if (best < streak) setbest(streak);
         console.log("streak changed to :", streak);
-        if (streak != 0) daychanged();
+        if (streak != 0) {
+          daychanged();
+        }
       }
     }
     store();
@@ -137,9 +141,17 @@ export default function DataState(props) {
     store();
   }, [lastrelapse]);
 
+  const updateStreak = (newstreak) => {
+    console.log("recieved target state", newstreak);
+    let dif = newstreak - streak;
+    while (dif > 0) {
+      setstreak((prevStreak) => prevStreak + 1);
+      dif -= 1;
+    }
+  };
   const resetApp = () => {
     setvalue(0);
-    addCards(null);
+    addCards([]);
     setstreak(0);
     setlastrelapse(new Date().getTime());
     setbest(0);
@@ -165,11 +177,12 @@ export default function DataState(props) {
   };
 
   const daychanged = () => {
-    setdays(days + 1);
-    setvalue(incValPeriodic(days, value, fvalue));
+    setdays((prevDays) => prevDays + 1);
+    setvalue((prevValue) => incValPeriodic(days, prevValue, fvalue));
     setfvalue([2, 1, 1, 1, 1]);
-    // console.log("day changed");
+    console.log("day changed");
   };
+
   return (
     <DataContext.Provider
       value={{
@@ -178,7 +191,7 @@ export default function DataState(props) {
         cards,
         addCards,
         streak,
-        setstreak,
+        updateStreak,
         best,
         setbest,
         attempts,
@@ -190,7 +203,6 @@ export default function DataState(props) {
         fvalue,
         setfvalue,
         days,
-        daychanged,
       }}
     >
       {props.children}

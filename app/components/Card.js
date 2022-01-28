@@ -14,7 +14,6 @@ function Card(props) {
     <View style={styles.card}>
       <ImageBackground
         source={{ uri: props.image }}
-        // source={props.image}
         resizeMode="cover"
         style={styles.bg}
       >

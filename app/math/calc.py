@@ -12,8 +12,8 @@ def percentage(val,days):
     print(val*100/days)
 
 def inc(days,value,f):
-    value=  value+1+(days-value)*value/days/f**2
-    return value,days+1
+  value = value + 1 + ((days - value) * value) / days / f ** 2;
+  return (value,days+1) if days else (days,days+1)
 
 def dec(days,value,f):
     component = (4-value/days)*f**(-2-days*0.05)
@@ -48,7 +48,19 @@ def decision (days, value, f):
   return [value, f]
 
 
-print(po(2,1.85857,1,1,1))
+# print(inc(1,0,2))
+v,d = inc(days=1,value=0,f=2)
+print(v)
+
+v,d=inc(d,v,2)
+print(v)
+
+v,d=inc(d,v,2)
+print(v)
+
+
+print(v)
+print(d)
 
 
 
