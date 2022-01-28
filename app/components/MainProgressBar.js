@@ -13,7 +13,6 @@ export default function MainProgressBar() {
     const interval = setInterval(() => {
       let time = startTimer(lastrelapse);
       if (time[2] != streak) {
-        console.log("printed from the main prog bar");
         updateStreak(time[2]);
       }
       setTimer(time);

@@ -9,11 +9,12 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BlurView } from "expo-blur";
 import * as ImagePicker from "expo-image-picker";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ColorPalette from "react-native-color-palette";
+import { DataContext } from "../context/data/DataContext";
 
 const colorPalette = [
   "#C0392B",
@@ -47,14 +48,7 @@ export default function HabitModel(props) {
   const [text, onChangeText] = useState("");
   const data = [0, 0];
   const [selectedColor, setSelectedColor] = useState("#C0392B");
-  const addNewCard = (info) => {
-    if (cards === null) {
-      addCards([info]);
-    } else {
-      addCards([...cards, info]);
-    }
-    showHabitModel(false);
-  };
+  const { addCards, cards } = useContext(DataContext);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -75,12 +69,18 @@ export default function HabitModel(props) {
     setSelectedColor("#C0392B");
   };
   const addCard = () => {
-    addNewCard({
+    const newCard = {
       image: image,
       title: text,
       color: selectedColor,
       data: data,
-    });
+    };
+    if (cards === null) {
+      addCards([newCard]);
+    } else {
+      addCards([...cards, newCard]);
+    }
+    props.showModel(false);
     resetData();
   };
 

@@ -13,22 +13,26 @@ import {
 } from "./LocalStoreNames";
 import { incValPeriodic } from "../../math/Valuefunctions";
 export default function DataState(props) {
-  const [value, setvalue] = useState(0);
+  const [value, setvalue] = useState(null);
   const [cards, addCards] = useState(null);
-  const [streak, setstreak] = useState(0);
+  const [streak, setstreak] = useState(null);
 
   const [lastrelapse, setlastrelapse] = useState(null);
-  const [best, setbest] = useState(0);
+  const [best, setbest] = useState(null);
   const [attempts, setattempts] = useState(0);
   const [fvalue, setfvalue] = useState([2, 1, 1, 1, 1]); //[f,tc,mc,pc,baddecisionc]
-  const [days, setdays] = useState(1);
+  const [days, setdays] = useState(null);
+  const [isloading, setisloading] = useState(true);
   useEffect(() => {
     async function load() {
       try {
-        let data = await AsyncStorage.getItem(localstoreStreak);
-        if (data && streak != data) {
-          console.log("from the mount feef");
-          setstreak(parseInt(data));
+        let data = await AsyncStorage.getItem(localstoreValue);
+        if (data) {
+          setvalue(parseFloat(data));
+        }
+        data = await AsyncStorage.getItem(localstoredays);
+        if (data) {
+          setdays(parseInt(data));
         }
         data = await AsyncStorage.getItem(localstorecardsdata);
         if (data) {
@@ -47,25 +51,23 @@ export default function DataState(props) {
           setbest(parseInt(data));
         }
 
-        data = await AsyncStorage.getItem(localstoreValue);
-        if (data) {
-          setvalue(parseInt(data));
-        }
         data = await AsyncStorage.getItem(localstoreLastrelapse);
         if (data) {
           setlastrelapse(parseInt(data));
         } else {
           setlastrelapse(new Date().getTime());
         }
-        data = await AsyncStorage.getItem(localstoredays);
-        if (data) {
-          setdays(parseInt(data));
+
+        data = await AsyncStorage.getItem(localstoreStreak);
+        if (data && streak != data) {
+          console.log("from the mount feef");
+          setstreak(parseInt(data));
         }
       } catch {
         console.log("i'm over it");
       }
     }
-    load();
+    load().then(() => setisloading(false));
   }, []);
 
   useEffect(() => {
@@ -90,9 +92,6 @@ export default function DataState(props) {
         await AsyncStorage.setItem(localstoreStreak, streak.toString());
         if (best < streak) setbest(streak);
         console.log("streak changed to :", streak);
-        if (streak != 0) {
-          daychanged();
-        }
       }
     }
     store();
@@ -142,11 +141,14 @@ export default function DataState(props) {
   }, [lastrelapse]);
 
   const updateStreak = (newstreak) => {
-    console.log("recieved target state", newstreak);
-    let dif = newstreak - streak;
-    while (dif > 0) {
-      setstreak((prevStreak) => prevStreak + 1);
-      dif -= 1;
+    if (value != null && days != null && days <= newstreak + 1 && !isloading) {
+      console.log("recieved target state", newstreak);
+      let dif = newstreak - streak;
+      while (dif > 0) {
+        setstreak((prevStreak) => prevStreak + 1);
+        daychanged();
+        dif -= 1;
+      }
     }
   };
   const resetApp = () => {
@@ -177,8 +179,11 @@ export default function DataState(props) {
   };
 
   const daychanged = () => {
-    setdays((prevDays) => prevDays + 1);
-    setvalue((prevValue) => incValPeriodic(days, prevValue, fvalue));
+    setdays((prevDays) => {
+      setvalue((prevValue) => incValPeriodic(prevDays, prevValue, fvalue));
+      return prevDays + 1;
+    });
+
     setfvalue([2, 1, 1, 1, 1]);
     console.log("day changed");
   };
@@ -191,6 +196,7 @@ export default function DataState(props) {
         cards,
         addCards,
         streak,
+        setstreak,
         updateStreak,
         best,
         setbest,

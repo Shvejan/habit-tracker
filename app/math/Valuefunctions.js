@@ -3,6 +3,7 @@ const percentage = (value, days) => {
 };
 
 export const incValPeriodic = (days, value, f) => {
+  console.log("recieved values are ", days, value);
   value = value + 1 + ((days - value) * value) / days / f[0] ** 2;
   return days ? value : days;
 };

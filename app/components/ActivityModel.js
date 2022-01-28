@@ -26,10 +26,12 @@ export default function ActivityModel(props) {
     value,
     setvalue,
     setfvalue,
+    setstreak,
   } = useContext(DataContext);
 
   const fab = () => {
     setlastrelapse(new Date().getTime());
+    setstreak(0);
     incAttempts();
     props.showModel(false);
     let newValues = decValMain(days, value, fvalue);

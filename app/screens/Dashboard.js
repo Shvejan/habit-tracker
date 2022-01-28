@@ -23,7 +23,7 @@ function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
   const { value, streak, fvalue, days } = useContext(DataContext);
-
+  const strfvalues = JSON.stringify(fvalue);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -38,7 +38,7 @@ function Dashboard(props) {
           <Line color="grey" thickness={1} />
           <Suggestions />
           <Text style={{ color: "white" }}>
-            streak = {streak} value = {value} f = {fvalue} days = {days}
+            streak = {streak} value = {value} f = {strfvalues} days = {days}
           </Text>
           <Line color="grey" thickness={1} />
 
