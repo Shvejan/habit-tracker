@@ -11,7 +11,7 @@ import {
   localstoreStreak,
   localstoreValue,
 } from "./LocalStoreNames";
-import { incValPeriodic } from "../../math/Valuefunctions";
+import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
 export default function DataState(props) {
   const [value, setvalue] = useState(null);
   const [cards, addCards] = useState(null);
@@ -60,7 +60,6 @@ export default function DataState(props) {
 
         data = await AsyncStorage.getItem(localstoreStreak);
         if (data && streak != data) {
-          console.log("from the mount feef");
           setstreak(parseInt(data));
         }
       } catch {
@@ -91,7 +90,7 @@ export default function DataState(props) {
       if (streak != null) {
         await AsyncStorage.setItem(localstoreStreak, streak.toString());
         if (best < streak) setbest(streak);
-        console.log("streak changed to :", streak);
+        // console.log("streak changed to :", streak);
       }
     }
     store();
@@ -123,8 +122,10 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      if (cards !== null)
+      if (cards !== null) {
         await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
+        console.log("cards updated", JSON.stringify(cards));
+      }
     }
     store();
   }, [cards]);
@@ -142,7 +143,7 @@ export default function DataState(props) {
 
   const updateStreak = (newstreak) => {
     if (value != null && days != null && days <= newstreak + 1 && !isloading) {
-      console.log("recieved target state", newstreak);
+      // console.log("recieved target state", newstreak);
       let dif = newstreak - streak;
       while (dif > 0) {
         setstreak((prevStreak) => prevStreak + 1);
@@ -180,14 +181,35 @@ export default function DataState(props) {
 
   const daychanged = () => {
     setdays((prevDays) => {
-      setvalue((prevValue) => incValPeriodic(prevDays, prevValue, fvalue));
+      setvalue(
+        (prevValue) =>
+          incValPeriodic(prevDays, prevValue, fvalue) +
+          habitContributor(prevDays, prevValue, cards)
+      );
       return prevDays + 1;
     });
 
     setfvalue([2, 1, 1, 1, 1]);
-    console.log("day changed");
+    addCards((prevCards) => {
+      prevCards.map((a) => {
+        a.data[1] += 1;
+        a.prev = a.data[0];
+      });
+      return prevCards;
+    });
   };
-
+  const incHabitCounter = (id) => {
+    addCards((prevCards) => {
+      prevCards[id].data[0] += 1;
+      return [...prevCards];
+    });
+  };
+  const decHabitCounter = (id) => {
+    addCards((prevCards) => {
+      prevCards[id].data[0] -= 1;
+      return [...prevCards];
+    });
+  };
   return (
     <DataContext.Provider
       value={{
@@ -209,6 +231,8 @@ export default function DataState(props) {
         fvalue,
         setfvalue,
         days,
+        incHabitCounter,
+        decHabitCounter,
       }}
     >
       {props.children}

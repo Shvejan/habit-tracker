@@ -3,7 +3,6 @@ const percentage = (value, days) => {
 };
 
 export const incValPeriodic = (days, value, f) => {
-  console.log("recieved values are ", days, value);
   value = value + 1 + ((days - value) * value) / days / f[0] ** 2;
   return days ? value : days;
 };
@@ -51,4 +50,20 @@ export const decision = (days, value, f) => {
   f[4] += 1;
 
   return [value, f];
+};
+
+export const habitContributor = (days, value, cards) => {
+  console.log("recieved data is", days, value, cards);
+  let p = 0,
+    n = 0;
+  cards &&
+    cards.length &&
+    cards.map((a) => {
+      if (a.prev < a.data[0]) p += 1;
+      else n += 1;
+    });
+  const component =
+    (value * ((Math.sqrt(p) - n * 1.2) / Math.sqrt(n + 1))) / days;
+  console.log("fnial data is ", p, n, component);
+  return component;
 };

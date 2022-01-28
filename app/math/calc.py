@@ -48,19 +48,7 @@ def decision (days, value, f):
   return [value, f]
 
 
-# print(inc(1,0,2))
-v,d = inc(days=1,value=0,f=2)
-print(v)
 
-v,d=inc(d,v,2)
-print(v)
-
-v,d=inc(d,v,2)
-print(v)
-
-
-print(v)
-print(d)
 
 
 

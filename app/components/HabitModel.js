@@ -46,7 +46,7 @@ const colorPalette = [
 export default function HabitModel(props) {
   const [image, setImage] = useState(null);
   const [text, onChangeText] = useState("");
-  const data = [0, 0];
+  const data = [0, 1];
   const [selectedColor, setSelectedColor] = useState("#C0392B");
   const { addCards, cards } = useContext(DataContext);
 
@@ -74,6 +74,7 @@ export default function HabitModel(props) {
       title: text,
       color: selectedColor,
       data: data,
+      prev: 0,
     };
     if (cards === null) {
       addCards([newCard]);

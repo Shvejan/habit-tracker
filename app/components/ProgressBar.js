@@ -15,7 +15,7 @@ function ProgressBar(props) {
         activeStrokeWidth={props.thickness}
         inActiveStrokeOpacity={0.2}
         inActiveStrokeWidth={props.thickness}
-        duration={3000}
+        duration={props.duration ? props.duration : 3000}
       />
     </View>
   );

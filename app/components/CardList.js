@@ -5,7 +5,8 @@ import Card from "./Card";
 import { DataContext } from "../context/data/DataContext";
 
 export default function CardList(props) {
-  const { cards } = useContext(DataContext);
+  const { cards, incHabitCounter, decHabitCounter } = useContext(DataContext);
+
   return (
     <View style={styles.horizontal}>
       {cards != null &&
@@ -17,6 +18,8 @@ export default function CardList(props) {
             title={a["title"]}
             data={a["data"]}
             key={i}
+            incHabitCounter={() => incHabitCounter(i)}
+            decHabitCounter={() => decHabitCounter(i)}
           />
         ))}
       <View style={styles.card}>
