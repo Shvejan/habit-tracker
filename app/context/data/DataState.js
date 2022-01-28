@@ -11,6 +11,7 @@ import {
   localstoreStreak,
   localstoreValue,
 } from "./LocalStoreNames";
+import * as firebase from "firebase";
 import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
 export default function DataState(props) {
   const [value, setvalue] = useState(null);
@@ -210,6 +211,30 @@ export default function DataState(props) {
       return [...prevCards];
     });
   };
+
+  const pushToFirebase = () => {
+    const data = {
+      value: value,
+      cards: cards,
+      streak: streak,
+      lastrelapse: lastrelapse,
+      best: best,
+      attempts: attempts,
+      fvalue: fvalue,
+      days: days,
+    };
+
+    firebase.database().ref("/").set(data);
+  };
+  const pullFromFirebase = () => {
+    firebase
+      .database()
+      .ref("/")
+      .on("value", (snapshot) => {
+        const cloudData = snapshot.val();
+        console.log(cloudData.best);
+      });
+  };
   return (
     <DataContext.Provider
       value={{
@@ -233,6 +258,8 @@ export default function DataState(props) {
         days,
         incHabitCounter,
         decHabitCounter,
+        pushToFirebase,
+        pullFromFirebase,
       }}
     >
       {props.children}

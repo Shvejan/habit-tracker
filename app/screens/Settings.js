@@ -37,7 +37,8 @@ const variables = [
 ];
 
 function Settings(props) {
-  const { resetApp, saveCurrentState } = useContext(DataContext);
+  const { resetApp, saveCurrentState, pushToFirebase, pullFromFirebase } =
+    useContext(DataContext);
   const [show, setShow] = useState(false);
   return (
     <View style={styles.safearea}>
@@ -48,10 +49,10 @@ function Settings(props) {
         <View style={styles.container}>
           <Hamburger {...props} />
           <View style={styles.btncontainer}>
-            <TouchableOpacity onPress={() => alert("Uploaded")}>
+            <TouchableOpacity onPress={pushToFirebase}>
               <FontAwesome name="cloud-upload" size={70} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => alert("Downloaded")}>
+            <TouchableOpacity onPress={pullFromFirebase}>
               <FontAwesome name="cloud-download" size={70} color="white" />
             </TouchableOpacity>
           </View>
