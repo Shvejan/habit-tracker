@@ -153,18 +153,7 @@ export default function DataState(props) {
       }
     }
   };
-  const resetApp = () => {
-    setvalue(0);
-    addCards([]);
-    setstreak(0);
-    setlastrelapse(new Date().getTime());
-    setbest(0);
-    setattempts(0);
-    setfvalue([2, 1, 1, 1, 1]);
-    setdays(1);
 
-    console.log("appp resetttuuu");
-  };
   const saveCurrentState = async () => {
     await AsyncStorage.setItem(localstoreAttempts, attempts.toString());
     await AsyncStorage.setItem(localstoreBest, best.toString());
@@ -226,13 +215,34 @@ export default function DataState(props) {
 
     firebase.database().ref("/").set(data);
   };
+
+  const resetApp = () => {
+    setvalue(0);
+    addCards([]);
+    setstreak(0);
+    setlastrelapse(new Date().getTime());
+    setbest(0);
+    setattempts(0);
+    setfvalue([2, 1, 1, 1, 1]);
+    setdays(1);
+
+    console.log("appp resetttuuu");
+  };
+
   const pullFromFirebase = () => {
     firebase
       .database()
       .ref("/")
       .on("value", (snapshot) => {
         const cloudData = snapshot.val();
-        console.log(cloudData.best);
+        setvalue(cloudData.value);
+        setstreak(cloudData.streak);
+        setlastrelapse(cloudData.lastrelapse);
+        setbest(cloudData.best);
+        setattempts(cloudData.attempts);
+        setdays(cloudData.days);
+        setfvalue(Object.values(cloudData.fvalue));
+        addCards(Object.values(cloudData.cards));
       });
   };
   return (
