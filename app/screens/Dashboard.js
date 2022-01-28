@@ -22,27 +22,7 @@ import MainProgressBar from "../components/MainProgressBar";
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
-  const {
-    value,
-    cards,
-    addCards,
-    streak,
-    updateStreak,
-    best,
-    attempts,
-    lastrelapse,
-    fvalue,
-    days,
-  } = useContext(DataContext);
-
-  const addNewCard = (info) => {
-    if (cards === null) {
-      addCards([info]);
-    } else {
-      addCards([...cards, info]);
-    }
-    showHabitModel(false);
-  };
+  const { value, streak, fvalue, days } = useContext(DataContext);
 
   return (
     <View style={styles.safearea}>
@@ -74,11 +54,7 @@ function Dashboard(props) {
         </View>
       </ScrollView>
       <ActivityModel visible={actionModel} showModel={showActionModel} />
-      <HabitModel
-        visible={habitModel}
-        showModel={showHabitModel}
-        addNewCard={addNewCard}
-      />
+      <HabitModel visible={habitModel} showModel={showHabitModel} />
     </View>
   );
 }

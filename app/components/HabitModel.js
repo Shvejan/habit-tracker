@@ -47,6 +47,14 @@ export default function HabitModel(props) {
   const [text, onChangeText] = useState("");
   const data = [0, 0];
   const [selectedColor, setSelectedColor] = useState("#C0392B");
+  const addNewCard = (info) => {
+    if (cards === null) {
+      addCards([info]);
+    } else {
+      addCards([...cards, info]);
+    }
+    showHabitModel(false);
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -67,7 +75,7 @@ export default function HabitModel(props) {
     setSelectedColor("#C0392B");
   };
   const addCard = () => {
-    props.addNewCard({
+    addNewCard({
       image: image,
       title: text,
       color: selectedColor,
