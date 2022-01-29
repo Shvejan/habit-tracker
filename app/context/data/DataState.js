@@ -213,7 +213,11 @@ export default function DataState(props) {
       days: days,
     };
 
-    firebase.database().ref("/").set(data);
+    firebase
+      .database()
+      .ref("/")
+      .set(data)
+      .then(() => alert("uploaded successfully"));
   };
 
   const resetApp = () => {
@@ -243,7 +247,8 @@ export default function DataState(props) {
         setdays(cloudData.days);
         setfvalue(Object.values(cloudData.fvalue));
         addCards(Object.values(cloudData.cards));
-      });
+      })
+      .then(() => alert("Data Downloaded successfully"));
   };
   return (
     <DataContext.Provider

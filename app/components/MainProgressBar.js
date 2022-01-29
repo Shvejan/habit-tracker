@@ -12,7 +12,7 @@ export default function MainProgressBar() {
   useEffect(() => {
     const interval = setInterval(() => {
       let time = startTimer(lastrelapse);
-      if (time[2] != streak) {
+      if (time[0] != streak) {
         updateStreak(time[2]);
       }
       setTimer(time);
