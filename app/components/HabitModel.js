@@ -9,7 +9,7 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BlurView } from "expo-blur";
 import * as ImagePicker from "expo-image-picker";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -46,9 +46,17 @@ const colorPalette = [
 export default function HabitModel(props) {
   const [image, setImage] = useState(null);
   const [text, onChangeText] = useState("");
-  const data = [0, 1];
   const [selectedColor, setSelectedColor] = useState("#C0392B");
-  const { addCards, cards } = useContext(DataContext);
+  const { addCards, cards, deleteCard } = useContext(DataContext);
+  const data = [0, 1];
+
+  useEffect(() => {
+    if (props.id != null && cards != null && cards.length) {
+      setImage(cards[props.id].image);
+      onChangeText(cards[props.id].title);
+      setSelectedColor(cards[props.id].color);
+    }
+  }, [props.id, props.visible]);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -85,6 +93,23 @@ export default function HabitModel(props) {
     resetData();
   };
 
+  const deleteACard = () => {
+    if (props.id != null && cards != null && cards.length) {
+      deleteCard(props.id);
+      props.showModel(false);
+    }
+  };
+
+  const editCard = () => {
+    if (props.id != null && cards != null && cards.length) {
+      cards[props.id].image = image;
+      cards[props.id].title = text;
+      cards[props.id].color = selectedColor;
+      addCards([...cards]);
+      props.showModel(false);
+      resetData();
+    }
+  };
   return (
     <Modal animationType="slide" transparent={true} visible={props.visible}>
       <BlurView tint="dark" intensity={87} style={{ flex: 1 }}>
@@ -138,15 +163,45 @@ export default function HabitModel(props) {
                   }
                 />
               </View>
-              <TouchableOpacity onPress={addCard}>
-                <View style={styles.btn}>
-                  <Text style={styles.btnText}>Add</Text>
-                  <MaterialCommunityIcons
-                    style={styles.btnText}
-                    name="google-fit"
-                  />
+              {!props.edit && (
+                <TouchableOpacity onPress={addCard}>
+                  <View style={styles.btn}>
+                    <Text style={styles.btnText}>Add</Text>
+                    <MaterialCommunityIcons
+                      style={styles.btnText}
+                      name="google-fit"
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
+
+              {props.edit && (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <TouchableOpacity onPress={editCard}>
+                    <View style={[styles.btn, styles.saveBtn]}>
+                      <Text style={styles.btnSmallText}>Save</Text>
+                      <MaterialCommunityIcons
+                        style={styles.btnSmallText}
+                        name="content-save-edit"
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={deleteACard}>
+                    <View style={[styles.btn, styles.deleteBtn]}>
+                      <Text style={styles.btnSmallText}>Delete</Text>
+                      <MaterialCommunityIcons
+                        style={styles.btnSmallText}
+                        name="delete-forever"
+                      />
+                    </View>
+                  </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
+              )}
             </View>
           </View>
         </SafeAreaView>
@@ -212,5 +267,16 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "white",
     fontWeight: "bold",
+  },
+  btnSmallText: {
+    fontSize: 20,
+    color: "white",
+    fontWeight: "bold",
+  },
+  deleteBtn: {
+    backgroundColor: "red",
+  },
+  saveBtn: {
+    backgroundColor: "green",
   },
 });

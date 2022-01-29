@@ -4,4 +4,5 @@ export default {
   quote: "white",
   author: "pink",
   background: "rgb(5, 7, 37)",
+  // overlayDrawer: "rgba(77, 94, 94, 0.7)",
 };

@@ -12,7 +12,6 @@ import ActivityModel from "../components/ActivityModel";
 import colors from "../config/colors";
 import Hamburger from "../components/Hamburger";
 import HabitModel from "../components/HabitModel";
-import { DataContext } from "../context/data/DataContext";
 import Toolbar from "../components/Toolbar";
 import Suggestions from "../components/Suggestions";
 import ThumbnailList from "../components/ThumbnailList";
@@ -22,8 +21,8 @@ import MainProgressBar from "../components/MainProgressBar";
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
-  const { value, streak, fvalue, days } = useContext(DataContext);
-  const strfvalues = JSON.stringify(fvalue);
+  const [editModel, showEditModel] = useState(false);
+  const [id, setid] = useState(null);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -37,9 +36,7 @@ function Dashboard(props) {
           <Toolbar showModel={showActionModel} />
           <Line color="grey" thickness={1} />
           <Suggestions />
-          <Text style={{ color: "white" }}>
-            streak = {streak} value = {value} f = {strfvalues} days = {days}
-          </Text>
+
           <Line color="grey" thickness={1} />
 
           <ScrollView
@@ -47,7 +44,11 @@ function Dashboard(props) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
           >
-            <CardList showModel={showHabitModel} visible={habitModel} />
+            <CardList
+              showModel={showHabitModel}
+              showEditModel={showEditModel}
+              setid={setid}
+            />
           </ScrollView>
           <Line color="grey" thickness={1} />
           <ThumbnailList />
@@ -55,6 +56,12 @@ function Dashboard(props) {
       </ScrollView>
       <ActivityModel visible={actionModel} showModel={showActionModel} />
       <HabitModel visible={habitModel} showModel={showHabitModel} />
+      <HabitModel
+        visible={editModel}
+        showModel={showEditModel}
+        id={id}
+        edit={true}
+      />
     </View>
   );
 }

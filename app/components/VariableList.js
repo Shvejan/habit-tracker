@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-
-export default function VariableList() {
+export default function VariableList(props) {
   return (
     <View style={{ marginHorizontal: 50 }}>
       {props.data.map((a, i) => (
@@ -10,12 +9,6 @@ export default function VariableList() {
           style={{ flexDirection: "row", justifyContent: "space-between" }}
         >
           <Text style={styles.text}>{a.name}</Text>
-          <FontAwesome5
-            name="equals"
-            size={15}
-            color="white"
-            style={{ marginHorizontal: 20, marginVertical: 3 }}
-          />
 
           <Text style={styles.text}>{a.value}</Text>
         </View>
@@ -24,4 +17,11 @@ export default function VariableList() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    color: "white",
+    fontSize: 16,
+    marginHorizontal: 15,
+    marginVertical: 3,
+  },
+});

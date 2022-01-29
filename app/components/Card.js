@@ -11,46 +11,48 @@ import { Ionicons } from "@expo/vector-icons";
 
 function Card(props) {
   return (
-    <View style={styles.card}>
-      <ImageBackground
-        source={{ uri: props.image }}
-        resizeMode="cover"
-        style={styles.bg}
-      >
-        <View style={styles.container}>
-          <Text style={styles.head}>{props.title}</Text>
-          <ProgressBar
-            radius={50}
-            color={props.color}
-            activeColor={props.activeColor}
-            value={props.data[1] ? (props.data[0] * 100) / props.data[1] : 0}
-            thickness={15}
-            duration={500}
-          />
-          <Text style={styles.head}>
-            {props.data[0]}/{props.data[1]}
-          </Text>
-          <View style={styles.btns}>
-            <TouchableOpacity onPress={props.decHabitCounter}>
-              <Ionicons
-                name="caret-down"
-                size={32}
-                color="white"
-                style={{ marginHorizontal: 10 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={props.incHabitCounter}>
-              <Ionicons
-                name="caret-up"
-                size={32}
-                color="white"
-                style={{ marginHorizontal: 10 }}
-              />
-            </TouchableOpacity>
+    <TouchableOpacity onLongPress={props.showEditModel}>
+      <View style={styles.card}>
+        <ImageBackground
+          source={{ uri: props.image }}
+          resizeMode="cover"
+          style={styles.bg}
+        >
+          <View style={styles.container}>
+            <Text style={styles.head}>{props.title}</Text>
+            <ProgressBar
+              radius={50}
+              color={props.color}
+              activeColor={props.activeColor}
+              value={props.data[1] ? (props.data[0] * 100) / props.data[1] : 0}
+              thickness={15}
+              duration={500}
+            />
+            <Text style={styles.head}>
+              {props.data[0]}/{props.data[1]}
+            </Text>
+            <View style={styles.btns}>
+              <TouchableOpacity onPress={props.decHabitCounter}>
+                <Ionicons
+                  name="caret-down"
+                  size={32}
+                  color="white"
+                  style={{ marginHorizontal: 10 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={props.incHabitCounter}>
+                <Ionicons
+                  name="caret-up"
+                  size={32}
+                  color="white"
+                  style={{ marginHorizontal: 10 }}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </View>
+    </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({

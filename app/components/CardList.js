@@ -5,7 +5,8 @@ import Card from "./Card";
 import { DataContext } from "../context/data/DataContext";
 
 export default function CardList(props) {
-  const { cards, incHabitCounter, decHabitCounter } = useContext(DataContext);
+  const { cards, incHabitCounter, decHabitCounter, deleteCard } =
+    useContext(DataContext);
 
   return (
     <View style={styles.horizontal}>
@@ -20,10 +21,14 @@ export default function CardList(props) {
             key={i}
             incHabitCounter={() => incHabitCounter(i)}
             decHabitCounter={() => decHabitCounter(i)}
+            showEditModel={() => {
+              props.setid(i);
+              props.showEditModel(true);
+            }}
           />
         ))}
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => props.showModel(!props.visible)}>
+        <TouchableOpacity onPress={() => props.showModel(true)}>
           <View style={styles.addCard}>
             <MaterialCommunityIcons
               name="heart-plus"

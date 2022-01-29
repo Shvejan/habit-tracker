@@ -16,29 +16,61 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import TextButton from "../components/TextButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { DataContext } from "../context/data/DataContext";
-
-const variables = [
-  {
-    name: "at",
-    value: "30",
-  },
-  {
-    name: "bffc",
-    value: "30",
-  },
-  {
-    name: "cx",
-    value: "30",
-  },
-  {
-    name: "d",
-    value: "30",
-  },
-];
+import VariableList from "../components/VariableList";
 
 function Settings(props) {
-  const { resetApp, saveCurrentState, pushToFirebase, pullFromFirebase } =
-    useContext(DataContext);
+  const {
+    resetApp,
+    saveCurrentState,
+    pushToFirebase,
+    pullFromFirebase,
+    attempts,
+    best,
+    days,
+    fvalue,
+    lastrelapse,
+    streak,
+    value,
+    cards,
+  } = useContext(DataContext);
+
+  let data = [
+    {
+      name: "attempts",
+      value: attempts,
+    },
+    {
+      name: "best",
+      value: best,
+    },
+    {
+      name: "days",
+      value: days,
+    },
+    {
+      name: "value",
+      value: value,
+    },
+    {
+      name: "fvalue",
+      value: JSON.stringify(fvalue),
+    },
+    {
+      name: "lastre",
+      value: lastrelapse,
+    },
+    {
+      name: "streak",
+      value: streak,
+    },
+  ];
+  if (cards && cards.length) {
+    const habits = cards.map((a) => {
+      return { name: a.title, value: JSON.stringify(a.data) };
+    });
+    data = data.concat(habits);
+  }
+
   const [show, setShow] = useState(false);
   return (
     <View style={styles.safearea}>
@@ -84,40 +116,14 @@ function Settings(props) {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            {show && (
-              <VariableList data={variables.slice(0, variables.length / 2)} />
-            )}
-            {show && (
-              <VariableList data={variables.slice(variables.length / 2)} />
-            )}
+            {show && <VariableList data={data} />}
           </View>
         </View>
       </ScrollView>
     </View>
   );
 }
-const VariableList = (props) => {
-  return (
-    <View style={{ marginHorizontal: 50 }}>
-      {props.data.map((a, i) => (
-        <View
-          key={i}
-          style={{ flexDirection: "row", justifyContent: "space-between" }}
-        >
-          <Text style={styles.text}>{a.name}</Text>
-          <FontAwesome5
-            name="equals"
-            size={15}
-            color="white"
-            style={{ marginHorizontal: 20, marginVertical: 3 }}
-          />
 
-          <Text style={styles.text}>{a.value}</Text>
-        </View>
-      ))}
-    </View>
-  );
-};
 const styles = StyleSheet.create({
   text: {
     color: "white",

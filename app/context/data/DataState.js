@@ -245,10 +245,16 @@ export default function DataState(props) {
         setbest(cloudData.best);
         setattempts(cloudData.attempts);
         setdays(cloudData.days);
-        setfvalue(Object.values(cloudData.fvalue));
-        addCards(Object.values(cloudData.cards));
-      })
-      .then(() => alert("Data Downloaded successfully"));
+        if (cloudData.fvalue != null)
+          setfvalue(Object.values(cloudData.fvalue));
+        if (cloudData.cards != undefined)
+          addCards(Object.values(cloudData.cards));
+      });
+    alert("Data Downloaded successfully");
+  };
+  const deleteCard = (id) => {
+    cards.splice(id, 1);
+    addCards([...cards]);
   };
   return (
     <DataContext.Provider
@@ -275,6 +281,7 @@ export default function DataState(props) {
         decHabitCounter,
         pushToFirebase,
         pullFromFirebase,
+        deleteCard,
       }}
     >
       {props.children}

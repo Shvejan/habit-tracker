@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -10,9 +10,11 @@ import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AuthContext } from "../context/auth/AuthContext";
+import { DataContext } from "../context/data/DataContext";
 
 export default function CustomDrawer(props) {
-  const { setLogin } = React.useContext(AuthContext);
+  const { setLogin } = useContext(AuthContext);
+  const { streak } = useContext(DataContext);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,7 +22,7 @@ export default function CustomDrawer(props) {
         style={{ flex: 1 }}
       >
         <View style={styles.overlay}>
-          <BlurView tint="dark" intensity={75} style={styles.blur}>
+          <BlurView tint="dark" intensity={80} style={styles.blur}>
             <DrawerContentScrollView {...props}>
               <View style={styles.profile}>
                 <Image
@@ -28,10 +30,16 @@ export default function CustomDrawer(props) {
                   style={styles.profilePhoto}
                 />
                 <Text style={styles.name}>Aromston</Text>
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
                   <Octicons name="flame" size={20} color="orange" />
-                  <Text style={styles.subname}>Alright hit it now!</Text>
+                  <Text style={styles.streak}>{streak}</Text>
                 </View>
+                <Text style={styles.subname}>Alright Lets Hit it</Text>
               </View>
               <View style={styles.items}>
                 <DrawerItemList {...props} />
@@ -95,9 +103,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "600",
     paddingTop: 10,
-    marginLeft: 10,
   },
-
+  streak: {
+    color: "white",
+    fontSize: 20,
+    marginLeft: 8,
+    paddingTop: 2,
+    fontWeight: "bold",
+  },
   blur: {
     flexGrow: 1,
   },
