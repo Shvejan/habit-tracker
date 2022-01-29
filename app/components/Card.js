@@ -10,6 +10,8 @@ import ProgressBar from "./ProgressBar";
 import { Ionicons } from "@expo/vector-icons";
 
 function Card(props) {
+  console.log("data is ", props.data[0]);
+  console.log("prev is ", props.prev);
   return (
     <TouchableOpacity onLongPress={props.showEditModel}>
       <View style={styles.card}>
@@ -19,6 +21,12 @@ function Card(props) {
           style={styles.bg}
         >
           <View style={styles.container}>
+            <Ionicons
+              name="alert-circle-sharp"
+              size={10}
+              color={props.data[0] > props.prev ? "green" : "red"}
+              style={{ position: "absolute", top: 10, right: 10 }}
+            />
             <Text style={styles.head}>{props.title}</Text>
             <ProgressBar
               radius={50}

@@ -84,6 +84,7 @@ export default function HabitModel(props) {
       data: data,
       prev: 0,
     };
+    console.log("new card is ", newCard);
     if (cards === null) {
       addCards([newCard]);
     } else {

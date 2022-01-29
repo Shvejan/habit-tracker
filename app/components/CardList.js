@@ -18,6 +18,7 @@ export default function CardList(props) {
             activeColor={a["color"]}
             title={a["title"]}
             data={a["data"]}
+            prev={a.prev}
             key={i}
             incHabitCounter={() => incHabitCounter(i)}
             decHabitCounter={() => decHabitCounter(i)}
