@@ -12,6 +12,7 @@
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "axios": "^0.25.0",
     "expo": "~42.0.1",
     "expo-blur": "~9.0.3",
     "expo-image-picker": "~10.2.2",
