@@ -109,7 +109,6 @@ export default function DataState(props) {
     async function store() {
       if (fvalue != null) {
         await AsyncStorage.setItem(localstoreFvalue, fvalue.toString());
-        console.log("fchanged to ", fvalue);
       }
     }
     store();
@@ -117,8 +116,10 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      if (days != null)
+      if (days != null) {
         await AsyncStorage.setItem(localstoredays, days.toString());
+        console.log("days changed to ", days);
+      }
     }
     store();
   }, [days]);
@@ -127,7 +128,6 @@ export default function DataState(props) {
     async function store() {
       if (cards !== null) {
         await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
-        console.log("cards updated", JSON.stringify(cards));
       }
     }
     store();
@@ -146,7 +146,8 @@ export default function DataState(props) {
 
   const updateStreak = (newstreak) => {
     if (value != null && days != null && days <= newstreak + 1 && !isloading) {
-      // console.log("recieved target state", newstreak);
+      console.log("recieved target state", newstreak);
+      console.log("current value is", streak);
       let dif = newstreak - streak;
       while (dif > 0) {
         setstreak((prevStreak) => prevStreak + 1);
@@ -172,6 +173,7 @@ export default function DataState(props) {
   };
 
   const daychanged = () => {
+    console.log("day change triggeed");
     setdays((prevDays) => {
       setvalue(
         (prevValue) =>

@@ -3,12 +3,12 @@ import React, { useContext } from "react";
 import { DataContext } from "../context/data/DataContext";
 
 export default function Suggestions() {
-  const { fvalue, cards } = useContext(DataContext);
+  const { fvalue, days } = useContext(DataContext);
 
   return (
     <View>
       <Text style={styles.toolhead}>{JSON.stringify(fvalue)}</Text>
-      <Text style={styles.toolhead}>{JSON.stringify(cards)}</Text>
+      <Text style={styles.toolhead}>{days}</Text>
     </View>
   );
 }
