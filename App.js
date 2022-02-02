@@ -1,10 +1,8 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 
 import AuthState from "./app/context/auth/AuthState";
 import Main from "./app/components/Main";
-import * as firebase from "firebase";
 export default function App() {
   return (
     <AuthState>
@@ -12,15 +10,3 @@ export default function App() {
     </AuthState>
   );
 }
-const firebaseConfig = {
-  apiKey: "AIzaSyCaC5hSUJWnj6y1DLHIFpb-ya2uAK-uvNE",
-  authDomain: "habit-tracker-8973e.firebaseapp.com",
-  projectId: "habit-tracker-8973e",
-  storageBucket: "habit-tracker-8973e.appspot.com",
-  messagingSenderId: "427296095842",
-  appId: "1:427296095842:web:93e75edde12ee4bbc41b3b",
-  measurementId: "G-K4LEBZ2KYS",
-};
-
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
