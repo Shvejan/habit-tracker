@@ -63,5 +63,7 @@ export const habitContributor = (days, value, cards) => {
     });
   const component =
     (value * ((Math.sqrt(p) - n * 1.2) / Math.sqrt(n + 1))) / days;
+
+  console.log("original value is ", value, component);
   return component;
 };

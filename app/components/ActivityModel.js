@@ -36,7 +36,7 @@ export default function ActivityModel(props) {
     props.showModel(false);
     let newValues = decValMain(days, value, fvalue);
     setvalue(newValues[0]);
-    setfvalue(newValues[1]);
+    setfvalue([...newValues[1]]);
   };
   const actions = (type) => {
     let newValues = [0, 0];
@@ -55,7 +55,8 @@ export default function ActivityModel(props) {
         break;
     }
     setvalue(newValues[0]);
-    setfvalue(newValues[1]);
+    setfvalue([...newValues[1]]);
+
     props.showModel(false);
   };
   return (
@@ -71,27 +72,29 @@ export default function ActivityModel(props) {
             <MaterialCommunityIcons name="meditation" style={styles.btns} />
           </TouchableOpacity>
           <View style={styles.btncontainer}>
-            <TouchableOpacity onPress={() => actions(1)}>
-              <MaterialCommunityIcons
-                name="emoticon-confused"
-                style={styles.btns}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => actions(2)}>
-              <MaterialCommunityIcons
-                name="cellphone-iphone"
-                style={styles.btns}
-              />
-            </TouchableOpacity>
             <TouchableOpacity onPress={() => actions(3)}>
               <MaterialCommunityIcons
                 name="thought-bubble"
                 style={styles.btns}
               />
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => actions(2)}>
+              <MaterialCommunityIcons
+                name="cellphone-iphone"
+                style={styles.btns}
+              />
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => actions(4)}>
               <MaterialCommunityIcons
                 name="emoticon-tongue"
+                style={styles.btns}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => actions(1)}>
+              <MaterialCommunityIcons
+                name="emoticon-confused"
                 style={styles.btns}
               />
             </TouchableOpacity>

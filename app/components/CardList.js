@@ -5,13 +5,14 @@ import Card from "./Card";
 import { DataContext } from "../context/data/DataContext";
 
 export default function CardList(props) {
-  const { cards, incHabitCounter, decHabitCounter, deleteCard } =
-    useContext(DataContext);
+  const { cards, incHabitCounter, decHabitCounter } = useContext(DataContext);
 
   return (
     <View style={styles.horizontal}>
       {cards != null &&
+        cards != undefined &&
         typeof cards != "string" &&
+        cards.length > 0 &&
         cards.map((a, i) => (
           <Card
             image={a["image"]}

@@ -21,7 +21,7 @@ export default function DataState(props) {
   const [lastrelapse, setlastrelapse] = useState(null);
   const [best, setbest] = useState(null);
   const [attempts, setattempts] = useState(0);
-  const [fvalue, setfvalue] = useState([2, 1, 1, 1, 1]); //[f,tc,mc,pc,baddecisionc]
+  const [fvalue, setfvalue] = useState(null); //[f,tc,mc,pc,baddecisionc]
   const [days, setdays] = useState(null);
   const [isloading, setisloading] = useState(true);
   useEffect(() => {
@@ -107,8 +107,10 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      if (fvalue != null)
+      if (fvalue != null) {
         await AsyncStorage.setItem(localstoreFvalue, fvalue.toString());
+        console.log("fchanged to ", fvalue);
+      }
     }
     store();
   }, [fvalue]);

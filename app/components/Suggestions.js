@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { DataContext } from "../context/data/DataContext";
 
 export default function Suggestions() {
+  const { fvalue, cards } = useContext(DataContext);
+
   return (
     <View>
-      <Text style={styles.toolhead}>Loose 13 days</Text>
+      <Text style={styles.toolhead}>{JSON.stringify(fvalue)}</Text>
+      <Text style={styles.toolhead}>{JSON.stringify(cards)}</Text>
     </View>
   );
 }

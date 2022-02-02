@@ -10,8 +10,6 @@ import ProgressBar from "./ProgressBar";
 import { Ionicons } from "@expo/vector-icons";
 
 function Card(props) {
-  console.log("data is ", props.data[0]);
-  console.log("prev is ", props.prev);
   return (
     <TouchableOpacity onLongPress={props.showEditModel}>
       <View style={styles.card}>
