@@ -10,10 +10,10 @@ export default function Suggestions() {
   const [quote, setquote] = useState("");
 
   useEffect(() => {
-    // if (online) fetchSmallQuote(setquote, 50);
-    // else {
-    setquote(smallQuotesList[Math.floor(Math.random() * 20)]);
-    // }
+    if (online) fetchSmallQuote(setquote, 50);
+    else {
+      setquote(smallQuotesList[Math.floor(Math.random() * 20)]);
+    }
   }, [online]);
   return (
     <View>
