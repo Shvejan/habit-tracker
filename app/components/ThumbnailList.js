@@ -1,9 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import thumbnailImage from "../assets/thumbnail.jpg";
 import { fetchVideos } from "../apis/youtubeapi";
-
-const data = [thumbnailImage, thumbnailImage];
 
 export default function ThumbnailList() {
   const [thumbnailData, setthumbnailData] = useState([]);
