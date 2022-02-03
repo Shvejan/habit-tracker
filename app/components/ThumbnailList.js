@@ -8,7 +8,8 @@ export default function ThumbnailList() {
     fetchVideos(setthumbnailData);
   }, []);
   const openUrl = (url) => {
-    Linking.openURL(`https://youtu.be/${url}`);
+    // Linking.openURL(`https://youtu.be/${url}`);
+    console.log(url);
   };
   return (
     <View style={styles.discover}>

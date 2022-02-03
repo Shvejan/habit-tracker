@@ -189,7 +189,7 @@ export default function DataState(props) {
         a.data[1] += 1;
         a.prev = a.data[0];
       });
-      return prevCards;
+      return [...prevCards];
     });
   };
   const incHabitCounter = (id) => {
