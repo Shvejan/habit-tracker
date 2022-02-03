@@ -1,5 +1,5 @@
 import axios from "axios";
-export const api = axios.create({
+const youtubeApi = axios.create({
   baseURL: "https://youtube.googleapis.com/youtube/v3",
   params: {
     part: "snippet",
@@ -11,7 +11,7 @@ export const api = axios.create({
 
 export const fetchVideos = async (setthumbnailData) => {
   let returndata = [];
-  await api
+  await youtubeApi
     .get("/search")
     .then((res) => {
       returndata = res.data.items.map((a) => a.snippet.thumbnails.high.url);
