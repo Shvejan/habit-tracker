@@ -1,17 +1,21 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchVideos } from "../apis/youtubeapi";
-
+import * as Linking from "expo-linking";
 export default function ThumbnailList() {
   const [thumbnailData, setthumbnailData] = useState([]);
   useEffect(() => {
     fetchVideos(setthumbnailData);
   }, []);
-
+  const openUrl = (url) => {
+    Linking.openURL(`https://youtu.be/${url}`);
+  };
   return (
     <View style={styles.discover}>
       {thumbnailData.map((a, i) => (
-        <Image source={{ uri: a }} style={styles.thumbnail} key={i} />
+        <Pressable onPress={() => openUrl(a.url)} key={i}>
+          <Image source={{ uri: a.image }} style={styles.thumbnail} />
+        </Pressable>
       ))}
     </View>
   );
