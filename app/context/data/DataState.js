@@ -226,7 +226,88 @@ export default function DataState(props) {
 
   const resetApp = () => {
     setvalue(0);
-    addCards([]);
+    addCards([
+      {
+        color: "#7998EE",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/7f6b4977-5382-495d-87f2-8bf11718fe0b.jpg",
+        prev: 0,
+        title: "Resistance",
+      },
+      {
+        color: "#FF68A8",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/6bbcc2b0-20ea-45d6-a8ab-63bf91d38d79.jpg",
+        prev: 0,
+        title: "Books",
+      },
+      {
+        color: "#F7E752",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/df7391df-8cf6-4437-ae78-0931d83376f2.jpg",
+        prev: 0,
+        title: "Cold shower",
+      },
+      {
+        color: "#DD517F",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/a743d9cf-10e5-411c-8b8f-717bd9a7794b.jpg",
+        prev: 0,
+        title: "7am",
+      },
+      {
+        color: "#E68E36",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/acf0b023-d14c-4f0e-a185-ea5cda9e0d56.jpg",
+        prev: 0,
+        title: "Abs",
+      },
+      {
+        color: "#E74C3C",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/da5f246a-622b-41c6-b809-2a5ecaaaa020.jpg",
+        prev: 0,
+        title: "Todo",
+      },
+      {
+        color: "#64CFF7",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/95bd95ee-e658-4d58-a259-53ac22156277.jpg",
+        prev: 0,
+        title: "LessPhone",
+      },
+      {
+        color: "#CA7CD8",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/25938267-f9ff-47fa-9b53-1251aeb885e0.jpg",
+        prev: 0,
+        title: "Meditation",
+      },
+      {
+        color: "#93C4D1",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/d3b0174a-b2ff-4809-aa97-19e9ab5384cc.jpg",
+        prev: 0,
+        title: "Food",
+      },
+      {
+        color: "#F7E752",
+        data: [0, 1],
+        image:
+          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/eb372a85-e56d-45cf-bd15-6a870ccd6ab9.jpg",
+        prev: 0,
+        title: "Coding",
+      },
+    ]);
     setstreak(0);
     setlastrelapse(new Date().getTime());
     setbest(0);
@@ -253,6 +334,7 @@ export default function DataState(props) {
           setfvalue(Object.values(cloudData.fvalue));
         if (cloudData.cards != undefined)
           addCards(Object.values(cloudData.cards));
+        console.log(JSON.stringify(Object.values(cloudData.cards)));
       });
     alert("Data Downloaded successfully");
   };

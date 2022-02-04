@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
 
   safearea: {
     backgroundColor: colors.background,
+    flex: 1,
   },
 });
 export default Dashboard;
