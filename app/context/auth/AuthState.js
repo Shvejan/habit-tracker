@@ -2,7 +2,7 @@ import { AuthContext } from "./AuthContext";
 import React, { useEffect, useState } from "react";
 import * as Network from "expo-network";
 export default function AuthState(props) {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
   const [online, setonline] = useState(false);
   useEffect(() => {
     const getNetStatus = async () => {

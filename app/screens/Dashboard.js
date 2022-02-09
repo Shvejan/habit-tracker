@@ -17,6 +17,7 @@ import Suggestions from "../components/Suggestions";
 import ThumbnailList from "../components/ThumbnailList";
 import CardList from "../components/CardList";
 import MainProgressBar from "../components/MainProgressBar";
+import Todo from "../components/Todo";
 
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
@@ -51,6 +52,7 @@ function Dashboard(props) {
             />
           </ScrollView>
           <Line color="grey" thickness={1} />
+          {/* <Todo /> */}
           <ThumbnailList />
         </View>
       </ScrollView>

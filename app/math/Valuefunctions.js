@@ -53,6 +53,7 @@ export const decision = (days, value, f) => {
 };
 
 export const habitContributor = (days, value, cards) => {
+  if (!value) value = 0.05;
   let p = 0,
     n = 0;
   cards &&
