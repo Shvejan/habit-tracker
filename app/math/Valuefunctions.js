@@ -4,7 +4,7 @@ const percentage = (value, days) => {
 
 export const incValPeriodic = (days, value, f) => {
   value = value + 1 + ((days - value) * value) / days / f[0] ** 2;
-  return days ? value : days;
+  return value > days + 1 ? days : value;
 };
 
 export const decValMain = (days, value, f) => {
@@ -66,5 +66,5 @@ export const habitContributor = (days, value, cards) => {
     (value * ((Math.sqrt(p) - n * 1.2) / Math.sqrt(n + 1))) / days;
 
   console.log("original value is ", value, component);
-  return component;
+  return component > value * 0.02 ? value * 0.02 : component;
 };
