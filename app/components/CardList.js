@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     // justifyContent: "space-around",
     flexDirection: "row",
     padding: 10,
-    paddingBottom: 30,
   },
   card: {
     margin: 5,
@@ -83,11 +82,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgb(25, 26, 43)",
     paddingHorizontal: 25,
-    height: 256,
+    height: 236,
   },
   text: {
     color: "white",
-    fontSize: 25,
+    fontSize: 23,
     marginTop: 20,
     fontWeight: "bold",
   },

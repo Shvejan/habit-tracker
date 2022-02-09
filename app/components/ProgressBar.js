@@ -9,13 +9,14 @@ function ProgressBar(props) {
         value={props.value}
         textColor="white"
         fontSize={20}
-        valueSuffix={"%"}
+        valueSuffix={props.maxValue ? `/${props.maxValue}` : "%"}
         inActiveStrokeColor={props.color ? props.color : "pink"}
         activeStrokeColor={props.activeColor}
         activeStrokeWidth={props.thickness}
         inActiveStrokeOpacity={0.2}
         inActiveStrokeWidth={props.thickness}
         duration={props.duration ? props.duration : 3000}
+        maxValue={props.maxValue ? props.maxValue : 100}
       />
     </View>
   );

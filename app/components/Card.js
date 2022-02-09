@@ -30,13 +30,12 @@ function Card(props) {
               radius={50}
               color={props.color}
               activeColor={props.activeColor}
-              value={props.data[1] ? (props.data[0] * 100) / props.data[1] : 0}
+              value={props.data[0]}
               thickness={15}
               duration={500}
+              maxValue={props.data[1]}
             />
-            <Text style={styles.head}>
-              {props.data[0]}/{props.data[1]}
-            </Text>
+
             <View style={styles.btns}>
               <TouchableOpacity onPress={props.decHabitCounter}>
                 <Ionicons
@@ -84,6 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   btns: {
+    marginTop: 20,
     flexDirection: "row",
   },
 });
