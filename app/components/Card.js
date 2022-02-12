@@ -30,11 +30,14 @@ function Card(props) {
               radius={50}
               color={props.color}
               activeColor={props.activeColor}
-              value={props.data[0]}
+              value={props.data[0] ? (props.data[0] * 100) / props.data[1] : 0}
               thickness={15}
               duration={500}
-              maxValue={props.data[1]}
+              hideText={true}
             />
+            <Text
+              style={styles.subtext}
+            >{`${props.data[0]}/${props.data[1]}`}</Text>
 
             <View style={styles.btns}>
               <TouchableOpacity onPress={props.decHabitCounter}>
@@ -81,6 +84,14 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     marginBottom: 20,
+  },
+  subtext: {
+    color: "white",
+    fontSize: 18,
+    position: "absolute",
+    top: 96,
+
+    fontWeight: "bold",
   },
   btns: {
     marginTop: 20,

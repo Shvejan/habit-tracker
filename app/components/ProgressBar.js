@@ -16,7 +16,9 @@ function ProgressBar(props) {
         inActiveStrokeOpacity={0.2}
         inActiveStrokeWidth={props.thickness}
         duration={props.duration ? props.duration : 3000}
-        maxValue={props.maxValue ? props.maxValue : 100}
+        showProgressValue={props.hideText ? false : true}
+        showTitleValue={true}
+        title="afdf"
       />
     </View>
   );
