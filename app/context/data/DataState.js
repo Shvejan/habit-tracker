@@ -230,10 +230,10 @@ export default function DataState(props) {
     setvalue(0);
     addCards([
       {
-        color: "#7998EE",
+        color: "#C0392B",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/7f6b4977-5382-495d-87f2-8bf11718fe0b.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/06132DFC-9995-451C-BADD-B259E193A363.jpg",
         prev: 0,
         title: "Resistance",
       },
@@ -241,71 +241,71 @@ export default function DataState(props) {
         color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/6bbcc2b0-20ea-45d6-a8ab-63bf91d38d79.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A6791809-74FA-4D2A-90E4-0BCE3578DFB6.jpg",
         prev: 0,
         title: "Books",
-      },
-      {
-        color: "#F7E752",
-        data: [0, 1],
-        image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/df7391df-8cf6-4437-ae78-0931d83376f2.jpg",
-        prev: 0,
-        title: "Cold shower",
-      },
-      {
-        color: "#DD517F",
-        data: [0, 1],
-        image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/a743d9cf-10e5-411c-8b8f-717bd9a7794b.jpg",
-        prev: 0,
-        title: "7am",
-      },
-      {
-        color: "#E68E36",
-        data: [0, 1],
-        image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/acf0b023-d14c-4f0e-a185-ea5cda9e0d56.jpg",
-        prev: 0,
-        title: "Abs",
-      },
-      {
-        color: "#E74C3C",
-        data: [0, 1],
-        image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/da5f246a-622b-41c6-b809-2a5ecaaaa020.jpg",
-        prev: 0,
-        title: "Todo",
       },
       {
         color: "#64CFF7",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/95bd95ee-e658-4d58-a259-53ac22156277.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/399EC45A-3131-48F0-9D1C-AD0D496D29A7.jpg",
         prev: 0,
-        title: "LessPhone",
+        title: "Cold shower",
       },
       {
-        color: "#CA7CD8",
+        color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/25938267-f9ff-47fa-9b53-1251aeb885e0.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/286D5B44-4ADC-473E-8290-FFFC09D8BFF8.jpg",
         prev: 0,
-        title: "Meditation",
+        title: "7am",
       },
       {
-        color: "#93C4D1",
+        color: "#C0392B",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/d3b0174a-b2ff-4809-aa97-19e9ab5384cc.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/CA0690AB-FE1B-4AD0-97EF-4F74F7877B7D.jpg",
         prev: 0,
-        title: "Food",
+        title: "Abs",
+      },
+      {
+        color: "#E68E36",
+        data: [0, 1],
+        image:
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/179895AE-71E9-44AC-B5A8-4C14FAA1D351.jpg",
+        prev: 0,
+        title: "Todo",
       },
       {
         color: "#F7E752",
         data: [0, 1],
         image:
-          "file:///data/user/0/com.shvejan.habitracker/cache/ImagePicker/eb372a85-e56d-45cf-bd15-6a870ccd6ab9.jpg",
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F9B85A15-ED25-4C3D-B3CA-6030BE504ECF.jpg",
+        prev: 0,
+        title: "LessPhone",
+      },
+      {
+        color: "#93C4D1",
+        data: [0, 1],
+        image:
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/88449C08-39DC-433C-8274-595DAE44ABC8.jpg",
+        prev: 0,
+        title: "Meditation",
+      },
+      {
+        color: "#64CFF7",
+        data: [0, 1],
+        image:
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/D8BC6447-8A3E-47D0-8BC4-4901FF860422.jpg",
+        prev: 0,
+        title: "Food",
+      },
+      {
+        color: "#93C4D1",
+        data: [0, 1],
+        image:
+          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/71A2F797-331B-4D16-8655-8DCEF9B1E93F.jpg",
         prev: 0,
         title: "Coding",
       },
