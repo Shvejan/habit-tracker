@@ -15,3 +15,5 @@ export const localstoreLastrelapse = "devlocalLastrelapse";
 export const localstoreFvalue = "devlocalFvalue";
 export const localstoredays = "devlocalDays";
 export const localstorecardsdata = "devlocalHabitCardsData";
+
+// mainprogress auth state local storage names
