@@ -17,13 +17,15 @@ import Suggestions from "../components/Suggestions";
 import ThumbnailList from "../components/ThumbnailList";
 import CardList from "../components/CardList";
 import MainProgressBar from "../components/MainProgressBar";
-import Todo from "../components/Todo";
+import UpcomingEvents from "../components/UpcomingEvents";
+import EventModel from "../components/EventModel";
 
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
   const [actionModel, showActionModel] = useState(false);
   const [editModel, showEditModel] = useState(false);
   const [id, setid] = useState(null);
+  const [eventModel, showEventModel] = useState(false);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -52,7 +54,8 @@ function Dashboard(props) {
             />
           </ScrollView>
           <Line color="grey" thickness={1} />
-          {/* <Todo /> */}
+          <UpcomingEvents showEventModel={showEventModel} />
+          <Line color="grey" thickness={1} />
           <ThumbnailList />
         </View>
       </ScrollView>
@@ -64,6 +67,7 @@ function Dashboard(props) {
         id={id}
         edit={true}
       />
+      <EventModel visible={eventModel} showModel={showEventModel} />
     </View>
   );
 }
@@ -71,6 +75,7 @@ function Dashboard(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background,
+    // backgroundColor: "white",
     alignItems: "center",
     flex: 1,
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 40,

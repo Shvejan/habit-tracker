@@ -10,7 +10,7 @@ function Line(props) {
         width: "95%",
         borderRadius: 10,
         backgroundColor: props.color,
-        margin: 20,
+        margin: props.margin ? props.margin : 20,
       }}
     />
   );

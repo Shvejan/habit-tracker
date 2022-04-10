@@ -10,6 +10,7 @@ import {
   localstoreLastrelapse,
   localstoreStreak,
   localstoreValue,
+  localstoreeventsdata,
 } from "./LocalStoreNames";
 import * as firebase from "firebase";
 import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
@@ -17,13 +18,13 @@ export default function DataState(props) {
   const [value, setvalue] = useState(null);
   const [cards, addCards] = useState(null);
   const [streak, setstreak] = useState(null);
-
   const [lastrelapse, setlastrelapse] = useState(null);
   const [best, setbest] = useState(null);
   const [attempts, setattempts] = useState(0);
   const [fvalue, setfvalue] = useState(null); //[f,tc,mc,pc,baddecisionc]
   const [days, setdays] = useState(null);
   const [isloading, setisloading] = useState(true);
+  const [upcomingEvents, setUpcomingEvents] = useState(null);
   useEffect(() => {
     async function load() {
       try {
@@ -62,6 +63,14 @@ export default function DataState(props) {
         data = await AsyncStorage.getItem(localstoreStreak);
         if (data && streak != data) {
           setstreak(parseInt(data));
+        }
+
+        data = await AsyncStorage.getItem(localstoreeventsdata);
+        if (data) {
+          // setUpcomingEvents(JSON.parse(data));
+          tempData = JSON.parse(data);
+          tempData.map((x) => (x.date = new Date(x.date)));
+          setUpcomingEvents(tempData);
         }
       } catch {
         console.log("i'm over it");
@@ -137,6 +146,18 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
+      if (upcomingEvents !== null) {
+        await AsyncStorage.setItem(
+          localstoreeventsdata,
+          JSON.stringify(upcomingEvents)
+        );
+      }
+    }
+    store();
+  }, [upcomingEvents]);
+
+  useEffect(() => {
+    async function store() {
       if (lastrelapse != null)
         await AsyncStorage.setItem(
           localstoreLastrelapse,
@@ -168,6 +189,10 @@ export default function DataState(props) {
     await AsyncStorage.setItem(localstoreFvalue, fvalue.toString());
     await AsyncStorage.setItem(localstoredays, days.toString());
     await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
+    await AsyncStorage.setItem(
+      localstoreeventsdata,
+      JSON.stringify(upcomingEvents)
+    );
   };
 
   const incAttempts = () => {
@@ -217,6 +242,7 @@ export default function DataState(props) {
       attempts: attempts,
       fvalue: fvalue,
       days: days,
+      upcomingEvents: upcomingEvents,
     };
 
     firebase
@@ -316,6 +342,7 @@ export default function DataState(props) {
     setattempts(0);
     setfvalue([2, 1, 1, 1, 1]);
     setdays(1);
+    setUpcomingEvents([]);
 
     console.log("appp resetttuuu");
   };
@@ -344,6 +371,18 @@ export default function DataState(props) {
     cards.splice(id, 1);
     addCards([...cards]);
   };
+  const addUpcomingEvent = (title, date) => {
+    date = new Date(date);
+    if (upcomingEvents === null || upcomingEvents.length === 0) {
+      setUpcomingEvents([{ title: title, date: date }]);
+    } else {
+      const temp = [...upcomingEvents, { title: title, date: date }];
+      temp.sort(function (a, b) {
+        return a.date - b.date;
+      });
+      setUpcomingEvents([...temp]);
+    }
+  };
   return (
     <DataContext.Provider
       value={{
@@ -370,6 +409,8 @@ export default function DataState(props) {
         pushToFirebase,
         pullFromFirebase,
         deleteCard,
+        upcomingEvents,
+        addUpcomingEvent,
       }}
     >
       {props.children}

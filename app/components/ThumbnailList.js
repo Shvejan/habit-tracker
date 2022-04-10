@@ -5,7 +5,7 @@ import * as Linking from "expo-linking";
 export default function ThumbnailList() {
   const [thumbnailData, setthumbnailData] = useState([]);
   useEffect(() => {
-    fetchVideos(setthumbnailData);
+    // fetchVideos(setthumbnailData);
   }, []);
   const openUrl = (url) => {
     Linking.openURL(`https://youtu.be/${url}`);
