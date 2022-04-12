@@ -383,6 +383,13 @@ export default function DataState(props) {
       setUpcomingEvents([...temp]);
     }
   };
+
+  const deleteUpcomingEvent = (id) => {
+    let tempData = [...upcomingEvents];
+    tempData.splice(id, 1);
+    console.log(tempData);
+    setUpcomingEvents([...tempData]);
+  };
   return (
     <DataContext.Provider
       value={{
@@ -411,6 +418,7 @@ export default function DataState(props) {
         deleteCard,
         upcomingEvents,
         addUpcomingEvent,
+        deleteUpcomingEvent,
       }}
     >
       {props.children}

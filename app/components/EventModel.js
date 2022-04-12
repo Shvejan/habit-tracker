@@ -18,6 +18,10 @@ export default function EventModel(props) {
   const { addUpcomingEvent } = useContext(DataContext);
   const [text, onChangeText] = useState("");
   const [date, setDate] = useState(new Date());
+  const reset = () => {
+    onChangeText("");
+    setDate(new Date());
+  };
   return (
     <Modal animationType="fade" transparent visible={props.visible}>
       <View style={styles.container}>
@@ -62,6 +66,7 @@ export default function EventModel(props) {
           <TouchableOpacity
             onPress={() => {
               addUpcomingEvent(text, date);
+              reset();
               props.showModel(false);
             }}
           >

@@ -3,17 +3,22 @@ import React, { useContext } from "react";
 import { DataContext } from "../context/data/DataContext";
 import { FontAwesome } from "@expo/vector-icons";
 import Line from "./Line";
-import {
-  PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-} from "react-native-gesture-handler";
-import Animated, {
-  useAnimatedGestureHandler,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
+import { Swipeable } from "react-native-gesture-handler";
+import { AntDesign } from "react-native-vector-icons";
 export default function UpcomingEvents(props) {
-  const { upcomingEvents } = useContext(DataContext);
+  const { upcomingEvents, deleteUpcomingEvent } = useContext(DataContext);
+
+  const renderLeftActions = (id) => {
+    return (
+      <TouchableOpacity
+        onPress={() => deleteUpcomingEvent(id)}
+        style={styles.deleteContainer}
+      >
+        <AntDesign name="delete" style={styles.delete} />
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View
       style={{
@@ -38,7 +43,11 @@ export default function UpcomingEvents(props) {
       </View>
 
       {upcomingEvents &&
-        upcomingEvents.map((data, i) => <RenderEvent key={i} data={data} />)}
+        upcomingEvents.map((data, i) => (
+          <Swipeable renderRightActions={() => renderLeftActions(i)} key={i}>
+            <RenderEvent key={i} data={data} />
+          </Swipeable>
+        ))}
     </View>
   );
 }
@@ -46,28 +55,26 @@ export default function UpcomingEvents(props) {
 const RenderEvent = (props) => {
   return (
     <View>
-      <PanGestureHandler>
-        <Animated.View style={[styles.card]}>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            {props.data.date.toString().split(" ")[1] && (
-              <CalenderIcon
-                month={props.data.date.toString().split(" ")[1].toUpperCase()}
-                date={props.data.date.toString().split(" ")[2]}
-              />
-            )}
-            <Text style={styles.title}>{props.data.title}</Text>
-          </View>
-          <Text style={styles.text}>
-            {Math.ceil((props.data.date - Date.now()) / (1000 * 60 * 60 * 24))}
-            {" days to go"}
-          </Text>
-        </Animated.View>
-      </PanGestureHandler>
+      <View style={[styles.card]}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          {props.data.date.toString().split(" ")[1] && (
+            <CalenderIcon
+              month={props.data.date.toString().split(" ")[1].toUpperCase()}
+              date={props.data.date.toString().split(" ")[2]}
+            />
+          )}
+          <Text style={styles.title}>{props.data.title}</Text>
+        </View>
+        <Text style={styles.text}>
+          {Math.ceil((props.data.date - Date.now()) / (1000 * 60 * 60 * 24))}
+          {" days to go"}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -125,5 +132,14 @@ const styles = StyleSheet.create({
     color: "white",
     marginLeft: 10,
     fontSize: 15,
+  },
+  delete: {
+    color: "red",
+    fontSize: 28,
+  },
+  deleteContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 20,
   },
 });
