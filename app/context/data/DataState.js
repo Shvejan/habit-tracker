@@ -69,7 +69,7 @@ export default function DataState(props) {
         if (data) {
           // setUpcomingEvents(JSON.parse(data));
           tempData = JSON.parse(data);
-          tempData.map((x) => (x.date = new Date(x.date)));
+          tempData.map((x) => (x.eventDate = new Date(x.eventDate)));
           setUpcomingEvents(tempData);
         }
       } catch {
@@ -242,7 +242,7 @@ export default function DataState(props) {
       attempts: attempts,
       fvalue: fvalue,
       days: days,
-      upcomingEvents: upcomingEvents,
+      upcomingEvents: JSON.stringify(upcomingEvents),
     };
 
     firebase
@@ -363,7 +363,12 @@ export default function DataState(props) {
           setfvalue(Object.values(cloudData.fvalue));
         if (cloudData.cards != undefined)
           addCards(Object.values(cloudData.cards));
-        console.log(JSON.stringify(Object.values(cloudData.cards)));
+
+        if (cloudData.upcomingEvents) {
+          tempData = JSON.parse(cloudData.upcomingEvents);
+          tempData.map((x) => (x.eventDate = new Date(x.eventDate)));
+          setUpcomingEvents(tempData);
+        }
       });
     alert("Data Downloaded successfully");
   };
@@ -374,11 +379,11 @@ export default function DataState(props) {
   const addUpcomingEvent = (title, date) => {
     date = new Date(date);
     if (upcomingEvents === null || upcomingEvents.length === 0) {
-      setUpcomingEvents([{ title: title, date: date }]);
+      setUpcomingEvents([{ title: title, eventDate: date }]);
     } else {
-      const temp = [...upcomingEvents, { title: title, date: date }];
+      const temp = [...upcomingEvents, { title: title, eventDate: date }];
       temp.sort(function (a, b) {
-        return a.date - b.date;
+        return a.eventDate - b.eventDate;
       });
       setUpcomingEvents([...temp]);
     }
@@ -387,7 +392,6 @@ export default function DataState(props) {
   const deleteUpcomingEvent = (id) => {
     let tempData = [...upcomingEvents];
     tempData.splice(id, 1);
-    console.log(tempData);
     setUpcomingEvents([...tempData]);
   };
   return (

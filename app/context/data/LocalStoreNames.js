@@ -18,4 +18,4 @@ export const localstoreeventsdata = "localEventsData";
 // export const localstorecardsdata = "devlocalHabitCardsData";
 // export const localstoreeventsdata = "devlocalEventsData";
 
-// mainprogress auth state local storage names
+// mainprogress, auth state, local storage names, yt videos

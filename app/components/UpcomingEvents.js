@@ -62,16 +62,21 @@ const RenderEvent = (props) => {
             alignItems: "center",
           }}
         >
-          {props.data.date.toString().split(" ")[1] && (
+          {props.data.eventDate.toString().split(" ")[1] && (
             <CalenderIcon
-              month={props.data.date.toString().split(" ")[1].toUpperCase()}
-              date={props.data.date.toString().split(" ")[2]}
+              month={props.data.eventDate
+                .toString()
+                .split(" ")[1]
+                .toUpperCase()}
+              date={props.data.eventDate.toString().split(" ")[2]}
             />
           )}
           <Text style={styles.title}>{props.data.title}</Text>
         </View>
         <Text style={styles.text}>
-          {Math.ceil((props.data.date - Date.now()) / (1000 * 60 * 60 * 24))}
+          {Math.ceil(
+            (props.data.eventDate - Date.now()) / (1000 * 60 * 60 * 24)
+          )}
           {" days to go"}
         </Text>
       </View>

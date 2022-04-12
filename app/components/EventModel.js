@@ -39,7 +39,6 @@ export default function EventModel(props) {
               placeholder="Name"
             />
           </View>
-          <Text>{date.toString()}</Text>
           {Platform.OS === "ios" && (
             <RNDateTimePicker
               style={styles.datePickerStyle}
@@ -132,7 +131,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   datePickerStyle: {
-    width: 200,
     marginTop: 20,
   },
 
