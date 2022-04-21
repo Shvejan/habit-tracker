@@ -11,6 +11,8 @@ import {
   localstoreStreak,
   localstoreValue,
   localstoreeventsdata,
+  localstoreperiodicdata,
+  localstorenonperiodicdata,
 } from "./LocalStoreNames";
 import * as firebase from "firebase";
 import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
@@ -25,6 +27,10 @@ export default function DataState(props) {
   const [days, setdays] = useState(null);
   const [isloading, setisloading] = useState(true);
   const [upcomingEvents, setUpcomingEvents] = useState(null);
+
+  const [periodicData, setPeriodicData] = useState(null);
+  const [nonPeriodicData, setNonPeriodicData] = useState(null);
+
   useEffect(() => {
     async function load() {
       try {
@@ -40,6 +46,17 @@ export default function DataState(props) {
         if (data) {
           addCards(JSON.parse(data));
         }
+
+        data = await AsyncStorage.getItem(localstoreperiodicdata);
+        if (data) {
+          setPeriodicData(JSON.parse(data));
+        }
+
+        data = await AsyncStorage.getItem(localstorenonperiodicdata);
+        if (data) {
+          setNonPeriodicData(JSON.parse(data));
+        }
+
         data = await AsyncStorage.getItem(localstoreFvalue);
         if (data) {
           setfvalue(data.split(",").map((a) => parseInt(a)));
@@ -167,6 +184,30 @@ export default function DataState(props) {
     store();
   }, [lastrelapse]);
 
+  useEffect(() => {
+    async function store() {
+      if (periodicData != null) {
+        await AsyncStorage.setItem(
+          localstoreperiodicdata,
+          JSON.stringify(periodicData)
+        );
+      }
+    }
+    store();
+  }, [periodicData]);
+
+  useEffect(() => {
+    async function store() {
+      if (nonPeriodicData != null) {
+        await AsyncStorage.setItem(
+          localstorenonperiodicdata,
+          JSON.stringify(nonPeriodicData)
+        );
+      }
+    }
+    store();
+  }, [nonPeriodicData]);
+
   const updateStreak = (newstreak) => {
     if (value != null && days != null && days <= newstreak + 1 && !isloading) {
       // console.log("recieved target state", newstreak);
@@ -202,14 +243,16 @@ export default function DataState(props) {
   const daychanged = () => {
     // console.log("day change triggeed");
     setdays((prevDays) => {
-      setvalue(
-        (prevValue) =>
+      setvalue((prevValue) => {
+        const newVal =
           incValPeriodic(prevDays, prevValue, fvalue) +
-          habitContributor(prevDays, prevValue, cards)
-      );
+          habitContributor(prevDays, prevValue, cards);
+        appendPData(cards, newVal);
+
+        return newVal;
+      });
       return prevDays + 1;
     });
-
     setfvalue([2, 1, 1, 1, 1]);
     addCards((prevCards) => {
       prevCards.map((a) => {
@@ -343,6 +386,8 @@ export default function DataState(props) {
     setfvalue([2, 1, 1, 1, 1]);
     setdays(1);
     setUpcomingEvents([]);
+    setPeriodicData([]);
+    setNonPeriodicData([]);
 
     console.log("appp resetttuuu");
   };
@@ -394,6 +439,39 @@ export default function DataState(props) {
     tempData.splice(id, 1);
     setUpcomingEvents([...tempData]);
   };
+
+  const appendNPData = (activity) => {
+    const date = new Date();
+    setNonPeriodicData([
+      ...nonPeriodicData,
+      {
+        date: date,
+        time: date.getTime(),
+        day: date.toString().split(" ")[0],
+        activity: activity,
+      },
+    ]);
+  };
+  const appendPData = (cards, value) => {
+    let habits = [];
+    cards.map((a) => {
+      if (a.prev < a.data[0]) habits.push(a.title);
+    });
+
+    setPeriodicData((prevData) => {
+      let date;
+      if (prevData.length == 0) {
+        date = new Date();
+      } else {
+        date = prevData[prevData.length - 1]["date"];
+        date.setDate(date.getDate() + 1);
+      }
+      return [
+        ...prevData,
+        { date: date, habits: habits, value: value.toPrecision(3) },
+      ];
+    });
+  };
   return (
     <DataContext.Provider
       value={{
@@ -423,6 +501,9 @@ export default function DataState(props) {
         upcomingEvents,
         addUpcomingEvent,
         deleteUpcomingEvent,
+        periodicData,
+        nonPeriodicData,
+        appendNPData,
       }}
     >
       {props.children}

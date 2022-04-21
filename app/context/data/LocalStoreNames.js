@@ -7,6 +7,8 @@ export const localstoreFvalue = "localFvalue";
 export const localstoredays = "localDays";
 export const localstorecardsdata = "localHabitCardsData";
 export const localstoreeventsdata = "localEventsData";
+export const localstoreperiodicdata = "localPeriodicData";
+export const localstorenonperiodicdata = "localNonPeriodicData";
 
 // export const localstoreAttempts = "devlocalAttempts";
 // export const localstoreValue = "devlocalValue";
@@ -17,5 +19,7 @@ export const localstoreeventsdata = "localEventsData";
 // export const localstoredays = "devlocalDays";
 // export const localstorecardsdata = "devlocalHabitCardsData";
 // export const localstoreeventsdata = "devlocalEventsData";
+// export const localstorperiodicdata = "devlocalPeriodicData";
+// export const localstornonperiodicdata = "devlocalNonPeriodicData";
 
 // mainprogress, auth state, local storage names, yt videos

@@ -23,15 +23,6 @@ function AppStack(props) {
       }}
     >
       <Drawer.Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="home" size={22} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
         name="Stats"
         component={Stats}
         options={{
@@ -40,6 +31,16 @@ function AppStack(props) {
           ),
         }}
       />
+      <Drawer.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="home" size={22} color={color} />
+          ),
+        }}
+      />
+
       <Drawer.Screen
         name="Panic"
         component={Panic}

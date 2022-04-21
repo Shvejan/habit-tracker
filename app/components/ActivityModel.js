@@ -27,6 +27,7 @@ export default function ActivityModel(props) {
     setvalue,
     setfvalue,
     setstreak,
+    appendNPData,
   } = useContext(DataContext);
 
   const fab = () => {
@@ -40,22 +41,31 @@ export default function ActivityModel(props) {
   };
   const actions = (type) => {
     let newValues = [0, 0];
+    let activity = "";
     switch (type) {
       case 1:
         newValues = decision(days, value, fvalue);
+        activity = "decision";
         break;
       case 2:
         newValues = media(days, value, fvalue);
+        activity = "media";
+
         break;
       case 3:
         newValues = thought(days, value, fvalue);
+        activity = "thought";
+
         break;
       case 4:
         newValues = po(days, value, fvalue);
+        activity = "po";
+
         break;
     }
     setvalue(newValues[0]);
     setfvalue([...newValues[1]]);
+    appendNPData(activity);
 
     props.showModel(false);
   };
