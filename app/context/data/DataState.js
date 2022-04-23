@@ -290,6 +290,8 @@ export default function DataState(props) {
       fvalue: fvalue,
       days: days,
       upcomingEvents: JSON.stringify(upcomingEvents),
+      periodicData: JSON.stringify(periodicData),
+      nonPeriodicData: JSON.stringify(nonPeriodicData),
     };
 
     firebase
@@ -418,6 +420,16 @@ export default function DataState(props) {
           tempData.map((x) => (x.eventDate = new Date(x.eventDate)));
           setUpcomingEvents(tempData);
         }
+        if (cloudData.periodicData) {
+          tempData = JSON.parse(cloudData.periodicData);
+          tempData.map((x) => (x.date = new Date(x.date)));
+          setPeriodicData(tempData);
+        }
+        if (cloudData.nonPeriodicData) {
+          tempData = JSON.parse(cloudData.nonPeriodicData);
+          tempData.map((x) => (x.date = new Date(x.date)));
+          setNonPeriodicData(tempData);
+        }
       });
     alert("Data Downloaded successfully");
   };
@@ -450,7 +462,6 @@ export default function DataState(props) {
       ...nonPeriodicData,
       {
         date: date,
-        time: date.getTime(),
         day: date.toString().split(" ")[0],
         activity: activity,
       },
