@@ -7,6 +7,7 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
+  Image,
 } from "react-native";
 import Hamburger from "../components/Hamburger";
 import colors from "../config/colors";
@@ -118,6 +119,18 @@ function Settings(props) {
           >
             {show && <VariableList data={data} />}
           </View>
+          <Image
+            style={styles.tinyLogo}
+            source={require("../assets/value-formula.png")}
+          />
+          <Image
+            style={styles.tinyLogo}
+            source={require("../assets/val-dec-formula.png")}
+          />
+          <Image
+            style={styles.tinyLogo}
+            source={require("../assets/components-formula.png")}
+          />
         </View>
       </ScrollView>
     </View>
@@ -125,6 +138,10 @@ function Settings(props) {
 }
 
 const styles = StyleSheet.create({
+  tinyLogo: {
+    margin: 20,
+    borderRadius: 30,
+  },
   text: {
     color: "white",
     fontSize: 16,
@@ -155,6 +172,10 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 20,
     marginVertical: 30,
+  },
+  imageHolder: {
+    flex: 1,
+    alignItems: "center",
   },
 });
 
