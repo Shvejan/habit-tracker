@@ -33,7 +33,7 @@ function Dashboard(props) {
         showsHorizontalScrollIndicator={false}
       >
         <View style={styles.container}>
-          <Hamburger {...props} />
+          <Hamburger {...props} showPanicBtn />
           <MainProgressBar />
           <Line color="grey" thickness={1} />
           <Toolbar showModel={showActionModel} />

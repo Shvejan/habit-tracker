@@ -17,22 +17,24 @@ export default function Hamburger(props) {
       <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
         <Ionicons name="menu" size={40} style={{ color: "white" }} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => alert("panic mode")}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            marginRight: 5,
-          }}
-        >
-          <Ionicons
-            name="md-alert-circle"
-            size={30}
-            style={{ color: "tomato" }}
-          />
-          <Text style={{ color: "white", fontSize: 6 }}>Panic Button</Text>
-        </View>
-      </TouchableOpacity>
+      {props.showPanicBtn && (
+        <TouchableOpacity onPress={() => alert("panic mode")}>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              marginRight: 5,
+            }}
+          >
+            <Ionicons
+              name="md-alert-circle"
+              size={30}
+              style={{ color: "tomato" }}
+            />
+            <Text style={{ color: "white", fontSize: 6 }}>Panic Button</Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

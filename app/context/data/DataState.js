@@ -49,12 +49,16 @@ export default function DataState(props) {
 
         data = await AsyncStorage.getItem(localstoreperiodicdata);
         if (data) {
-          setPeriodicData(JSON.parse(data));
+          tempData = JSON.parse(data);
+          tempData.map((x) => (x.date = new Date(x.date)));
+          setPeriodicData(tempData);
         }
 
         data = await AsyncStorage.getItem(localstorenonperiodicdata);
         if (data) {
-          setNonPeriodicData(JSON.parse(data));
+          tempData = JSON.parse(data);
+          tempData.map((x) => (x.date = new Date(x.date)));
+          setNonPeriodicData(tempData);
         }
 
         data = await AsyncStorage.getItem(localstoreFvalue);
@@ -463,8 +467,9 @@ export default function DataState(props) {
       if (prevData.length == 0) {
         date = new Date();
       } else {
-        date = prevData[prevData.length - 1]["date"];
-        date.setDate(date.getDate() + 1);
+        date = new Date(prevData[prevData.length - 1]["date"]);
+        if (date.getDate() != undefined) date.setDate(date.getDate() + 1);
+        else date = new Date();
       }
       return [
         ...prevData,
