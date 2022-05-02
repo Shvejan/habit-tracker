@@ -9,6 +9,7 @@ const firebaseConfig = {
   appId: "1:427296095842:web:93e75edde12ee4bbc41b3b",
   measurementId: "G-K4LEBZ2KYS",
 };
+// "https://firebasestorage.googleapis.com/v0/b/habit-tracker-8973e.appspot.com/o/1?alt=media&token=55ecf8da-d50e-46cf-940b-208d415c937e";
 
 if (!firebase.apps.length) {
   const app = firebase.initializeApp(firebaseConfig);
