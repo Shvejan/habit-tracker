@@ -32,6 +32,7 @@
     "react-native-color-palette": "^2.2.0",
     "react-native-date-picker": "^4.2.0",
     "react-native-datepicker": "^1.7.2",
+    "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",

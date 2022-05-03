@@ -19,6 +19,7 @@ import CardList from "../components/CardList";
 import MainProgressBar from "../components/MainProgressBar";
 import UpcomingEvents from "../components/UpcomingEvents";
 import EventModel from "../components/EventModel";
+import MainTodoList from "../components/MainTodoList";
 
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
@@ -56,6 +57,7 @@ function Dashboard(props) {
           <Line color="grey" thickness={1} />
           <UpcomingEvents showEventModel={showEventModel} />
           <Line color="grey" thickness={1} />
+          <MainTodoList />
           <ThumbnailList />
         </View>
       </ScrollView>
