@@ -308,7 +308,7 @@ export default function DataState(props) {
         color: "#C0392B",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/06132DFC-9995-451C-BADD-B259E193A363.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E06F853F-B9DD-4873-BCAC-3C513D43B9C9.jpg",
         prev: 0,
         title: "Resistance",
       },
@@ -316,7 +316,7 @@ export default function DataState(props) {
         color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A6791809-74FA-4D2A-90E4-0BCE3578DFB6.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/40F8639C-6193-48A4-9A6A-9BC0B5055D2A.jpg",
         prev: 0,
         title: "Books",
       },
@@ -324,7 +324,7 @@ export default function DataState(props) {
         color: "#64CFF7",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/399EC45A-3131-48F0-9D1C-AD0D496D29A7.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A40D0340-7C5C-4E0B-BED8-A5B0544AA925.jpg",
         prev: 0,
         title: "Cold shower",
       },
@@ -332,7 +332,7 @@ export default function DataState(props) {
         color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/286D5B44-4ADC-473E-8290-FFFC09D8BFF8.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/000A3FF0-AAD2-42C5-9E11-A8EB18E48414.jpg",
         prev: 0,
         title: "7am",
       },
@@ -340,7 +340,7 @@ export default function DataState(props) {
         color: "#C0392B",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/CA0690AB-FE1B-4AD0-97EF-4F74F7877B7D.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/2ABB71AE-D387-4DD3-B64C-52D389DCBC1B.jpg",
         prev: 0,
         title: "Abs",
       },
@@ -348,7 +348,7 @@ export default function DataState(props) {
         color: "#E68E36",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/179895AE-71E9-44AC-B5A8-4C14FAA1D351.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E1906244-1F54-4C61-A9AE-5D76893FD3EB.jpg",
         prev: 0,
         title: "Todo",
       },
@@ -356,7 +356,7 @@ export default function DataState(props) {
         color: "#F7E752",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F9B85A15-ED25-4C3D-B3CA-6030BE504ECF.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/7B80311F-101C-493A-8218-4E72A3AF2F8C.jpg",
         prev: 0,
         title: "LessPhone",
       },
@@ -364,7 +364,7 @@ export default function DataState(props) {
         color: "#93C4D1",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/88449C08-39DC-433C-8274-595DAE44ABC8.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A64841C9-BBC9-454C-8C7D-D6A3D74A3A8B.jpg",
         prev: 0,
         title: "Meditation",
       },
@@ -372,7 +372,7 @@ export default function DataState(props) {
         color: "#64CFF7",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/D8BC6447-8A3E-47D0-8BC4-4901FF860422.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/EF7F283C-4227-41F0-A8D7-9EEA0EC646C0.jpg",
         prev: 0,
         title: "Food",
       },
@@ -380,7 +380,7 @@ export default function DataState(props) {
         color: "#93C4D1",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/04CA0425-C9C1-421F-BD03-6BA78C2B817F/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/71A2F797-331B-4D16-8655-8DCEF9B1E93F.jpg",
+          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F5F7D86C-58A3-415A-BF41-8C112A9C8AA1.jpg",
         prev: 0,
         title: "Coding",
       },
@@ -412,8 +412,10 @@ export default function DataState(props) {
         setdays(cloudData.days);
         if (cloudData.fvalue != null)
           setfvalue(Object.values(cloudData.fvalue));
-        if (cloudData.cards != undefined)
+        if (cloudData.cards != undefined) {
           addCards(Object.values(cloudData.cards));
+          console.log(Object.values(cloudData.cards));
+        }
 
         if (cloudData.upcomingEvents) {
           tempData = JSON.parse(cloudData.upcomingEvents);

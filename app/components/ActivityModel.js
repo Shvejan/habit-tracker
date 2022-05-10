@@ -90,10 +90,7 @@ export default function ActivityModel(props) {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => actions(2)}>
-              <MaterialCommunityIcons
-                name="cellphone-iphone"
-                style={styles.btns}
-              />
+              <MaterialCommunityIcons name="cellphone" style={styles.btns} />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => actions(4)}>
