@@ -19,7 +19,7 @@ export const localstorenonperiodicdata = "localNonPeriodicData";
 // export const localstoredays = "devlocalDays";
 // export const localstorecardsdata = "devlocalHabitCardsData";
 // export const localstoreeventsdata = "devlocalEventsData";
-// export const localstorperiodicdata = "devlocalPeriodicData";
-// export const localstornonperiodicdata = "devlocalNonPeriodicData";
+// export const localstoreperiodicdata = "devlocalPeriodicData";
+// export const localstorenonperiodicdata = "devlocalNonPeriodicData";
 
 // mainprogress, auth state, local storage names, yt videos
