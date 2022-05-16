@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, Button, StyleSheet } from "react-native";
 import { useContext } from "react";
-import { fetchList, getAccessToken } from "../apis/microsoftTodoApi";
 import { TodoContext } from "../context/todo/TodoContext";
 import * as AuthSession from "expo-auth-session";
 import { openAuthSession } from "azure-ad-graph-expo";

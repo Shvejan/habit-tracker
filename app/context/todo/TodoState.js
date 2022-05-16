@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { fetchTasks } from "../../apis/todoistApi";
 import { TodoContext } from "./TodoContext";
-import { fetchList, fetchTasks } from "../../apis/microsoftTodoApi";
 export default function TodoState(props) {
   const [todoList, setTodoList] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [token, settoken] = useState(null);
   useEffect(() => {
-    fetchList(setTodoList);
+    fetchTasks("a1f538a295edb108a1534257d2b8a44663a66a33", setTasks);
   }, []);
-  useEffect(() => {
-    if (todoList) fetchTasks(setTasks, todoList[0].id);
-  }, [todoList]);
 
   return (
     <TodoContext.Provider

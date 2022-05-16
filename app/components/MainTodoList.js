@@ -5,6 +5,8 @@ import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 import { CheckBox } from "react-native-elements";
+import { fetchTasks } from "../apis/todoistApi";
+
 const state = { notStarted: false, completed: true };
 export default function MainTodoList() {
   const { todoList, setTodoList, tasks, setTasks } = useContext(TodoContext);
@@ -37,21 +39,15 @@ export default function MainTodoList() {
         }}
       >
         <Text style={styles.header}>Tasks</Text>
-        <TouchableOpacity onPress={() => props.showEventModel(true)}>
+        <TouchableOpacity>
           <FontAwesome name="plus-circle" size={10} style={styles.header} />
         </TouchableOpacity>
       </View>
       {tasks &&
         tasks.map((data, i) => {
-          let date = new Date();
-          date.setDate(date.getDate() - 1);
-          const taskDate = new Date(data.lastModifiedDateTime);
-
           return (
             <Swipeable renderRightActions={() => renderLeftActions(i)} key={i}>
-              {(data.status != "completed" || taskDate > date) && (
-                <RenderEvent key={i} data={data} />
-              )}
+              {!data.completed && <RenderEvent key={i} data={data} />}
             </Swipeable>
           );
         })}
@@ -73,7 +69,7 @@ const RenderEvent = (props) => {
           <CheckBox
             containerStyle={[styles.todoBg]}
             textStyle={styles.title}
-            title={props.data.title}
+            title={props.data.content}
             checked={value}
             onPress={() => setValue(!value)}
             size={30}
