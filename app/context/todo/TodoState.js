@@ -4,6 +4,7 @@ import { fetchList, fetchTasks } from "../../apis/microsoftTodoApi";
 export default function TodoState(props) {
   const [todoList, setTodoList] = useState(null);
   const [tasks, setTasks] = useState(null);
+  const [token, settoken] = useState(null);
   useEffect(() => {
     fetchList(setTodoList);
   }, []);
@@ -12,7 +13,9 @@ export default function TodoState(props) {
   }, [todoList]);
 
   return (
-    <TodoContext.Provider value={{ todoList, setTodoList, tasks, setTasks }}>
+    <TodoContext.Provider
+      value={{ todoList, setTodoList, tasks, setTasks, token, settoken }}
+    >
       {props.children}
     </TodoContext.Provider>
   );

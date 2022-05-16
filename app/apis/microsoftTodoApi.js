@@ -1,6 +1,5 @@
 import axios from "axios";
-const token = null;
-axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+
 const microsoftGraph = axios.create({
   baseURL: "https://graph.microsoft.com/v1.0/me/todo/lists/",
 });
@@ -17,22 +16,22 @@ const params = {
   client_secret: "7B-8Q~vxggftC45SPwIitUtaRMbnw3lZsDWIscSo",
 };
 
-export const getAccessToken = async () => {
-  fetch(loginUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(params),
-  })
+export const getAccessToken = async (settoken) => {
+  const qs = require("qs");
+  microsoftLogin
+    .post("/", qs.stringify(params))
     .then((res) => {
-      console.log(res);
+      settoken(res.data.access_token);
     })
     .catch(() => console.log("auth error"));
 };
-export const fetchList = async (setTodoList) => {
+export const fetchList = async (setTodoList, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  console.log(token);
   await microsoftGraph
-    .get("/")
+    .get("/", config)
     .then((res) => {
       const data = res.data.value;
       data.map((a) => console.log(a.displayName));
