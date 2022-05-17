@@ -13,9 +13,9 @@ import React, { useState, useContext } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import DatePicker from "react-native-datepicker";
-import { DataContext } from "../context/data/DataContext";
+import { TodoContext } from "../context/todo/TodoContext";
 export default function EventModel(props) {
-  const { addUpcomingEvent } = useContext(DataContext);
+  const { addEvent } = useContext(TodoContext);
   const [text, onChangeText] = useState("");
   const [date, setDate] = useState(new Date());
   const reset = () => {
@@ -64,7 +64,7 @@ export default function EventModel(props) {
           )}
           <TouchableOpacity
             onPress={() => {
-              addUpcomingEvent(text, date);
+              addEvent(text, date);
               reset();
               props.showModel(false);
             }}

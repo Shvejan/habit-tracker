@@ -5,15 +5,16 @@ import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 import { CheckBox } from "react-native-elements";
-import { fetchTasks } from "../apis/todoistApi";
+import { closeTask, reopenTask } from "../apis/todoistApi";
 
 const state = { notStarted: false, completed: true };
 export default function MainTodoList() {
-  const { todoList, setTodoList, tasks, setTasks } = useContext(TodoContext);
-  const renderLeftActions = (id) => {
+  const { todoList, setTodoList, tasks, setTasks, token, deleteTask } =
+    useContext(TodoContext);
+  const renderLeftActions = (id, taskId) => {
     return (
       <TouchableOpacity
-        onPress={() => deleteUpcomingEvent(id)}
+        onPress={() => deleteTask(id, taskId)}
         style={styles.deleteContainer}
       >
         <AntDesign name="delete" style={styles.delete} />
@@ -45,18 +46,39 @@ export default function MainTodoList() {
       </View>
       {tasks &&
         tasks.map((data, i) => {
-          return (
-            <Swipeable renderRightActions={() => renderLeftActions(i)} key={i}>
-              {!data.completed && <RenderEvent key={i} data={data} />}
-            </Swipeable>
-          );
+          if (data.due) {
+            var currDate = new Date();
+            // currDate = new Date(currDate + 330 * 60 * 1000);
+            const dueDate = new Date(data.due.date);
+            const shouldRender =
+              currDate.toLocaleDateString("en-US") ==
+              dueDate.toLocaleDateString("en-US");
+
+            return (
+              <Swipeable
+                renderRightActions={() => renderLeftActions(i, data.id)}
+                key={i}
+              >
+                {shouldRender && !data.completed && (
+                  <RenderTask key={i} data={data} token={token} />
+                )}
+              </Swipeable>
+            );
+          }
         })}
     </View>
   );
 }
 
-const RenderEvent = (props) => {
-  const [value, setValue] = useState(state[props.data.status]);
+const RenderTask = (props) => {
+  const [value, setValue] = useState(state[props.data.completed]);
+
+  const updateTask = (value) => {
+    if (value) closeTask(props.token, props.data.id);
+    else reopenTask(props.token, props.data.id);
+
+    setValue(value);
+  };
   return (
     <View>
       <View style={[styles.card]}>
@@ -71,7 +93,7 @@ const RenderEvent = (props) => {
             textStyle={styles.title}
             title={props.data.content}
             checked={value}
-            onPress={() => setValue(!value)}
+            onPress={() => updateTask(!value)}
             size={30}
           />
         </View>

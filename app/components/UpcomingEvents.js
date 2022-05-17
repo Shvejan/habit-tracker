@@ -5,13 +5,15 @@ import { FontAwesome } from "@expo/vector-icons";
 import Line from "./Line";
 import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
+import { TodoContext } from "../context/todo/TodoContext";
 export default function UpcomingEvents(props) {
   const { upcomingEvents, deleteUpcomingEvent } = useContext(DataContext);
+  const { events, deleteEvent } = useContext(TodoContext);
 
-  const renderLeftActions = (id) => {
+  const renderLeftActions = (id, taskId) => {
     return (
       <TouchableOpacity
-        onPress={() => deleteUpcomingEvent(id)}
+        onPress={() => deleteEvent(id, taskId)}
         style={styles.deleteContainer}
       >
         <AntDesign name="delete" style={styles.delete} />
@@ -42,9 +44,12 @@ export default function UpcomingEvents(props) {
         </TouchableOpacity>
       </View>
 
-      {upcomingEvents &&
-        upcomingEvents.map((data, i) => (
-          <Swipeable renderRightActions={() => renderLeftActions(i)} key={i}>
+      {events &&
+        events.map((data, i) => (
+          <Swipeable
+            renderRightActions={() => renderLeftActions(i, data.id)}
+            key={i}
+          >
             <RenderEvent key={i} data={data} />
           </Swipeable>
         ))}
@@ -62,20 +67,14 @@ const RenderEvent = (props) => {
             alignItems: "center",
           }}
         >
-          {props.data.eventDate.toString().split(" ")[1] && (
-            <CalenderIcon
-              month={props.data.eventDate
-                .toString()
-                .split(" ")[1]
-                .toUpperCase()}
-              date={props.data.eventDate.toString().split(" ")[2]}
-            />
+          {props.data.due.date.toString().split("-")[1] && (
+            <CalenderIcon date={props.data.due.date} />
           )}
-          <Text style={styles.title}>{props.data.title}</Text>
+          <Text style={styles.title}>{props.data.content}</Text>
         </View>
         <Text style={styles.text}>
           {Math.ceil(
-            (props.data.eventDate - Date.now()) / (1000 * 60 * 60 * 24)
+            (new Date(props.data.due.date) - Date.now()) / (1000 * 60 * 60 * 24)
           )}
           {" days to go"}
         </Text>
@@ -85,11 +84,14 @@ const RenderEvent = (props) => {
 };
 
 const CalenderIcon = (props) => {
+  const date = new Date(props.date);
+  const day = date.toString().split(" ")[2];
+  const month = date.toString().split(" ")[1].toUpperCase();
   return (
     <View style={styles.calender}>
-      <Text style={[styles.calText, styles.calMonth]}>{props.month}</Text>
+      <Text style={[styles.calText, styles.calMonth]}>{month}</Text>
       <Line color="white" thickness={1} margin={1} />
-      <Text style={[styles.calText, styles.calDate]}>{props.date}</Text>
+      <Text style={[styles.calText, styles.calDate]}>{day}</Text>
     </View>
   );
 };
