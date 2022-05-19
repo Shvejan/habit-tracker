@@ -11,7 +11,7 @@ export default function TodoState(props) {
     "a1f538a295edb108a1534257d2b8a44663a66a33"
   );
   useEffect(() => {
-    fetchTasks(token, setTasks);
+    refreshTasks;
   }, [token]);
 
   useEffect(() => {
@@ -42,7 +42,9 @@ export default function TodoState(props) {
     setEvents([...temp]);
     deleteTaskApi(token, taskId);
   };
-
+  const refreshTasks = () => {
+    fetchTasks(token, setTasks);
+  };
   const addEvent = (text, date = "today", project_id = null) => {
     console.log(text);
     console.log(date);
@@ -52,7 +54,7 @@ export default function TodoState(props) {
       text,
       date.toString().split(" ").splice(1, 3).toString(),
       project_id
-    ).then(() => fetchTasks(token, setTasks));
+    ).then(refreshTasks);
   };
   return (
     <TodoContext.Provider
@@ -67,6 +69,7 @@ export default function TodoState(props) {
         deleteTask,
         deleteEvent,
         addEvent,
+        refreshTasks,
       }}
     >
       {props.children}

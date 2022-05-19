@@ -7,8 +7,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 export default function UpcomingEvents(props) {
-  const { upcomingEvents, deleteUpcomingEvent } = useContext(DataContext);
-  const { events, deleteEvent } = useContext(TodoContext);
+  const { events, deleteEvent, refreshTasks } = useContext(TodoContext);
 
   const renderLeftActions = (id, taskId) => {
     return (
@@ -39,7 +38,10 @@ export default function UpcomingEvents(props) {
         }}
       >
         <Text style={styles.header}>Upcoming Events</Text>
-        <TouchableOpacity onPress={() => props.showEventModel(true)}>
+        <TouchableOpacity
+          onPress={() => props.showEventModel(true)}
+          onLongPress={refreshTasks}
+        >
           <FontAwesome name="plus-circle" size={10} style={styles.header} />
         </TouchableOpacity>
       </View>
