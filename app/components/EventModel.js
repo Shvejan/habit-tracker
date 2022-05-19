@@ -64,7 +64,7 @@ export default function EventModel(props) {
           )}
           <TouchableOpacity
             onPress={() => {
-              addEvent(text, date);
+              addEvent(text, date, props.project_id);
               reset();
               props.showModel(false);
             }}

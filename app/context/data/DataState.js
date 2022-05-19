@@ -10,7 +10,6 @@ import {
   localstoreLastrelapse,
   localstoreStreak,
   localstoreValue,
-  localstoreeventsdata,
   localstoreperiodicdata,
   localstorenonperiodicdata,
 } from "./LocalStoreNames";

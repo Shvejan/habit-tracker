@@ -20,6 +20,7 @@ import MainProgressBar from "../components/MainProgressBar";
 import UpcomingEvents from "../components/UpcomingEvents";
 import EventModel from "../components/EventModel";
 import MainTodoList from "../components/MainTodoList";
+import { event_project_id } from "../config/constants";
 
 function Dashboard(props) {
   const [habitModel, showHabitModel] = useState(false);
@@ -27,6 +28,7 @@ function Dashboard(props) {
   const [editModel, showEditModel] = useState(false);
   const [id, setid] = useState(null);
   const [eventModel, showEventModel] = useState(false);
+  const [taskModel, showTaskModel] = useState(false);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -57,7 +59,7 @@ function Dashboard(props) {
           <Line color="grey" thickness={1} />
           <UpcomingEvents showEventModel={showEventModel} />
           <Line color="grey" thickness={1} />
-          <MainTodoList />
+          <MainTodoList showTaskModel={showTaskModel} />
           <ThumbnailList />
         </View>
       </ScrollView>
@@ -69,7 +71,16 @@ function Dashboard(props) {
         id={id}
         edit={true}
       />
-      <EventModel visible={eventModel} showModel={showEventModel} />
+      <EventModel
+        visible={eventModel}
+        showModel={showEventModel}
+        project_id={event_project_id}
+      />
+      <EventModel
+        visible={taskModel}
+        showModel={showTaskModel}
+        project_id={null}
+      />
     </View>
   );
 }

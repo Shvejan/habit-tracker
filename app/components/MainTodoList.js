@@ -5,10 +5,10 @@ import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 import { CheckBox } from "react-native-elements";
-import { closeTask, reopenTask } from "../apis/todoistApi";
+import { closeTask, createTask, reopenTask } from "../apis/todoistApi";
 
 const state = { notStarted: false, completed: true };
-export default function MainTodoList() {
+export default function MainTodoList(props) {
   const { todoList, setTodoList, tasks, setTasks, token, deleteTask } =
     useContext(TodoContext);
   const renderLeftActions = (id, taskId) => {
@@ -20,6 +20,9 @@ export default function MainTodoList() {
         <AntDesign name="delete" style={styles.delete} />
       </TouchableOpacity>
     );
+  };
+  const createANewTask = () => {
+    createTask(token, "name s");
   };
 
   return (
@@ -40,7 +43,7 @@ export default function MainTodoList() {
         }}
       >
         <Text style={styles.header}>Tasks</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.showTaskModel(true)}>
           <FontAwesome name="plus-circle" size={10} style={styles.header} />
         </TouchableOpacity>
       </View>
@@ -71,7 +74,7 @@ export default function MainTodoList() {
 }
 
 const RenderTask = (props) => {
-  const [value, setValue] = useState(state[props.data.completed]);
+  const [value, setValue] = useState(false);
 
   const updateTask = (value) => {
     if (value) closeTask(props.token, props.data.id);
