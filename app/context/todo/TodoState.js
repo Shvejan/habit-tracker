@@ -19,8 +19,17 @@ export default function TodoState(props) {
   }, [tasks]);
 
   const filterEvents = () => {
-    setEvents([...tasks.filter((data) => data.project_id == project_id)]);
+    var temp = tasks.filter((data) => data.project_id == project_id);
+    temp.sort(function (a, b) {
+      var c = new Date(a.due.date);
+      var d = new Date(b.due.date);
+      var now = new Date();
+      return now - d - (now - c);
+    });
+    console.log(temp);
+    setEvents([...temp]);
   };
+
   const deleteTask = (id, taskId) => {
     var temp = tasks;
     temp.splice(id, 1);

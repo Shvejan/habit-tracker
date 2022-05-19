@@ -85,14 +85,6 @@ export default function DataState(props) {
         if (data && streak != data) {
           setstreak(parseInt(data));
         }
-
-        data = await AsyncStorage.getItem(localstoreeventsdata);
-        if (data) {
-          // setUpcomingEvents(JSON.parse(data));
-          tempData = JSON.parse(data);
-          tempData.map((x) => (x.eventDate = new Date(x.eventDate)));
-          setUpcomingEvents(tempData);
-        }
       } catch {
         console.log("i'm over it");
       }
@@ -167,18 +159,6 @@ export default function DataState(props) {
 
   useEffect(() => {
     async function store() {
-      if (upcomingEvents !== null) {
-        await AsyncStorage.setItem(
-          localstoreeventsdata,
-          JSON.stringify(upcomingEvents)
-        );
-      }
-    }
-    store();
-  }, [upcomingEvents]);
-
-  useEffect(() => {
-    async function store() {
       if (lastrelapse != null)
         await AsyncStorage.setItem(
           localstoreLastrelapse,
@@ -234,10 +214,6 @@ export default function DataState(props) {
     await AsyncStorage.setItem(localstoreFvalue, fvalue.toString());
     await AsyncStorage.setItem(localstoredays, days.toString());
     await AsyncStorage.setItem(localstorecardsdata, JSON.stringify(cards));
-    await AsyncStorage.setItem(
-      localstoreeventsdata,
-      JSON.stringify(upcomingEvents)
-    );
   };
 
   const incAttempts = () => {
@@ -289,7 +265,6 @@ export default function DataState(props) {
       attempts: attempts,
       fvalue: fvalue,
       days: days,
-      upcomingEvents: JSON.stringify(upcomingEvents),
       periodicData: JSON.stringify(periodicData),
       nonPeriodicData: JSON.stringify(nonPeriodicData),
     };
@@ -391,7 +366,6 @@ export default function DataState(props) {
     setattempts(0);
     setfvalue([2, 1, 1, 1, 1]);
     setdays(1);
-    setUpcomingEvents([]);
     setPeriodicData([]);
     setNonPeriodicData([]);
 
@@ -417,11 +391,6 @@ export default function DataState(props) {
           console.log(Object.values(cloudData.cards));
         }
 
-        if (cloudData.upcomingEvents) {
-          tempData = JSON.parse(cloudData.upcomingEvents);
-          tempData.map((x) => (x.eventDate = new Date(x.eventDate)));
-          setUpcomingEvents(tempData);
-        }
         if (cloudData.periodicData) {
           tempData = JSON.parse(cloudData.periodicData);
           tempData.map((x) => (x.date = new Date(x.date)));
@@ -438,24 +407,6 @@ export default function DataState(props) {
   const deleteCard = (id) => {
     cards.splice(id, 1);
     addCards([...cards]);
-  };
-  const addUpcomingEvent = (title, date) => {
-    date = new Date(date);
-    if (upcomingEvents === null || upcomingEvents.length === 0) {
-      setUpcomingEvents([{ title: title, eventDate: date }]);
-    } else {
-      const temp = [...upcomingEvents, { title: title, eventDate: date }];
-      temp.sort(function (a, b) {
-        return a.eventDate - b.eventDate;
-      });
-      setUpcomingEvents([...temp]);
-    }
-  };
-
-  const deleteUpcomingEvent = (id) => {
-    let tempData = [...upcomingEvents];
-    tempData.splice(id, 1);
-    setUpcomingEvents([...tempData]);
   };
 
   const appendNPData = (activity) => {
@@ -516,9 +467,6 @@ export default function DataState(props) {
         pushToFirebase,
         pullFromFirebase,
         deleteCard,
-        upcomingEvents,
-        addUpcomingEvent,
-        deleteUpcomingEvent,
         periodicData,
         nonPeriodicData,
         appendNPData,
