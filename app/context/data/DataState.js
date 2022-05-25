@@ -280,82 +280,82 @@ export default function DataState(props) {
     addCards([
       {
         color: "#C0392B",
-        data: [0, 1],
+        data: [0, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E06F853F-B9DD-4873-BCAC-3C513D43B9C9.jpg",
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/85D8B248-B8D8-4C33-B1B3-F172E667B330.jpg",
         prev: 0,
         title: "Resistance",
       },
       {
         color: "#FF68A8",
-        data: [0, 1],
+        data: [0, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/40F8639C-6193-48A4-9A6A-9BC0B5055D2A.jpg",
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/0821A4D9-1272-4468-AA8D-28CE8291D0F3.jpg",
         prev: 0,
         title: "Books",
       },
       {
         color: "#64CFF7",
-        data: [0, 1],
+        data: [1, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A40D0340-7C5C-4E0B-BED8-A5B0544AA925.jpg",
-        prev: 0,
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/C1C6BD13-60D5-4EDB-A09F-9EC1A8E547BC.jpg",
+        prev: 1,
         title: "Cold shower",
       },
       {
         color: "#FF68A8",
-        data: [0, 1],
+        data: [1, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/000A3FF0-AAD2-42C5-9E11-A8EB18E48414.jpg",
-        prev: 0,
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F45C71B3-6BEF-443E-A363-AC98B54C5690.jpg",
+        prev: 1,
         title: "7am",
       },
       {
         color: "#C0392B",
-        data: [0, 1],
+        data: [0, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/2ABB71AE-D387-4DD3-B64C-52D389DCBC1B.jpg",
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/84F7EA79-AEF3-4128-8648-1744889D2268.jpg",
         prev: 0,
         title: "Abs",
       },
       {
         color: "#E68E36",
-        data: [0, 1],
+        data: [0, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E1906244-1F54-4C61-A9AE-5D76893FD3EB.jpg",
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/DA5052B2-C1E2-426A-82AD-35230B5D7A45.jpg",
         prev: 0,
         title: "Todo",
       },
       {
         color: "#F7E752",
-        data: [0, 1],
+        data: [1, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/7B80311F-101C-493A-8218-4E72A3AF2F8C.jpg",
-        prev: 0,
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/B756351E-D283-4788-8AA4-E9D788FCC3CC.jpg",
+        prev: 1,
         title: "LessPhone",
       },
       {
         color: "#93C4D1",
-        data: [0, 1],
+        data: [0, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A64841C9-BBC9-454C-8C7D-D6A3D74A3A8B.jpg",
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/511F6F43-4F48-4147-8702-445CAE709BBF.jpg",
         prev: 0,
         title: "Meditation",
       },
       {
         color: "#64CFF7",
-        data: [0, 1],
+        data: [1, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/EF7F283C-4227-41F0-A8D7-9EEA0EC646C0.jpg",
-        prev: 0,
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/79145869-5B22-45EA-A5A3-04A654DC1BD2.jpg",
+        prev: 1,
         title: "Food",
       },
       {
         color: "#93C4D1",
-        data: [0, 1],
+        data: [1, 3],
         image:
-          "file:///var/mobile/Containers/Data/Application/E8163751-CB54-43C5-826A-6D03E53DEDC4/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F5F7D86C-58A3-415A-BF41-8C112A9C8AA1.jpg",
-        prev: 0,
+          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A7F8DA26-303F-4D9C-9314-1384B8F54ADE.jpg",
+        prev: 1,
         title: "Coding",
       },
     ]);
