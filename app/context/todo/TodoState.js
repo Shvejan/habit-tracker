@@ -11,7 +11,7 @@ export default function TodoState(props) {
     "a1f538a295edb108a1534257d2b8a44663a66a33"
   );
   useEffect(() => {
-    refreshTasks;
+    refreshTasks();
   }, [token]);
 
   useEffect(() => {

@@ -280,7 +280,7 @@ export default function DataState(props) {
     addCards([
       {
         color: "#C0392B",
-        data: [0, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/85D8B248-B8D8-4C33-B1B3-F172E667B330.jpg",
         prev: 0,
@@ -288,7 +288,7 @@ export default function DataState(props) {
       },
       {
         color: "#FF68A8",
-        data: [0, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/0821A4D9-1272-4468-AA8D-28CE8291D0F3.jpg",
         prev: 0,
@@ -296,7 +296,7 @@ export default function DataState(props) {
       },
       {
         color: "#64CFF7",
-        data: [1, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/C1C6BD13-60D5-4EDB-A09F-9EC1A8E547BC.jpg",
         prev: 1,
@@ -304,7 +304,7 @@ export default function DataState(props) {
       },
       {
         color: "#FF68A8",
-        data: [1, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F45C71B3-6BEF-443E-A363-AC98B54C5690.jpg",
         prev: 1,
@@ -312,7 +312,7 @@ export default function DataState(props) {
       },
       {
         color: "#C0392B",
-        data: [0, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/84F7EA79-AEF3-4128-8648-1744889D2268.jpg",
         prev: 0,
@@ -320,7 +320,7 @@ export default function DataState(props) {
       },
       {
         color: "#E68E36",
-        data: [0, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/DA5052B2-C1E2-426A-82AD-35230B5D7A45.jpg",
         prev: 0,
@@ -328,7 +328,7 @@ export default function DataState(props) {
       },
       {
         color: "#F7E752",
-        data: [1, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/B756351E-D283-4788-8AA4-E9D788FCC3CC.jpg",
         prev: 1,
@@ -336,7 +336,7 @@ export default function DataState(props) {
       },
       {
         color: "#93C4D1",
-        data: [0, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/511F6F43-4F48-4147-8702-445CAE709BBF.jpg",
         prev: 0,
@@ -344,7 +344,7 @@ export default function DataState(props) {
       },
       {
         color: "#64CFF7",
-        data: [1, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/79145869-5B22-45EA-A5A3-04A654DC1BD2.jpg",
         prev: 1,
@@ -352,7 +352,7 @@ export default function DataState(props) {
       },
       {
         color: "#93C4D1",
-        data: [1, 3],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A7F8DA26-303F-4D9C-9314-1384B8F54ADE.jpg",
         prev: 1,
