@@ -2,10 +2,11 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchVideos } from "../apis/youtubeapi";
 import * as Linking from "expo-linking";
+import { dev } from "../config/constants";
 export default function ThumbnailList() {
   const [thumbnailData, setthumbnailData] = useState([]);
   useEffect(() => {
-    // fetchVideos(setthumbnailData);
+    if (!dev) fetchVideos(setthumbnailData);
   }, []);
   const openUrl = (url) => {
     Linking.openURL(`https://youtu.be/${url}`);

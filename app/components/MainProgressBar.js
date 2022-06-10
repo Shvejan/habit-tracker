@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { startTimer } from "../math/TimeCalc";
 import ProgressBar from "./ProgressBar";
 import { DataContext } from "../context/data/DataContext";
+import { dev } from "../config/constants";
 
 export default function MainProgressBar() {
   const { value, streak, updateStreak, lastrelapse, days } =
@@ -12,8 +13,8 @@ export default function MainProgressBar() {
   useEffect(() => {
     const interval = setInterval(() => {
       let time = startTimer(lastrelapse);
-      if (time[2] != streak) {
-        updateStreak(time[2]);
+      if (time[dev ? 2 : 0] != streak) {
+        updateStreak(time[dev ? 2 : 0]);
       }
       setTimer(time);
     }, 1000);

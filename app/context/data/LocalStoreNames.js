@@ -1,14 +1,26 @@
-export const localstoreAttempts = "localAttempts";
-export const localstoreValue = "localValue";
-export const localstoreStreak = "localStreak";
-export const localstoreBest = "localBest";
-export const localstoreLastrelapse = "localLastrelapse";
-export const localstoreFvalue = "localFvalue";
-export const localstoredays = "localDays";
-export const localstorecardsdata = "localHabitCardsData";
-export const localstoreeventsdata = "localEventsData";
-export const localstoreperiodicdata = "localPeriodicData";
-export const localstorenonperiodicdata = "localNonPeriodicData";
+import { dev } from "../../config/constants";
+
+export const localstoreAttempts = dev ? "localAttempts" : "devlocalAttempts";
+export const localstoreValue = dev ? "localValue" : "devlocalValue";
+export const localstoreStreak = dev ? "localStreak" : "devlocalStreak";
+export const localstoreBest = dev ? "localBest" : "devlocalBest";
+export const localstoreLastrelapse = dev
+  ? "localLastrelapse"
+  : "devlocalLastrelapse";
+export const localstoreFvalue = dev ? "localFvalue" : "devlocalFvalue";
+export const localstoredays = dev ? "localDays" : "devlocalDays";
+export const localstorecardsdata = dev
+  ? "localHabitCardsData"
+  : "devlocalHabitCardsData";
+export const localstoreeventsdata = dev
+  ? "localEventsData"
+  : "devlocalEventsData";
+export const localstoreperiodicdata = dev
+  ? "localPeriodicData"
+  : "devlocalPeriodicData";
+export const localstorenonperiodicdata = dev
+  ? "localNonPeriodicData"
+  : "devlocalNonPeriodicData";
 
 // export const localstoreAttempts = "devlocalAttempts";
 // export const localstoreValue = "devlocalValue";
