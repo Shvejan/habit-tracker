@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
-import { DataContext } from "../context/data/DataContext";
 import { FontAwesome } from "@expo/vector-icons";
 import Line from "./Line";
 import { Swipeable } from "react-native-gesture-handler";
@@ -11,12 +10,23 @@ export default function UpcomingEvents(props) {
 
   const renderLeftActions = (id, taskId) => {
     return (
-      <TouchableOpacity
-        onPress={() => deleteEvent(id, taskId)}
-        style={styles.deleteContainer}
-      >
-        <AntDesign name="delete" style={styles.delete} />
-      </TouchableOpacity>
+      <View style={styles.delEditView}>
+        <TouchableOpacity
+          onPress={() => {
+            props.seteditTaskId(new Number(taskId));
+            props.showEditTaskModel(true);
+          }}
+          style={styles.deleteContainer}
+        >
+          <FontAwesome name="edit" style={styles.edit} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => deleteEvent(id, taskId)}
+          style={styles.deleteContainer}
+        >
+          <AntDesign name="delete" style={styles.delete} />
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -146,9 +156,16 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 28,
   },
+  edit: {
+    color: "green",
+    fontSize: 28,
+  },
   deleteContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 20,
+    marginHorizontal: 5,
+  },
+  delEditView: {
+    flexDirection: "row",
   },
 });

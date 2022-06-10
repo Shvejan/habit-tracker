@@ -29,6 +29,8 @@ function Dashboard(props) {
   const [id, setid] = useState(null);
   const [eventModel, showEventModel] = useState(false);
   const [taskModel, showTaskModel] = useState(false);
+  const [editTaskModel, showEditTaskModel] = useState(false);
+  const [editTaskId, seteditTaskId] = useState(null);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -57,9 +59,17 @@ function Dashboard(props) {
             />
           </ScrollView>
           <Line color="grey" thickness={1} />
-          <UpcomingEvents showEventModel={showEventModel} />
+          <UpcomingEvents
+            showEventModel={showEventModel}
+            showEditTaskModel={showEditTaskModel}
+            seteditTaskId={seteditTaskId}
+          />
           <Line color="grey" thickness={1} />
-          <MainTodoList showTaskModel={showTaskModel} />
+          <MainTodoList
+            showTaskModel={showTaskModel}
+            showEditTaskModel={showEditTaskModel}
+            seteditTaskId={seteditTaskId}
+          />
           <ThumbnailList />
         </View>
       </ScrollView>
@@ -81,6 +91,12 @@ function Dashboard(props) {
         showModel={showTaskModel}
         project_id={null}
       />
+      <EventModel
+        visible={editTaskModel}
+        showModel={showEditTaskModel}
+        project_id={null}
+        editTaskId={editTaskId}
+      />
     </View>
   );
 }
@@ -97,6 +113,9 @@ const styles = StyleSheet.create({
   safearea: {
     backgroundColor: colors.background,
     flex: 1,
+  },
+  title: {
+    color: "white",
   },
 });
 export default Dashboard;

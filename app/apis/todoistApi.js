@@ -63,3 +63,17 @@ export const createTask = async (
     })
     .catch((err) => console.log(err));
 };
+export const editTaskApi = async (token, id, text, date) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  await TodoistApi.post(
+    `/tasks/${id}`,
+    { content: text, due_string: date },
+    config
+  )
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => console.log(err));
+};

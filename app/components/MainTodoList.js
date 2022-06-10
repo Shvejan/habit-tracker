@@ -7,22 +7,29 @@ import { TodoContext } from "../context/todo/TodoContext";
 import { CheckBox } from "react-native-elements";
 import { closeTask, createTask, reopenTask } from "../apis/todoistApi";
 
-const state = { notStarted: false, completed: true };
 export default function MainTodoList(props) {
   const { todoList, setTodoList, tasks, setTasks, token, deleteTask } =
     useContext(TodoContext);
   const renderLeftActions = (id, taskId) => {
     return (
-      <TouchableOpacity
-        onPress={() => deleteTask(id, taskId)}
-        style={styles.deleteContainer}
-      >
-        <AntDesign name="delete" style={styles.delete} />
-      </TouchableOpacity>
+      <View style={styles.delEditView}>
+        <TouchableOpacity
+          onPress={() => {
+            props.seteditTaskId(taskId);
+            props.showEditTaskModel(true);
+          }}
+          style={styles.deleteContainer}
+        >
+          <FontAwesome name="edit" style={styles.edit} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => deleteEvent(id, taskId)}
+          style={styles.deleteContainer}
+        >
+          <AntDesign name="delete" style={styles.delete} />
+        </TouchableOpacity>
+      </View>
     );
-  };
-  const createANewTask = () => {
-    createTask(token, "name s");
   };
 
   return (
@@ -124,14 +131,21 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 15,
   },
-  deleteContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 20,
-  },
   delete: {
     color: "red",
     fontSize: 28,
+  },
+  edit: {
+    color: "green",
+    fontSize: 28,
+  },
+  deleteContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  delEditView: {
+    flexDirection: "row",
   },
   todoBg: {
     backgroundColor: "rgba(71, 255, 255, 0)",

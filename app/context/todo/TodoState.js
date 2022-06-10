@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { createTask, deleteTaskApi, fetchTasks } from "../../apis/todoistApi";
+import {
+  createTask,
+  deleteTaskApi,
+  editTaskApi,
+  fetchTasks,
+} from "../../apis/todoistApi";
 import { event_project_id } from "../../config/constants";
 import { TodoContext } from "./TodoContext";
 
@@ -45,6 +50,12 @@ export default function TodoState(props) {
   const refreshTasks = () => {
     fetchTasks(token, setTasks);
   };
+  const getTaskInfo = (id) => {
+    if (tasks) {
+      var x = tasks.filter((data) => data.id == id);
+      return x[0];
+    }
+  };
   const addEvent = (text, date = "today", project_id = null) => {
     console.log(text);
     console.log(date);
@@ -55,6 +66,9 @@ export default function TodoState(props) {
       date.toString().split(" ").splice(1, 3).toString(),
       project_id
     ).then(refreshTasks);
+  };
+  const editTask = (editTaskId, text, date) => {
+    editTaskApi(token, editTaskId, text, date).then(refreshTasks);
   };
   return (
     <TodoContext.Provider
@@ -70,6 +84,8 @@ export default function TodoState(props) {
         deleteEvent,
         addEvent,
         refreshTasks,
+        getTaskInfo,
+        editTask,
       }}
     >
       {props.children}

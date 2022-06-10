@@ -9,19 +9,27 @@ import {
   Button,
   Platform,
 } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import DatePicker from "react-native-datepicker";
 import { TodoContext } from "../context/todo/TodoContext";
 export default function EventModel(props) {
-  const { addEvent } = useContext(TodoContext);
+  const { addEvent, getTaskInfo, editTask } = useContext(TodoContext);
   const [text, onChangeText] = useState("");
   const [date, setDate] = useState(new Date());
   const reset = () => {
     onChangeText("");
     setDate(new Date());
   };
+  useEffect(() => {
+    var task = getTaskInfo(props.editTaskId);
+    if (task) {
+      onChangeText(task.content);
+      setDate(new Date(task.due.date));
+    }
+  }, [props.editTaskId]);
+
   return (
     <Modal animationType="fade" transparent visible={props.visible}>
       <View style={styles.container}>
@@ -31,6 +39,7 @@ export default function EventModel(props) {
               <MaterialCommunityIcons name="close" style={styles.close} />
             </Pressable>
           </View>
+          {/* <Text style={styles.title}>{props.editTaskId}</Text> */}
           <View style={styles.titleHolder}>
             <TextInput
               style={styles.input}
@@ -62,9 +71,11 @@ export default function EventModel(props) {
               }}
             />
           )}
+
           <TouchableOpacity
             onPress={() => {
-              addEvent(text, date, props.project_id);
+              if (props.editTaskId) editTask(props.editTaskId, text, date);
+              else addEvent(text, date, props.project_id);
               reset();
               props.showModel(false);
             }}
