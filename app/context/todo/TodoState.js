@@ -3,6 +3,7 @@ import {
   createTask,
   deleteTaskApi,
   editTaskApi,
+  fetchProjects,
   fetchTasks,
 } from "../../apis/todoistApi";
 import { event_project_id } from "../../config/constants";
@@ -12,8 +13,9 @@ export default function TodoState(props) {
   const [todoList, setTodoList] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [events, setEvents] = useState(null);
+  const [projects, setprojects] = useState(null);
   const [token, settoken] = useState(
-    "a1f538a295edb108a1534257d2b8a44663a66a33"
+    "276d19c357360bc25055a752eef1f5aafe235f25"
   );
   useEffect(() => {
     refreshTasks();
@@ -49,6 +51,7 @@ export default function TodoState(props) {
   };
   const refreshTasks = () => {
     fetchTasks(token, setTasks);
+    fetchProjects(token, setprojects);
   };
   const getTaskInfo = (id) => {
     if (tasks) {
@@ -86,6 +89,7 @@ export default function TodoState(props) {
         refreshTasks,
         getTaskInfo,
         editTask,
+        projects,
       }}
     >
       {props.children}

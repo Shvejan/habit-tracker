@@ -299,7 +299,7 @@ export default function DataState(props) {
         data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/C1C6BD13-60D5-4EDB-A09F-9EC1A8E547BC.jpg",
-        prev: 1,
+        prev: 0,
         title: "Cold shower",
       },
       {
@@ -307,7 +307,7 @@ export default function DataState(props) {
         data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F45C71B3-6BEF-443E-A363-AC98B54C5690.jpg",
-        prev: 1,
+        prev: 0,
         title: "7am",
       },
       {
@@ -331,7 +331,7 @@ export default function DataState(props) {
         data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/B756351E-D283-4788-8AA4-E9D788FCC3CC.jpg",
-        prev: 1,
+        prev: 0,
         title: "LessPhone",
       },
       {
@@ -347,7 +347,7 @@ export default function DataState(props) {
         data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/79145869-5B22-45EA-A5A3-04A654DC1BD2.jpg",
-        prev: 1,
+        prev: 0,
         title: "Food",
       },
       {
@@ -355,7 +355,7 @@ export default function DataState(props) {
         data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A7F8DA26-303F-4D9C-9314-1384B8F54ADE.jpg",
-        prev: 1,
+        prev: 0,
         title: "Coding",
       },
     ]);

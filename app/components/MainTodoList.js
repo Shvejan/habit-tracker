@@ -1,15 +1,40 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 import { CheckBox } from "react-native-elements";
-import { closeTask, createTask, reopenTask } from "../apis/todoistApi";
-
+import { closeTask, reopenTask } from "../apis/todoistApi";
+import { Picker } from "@react-native-picker/picker";
 export default function MainTodoList(props) {
-  const { todoList, setTodoList, tasks, setTasks, token, deleteTask } =
-    useContext(TodoContext);
+  const { tasks, token, projects } = useContext(TodoContext);
+
+  const [filteredTasks, setfilteredTasks] = useState(tasks);
+  const [selectedProject, setSelectedProject] = useState("today");
+
+  useEffect(() => {
+    if (tasks) {
+      let temp = [];
+      if (selectedProject === "today") {
+        temp = tasks.filter((d) => {
+          if (d.due) {
+            var currDate = new Date();
+            const dueDate = new Date(d.due.date);
+            const shouldRender =
+              currDate.toLocaleDateString("en-US") ==
+              dueDate.toLocaleDateString("en-US");
+            return shouldRender;
+          } else return false;
+        });
+      } else {
+        temp = tasks.filter((data) => data.project_id == selectedProject);
+        console.log(temp);
+      }
+      setfilteredTasks([...temp]);
+    }
+  }, [tasks, selectedProject]);
+
   const renderLeftActions = (id, taskId) => {
     return (
       <View style={styles.delEditView}>
@@ -39,43 +64,28 @@ export default function MainTodoList(props) {
         marginHorizontal: 5,
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingHorizontal: 30,
-          alignItems: "center",
-          marginBottom: 20,
-        }}
-      >
+      <View style={styles.headerView}>
         <Text style={styles.header}>Tasks</Text>
+        <ProjectSelector
+          projects={projects}
+          selectedProject={selectedProject}
+          setSelectedProject={setSelectedProject}
+        />
         <TouchableOpacity onPress={() => props.showTaskModel(true)}>
           <FontAwesome name="plus-circle" size={10} style={styles.header} />
         </TouchableOpacity>
       </View>
-      {tasks &&
-        tasks.map((data, i) => {
-          if (data.due) {
-            var currDate = new Date();
-            // currDate = new Date(currDate + 330 * 60 * 1000);
-            const dueDate = new Date(data.due.date);
-            const shouldRender =
-              currDate.toLocaleDateString("en-US") ==
-              dueDate.toLocaleDateString("en-US");
-
-            return (
-              <Swipeable
-                renderRightActions={() => renderLeftActions(i, data.id)}
-                key={i}
-              >
-                {shouldRender && !data.completed && (
-                  <RenderTask key={i} data={data} token={token} />
-                )}
-              </Swipeable>
-            );
-          }
-        })}
+      {filteredTasks &&
+        filteredTasks.map((data, i) => (
+          <Swipeable
+            renderRightActions={() => renderLeftActions(i, data.id)}
+            key={i}
+          >
+            {!data.completed && (
+              <RenderTask key={i} data={data} token={token} />
+            )}
+          </Swipeable>
+        ))}
     </View>
   );
 }
@@ -112,10 +122,59 @@ const RenderTask = (props) => {
   );
 };
 
+const ProjectSelector = (props) => {
+  return (
+    <View style={styles.pickercontainer}>
+      <Picker
+        style={styles.pickerbox}
+        itemStyle={styles.pickerItem}
+        selectedValue={props.selectedProject}
+        onValueChange={(itemValue, itemIndex) =>
+          props.setSelectedProject(itemValue)
+        }
+      >
+        <Picker.Item label="Today" value="today" />
+
+        {props.projects &&
+          props.projects.map((d, i) => (
+            <Picker.Item label={d.name} value={d.id} key={i} />
+          ))}
+      </Picker>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
+  pickerbox: {
+    backgroundColor: "rgba(18, 76, 190, 0.527)",
+  },
+  pickercontainer: {
+    width: 160,
+    borderWidth: 1,
+    borderRadius: 10,
+    justifyContent: "center",
+    height: 40,
+    overflow: "hidden",
+  },
+  pickerItem: {
+    color: "white",
+    width: "100%",
+  },
+  headerView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 30,
+    alignItems: "center",
+    marginBottom: 20,
+  },
   header: {
     color: "white",
     fontSize: 20,
+  },
+  subheader: {
+    color: "grey",
+    fontSize: 18,
   },
   card: {
     flexDirection: "row",

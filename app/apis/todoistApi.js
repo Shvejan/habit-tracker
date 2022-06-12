@@ -15,6 +15,17 @@ export const fetchTasks = async (token, setTasks) => {
     .catch(() => console.log("error in the api"));
 };
 
+export const fetchProjects = async (token, setProjects) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  await TodoistApi.get("/projects", config)
+    .then((res) => {
+      setProjects(res.data);
+    })
+    .catch(() => console.log("error in the api"));
+};
+
 export const closeTask = async (token, id) => {
   await fetch(`https://api.todoist.com/rest/v1/tasks/${id}/close`, {
     method: "post",
