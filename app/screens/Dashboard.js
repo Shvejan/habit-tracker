@@ -31,6 +31,7 @@ function Dashboard(props) {
   const [taskModel, showTaskModel] = useState(false);
   const [editTaskModel, showEditTaskModel] = useState(false);
   const [editTaskId, seteditTaskId] = useState(null);
+  const [currentProjectId, setCurrentProjectId] = useState(null);
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -69,6 +70,7 @@ function Dashboard(props) {
             showTaskModel={showTaskModel}
             showEditTaskModel={showEditTaskModel}
             seteditTaskId={seteditTaskId}
+            setCurrentProjectId={setCurrentProjectId}
           />
           <ThumbnailList />
         </View>
@@ -89,7 +91,7 @@ function Dashboard(props) {
       <EventModel
         visible={taskModel}
         showModel={showTaskModel}
-        project_id={null}
+        project_id={currentProjectId}
       />
       <EventModel
         visible={editTaskModel}

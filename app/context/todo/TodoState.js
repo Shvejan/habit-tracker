@@ -38,17 +38,11 @@ export default function TodoState(props) {
 
   const deleteTask = (id, taskId) => {
     var temp = tasks;
-    temp.splice(id, 1);
+    temp = temp.filter((a) => a.id != taskId);
     setTasks([...temp]);
-    deleteTaskApi(token, taskId);
+    deleteTaskApi(token, taskId).then(refreshTasks);
   };
 
-  const deleteEvent = (id, taskId) => {
-    var temp = events;
-    temp.splice(id, 1);
-    setEvents([...temp]);
-    deleteTaskApi(token, taskId);
-  };
   const refreshTasks = () => {
     fetchTasks(token, setTasks);
     fetchProjects(token, setprojects);
@@ -84,7 +78,6 @@ export default function TodoState(props) {
         settoken,
         events,
         deleteTask,
-        deleteEvent,
         addEvent,
         refreshTasks,
         getTaskInfo,

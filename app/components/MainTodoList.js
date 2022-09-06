@@ -8,7 +8,7 @@ import { CheckBox } from "react-native-elements";
 import { closeTask, reopenTask } from "../apis/todoistApi";
 import { Picker } from "@react-native-picker/picker";
 export default function MainTodoList(props) {
-  const { tasks, token, projects } = useContext(TodoContext);
+  const { tasks, token, projects, deleteTask } = useContext(TodoContext);
 
   const [filteredTasks, setfilteredTasks] = useState(tasks);
   const [selectedProject, setSelectedProject] = useState("today");
@@ -48,7 +48,7 @@ export default function MainTodoList(props) {
           <FontAwesome name="edit" style={styles.edit} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => deleteEvent(id, taskId)}
+          onPress={() => deleteTask(id, taskId)}
           style={styles.deleteContainer}
         >
           <AntDesign name="delete" style={styles.delete} />
@@ -70,6 +70,7 @@ export default function MainTodoList(props) {
           projects={projects}
           selectedProject={selectedProject}
           setSelectedProject={setSelectedProject}
+          setCurrentProjectId={props.setCurrentProjectId}
         />
         <TouchableOpacity onPress={() => props.showTaskModel(true)}>
           <FontAwesome name="plus-circle" size={10} style={styles.header} />
@@ -129,9 +130,10 @@ const ProjectSelector = (props) => {
         style={styles.pickerbox}
         itemStyle={styles.pickerItem}
         selectedValue={props.selectedProject}
-        onValueChange={(itemValue, itemIndex) =>
-          props.setSelectedProject(itemValue)
-        }
+        onValueChange={(itemValue, itemIndex) => {
+          props.setSelectedProject(itemValue);
+          props.setCurrentProjectId(itemValue);
+        }}
       >
         <Picker.Item label="Today" value="today" />
 

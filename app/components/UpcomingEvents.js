@@ -6,7 +6,7 @@ import { Swipeable } from "react-native-gesture-handler";
 import { AntDesign } from "react-native-vector-icons";
 import { TodoContext } from "../context/todo/TodoContext";
 export default function UpcomingEvents(props) {
-  const { events, deleteEvent, refreshTasks } = useContext(TodoContext);
+  const { events, deleteTask, refreshTasks } = useContext(TodoContext);
 
   const renderLeftActions = (id, taskId) => {
     return (
@@ -21,7 +21,7 @@ export default function UpcomingEvents(props) {
           <FontAwesome name="edit" style={styles.edit} />
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => deleteEvent(id, taskId)}
+          onPress={() => deleteTask(id, taskId)}
           style={styles.deleteContainer}
         >
           <AntDesign name="delete" style={styles.delete} />
@@ -70,6 +70,11 @@ export default function UpcomingEvents(props) {
 }
 
 const RenderEvent = (props) => {
+  const getTimeZoneTime = (propsDate) => {
+    const date = new Date(propsDate);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+    return date;
+  };
   return (
     <View>
       <View style={[styles.card]}>
@@ -86,8 +91,9 @@ const RenderEvent = (props) => {
         </View>
         <Text style={styles.text}>
           {Math.ceil(
-            (new Date(props.data.due.date) - Date.now()) / (1000 * 60 * 60 * 24)
-          )}
+            (getTimeZoneTime(props.data.due.date) - Date.now()) /
+              (1000 * 60 * 60 * 24)
+          ) - 1}
           {" days to go"}
         </Text>
       </View>
@@ -97,6 +103,7 @@ const RenderEvent = (props) => {
 
 const CalenderIcon = (props) => {
   const date = new Date(props.date);
+  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
   const day = date.toString().split(" ")[2];
   const month = date.toString().split(" ")[1].toUpperCase();
   return (

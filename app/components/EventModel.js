@@ -24,7 +24,7 @@ export default function EventModel(props) {
   };
   useEffect(() => {
     var task = getTaskInfo(props.editTaskId);
-    if (task) {
+    if (task && task.due) {
       onChangeText(task.content);
       setDate(new Date(task.due.date));
     }
