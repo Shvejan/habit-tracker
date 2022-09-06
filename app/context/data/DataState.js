@@ -280,7 +280,7 @@ export default function DataState(props) {
     addCards([
       {
         color: "#C0392B",
-        data: [1, 1],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E5130A45-903A-4AB0-80FA-8826B0499280.jpg",
         prev: 0,
@@ -328,7 +328,7 @@ export default function DataState(props) {
       },
       {
         color: "#F7E752",
-        data: [1, 1],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/5A326E1D-3434-4641-A3D0-3CA2FB79FC76.jpg",
         prev: 0,
@@ -344,7 +344,7 @@ export default function DataState(props) {
       },
       {
         color: "#64CFF7",
-        data: [1, 1],
+        data: [0, 1],
         image:
           "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/98F8ACCF-EA72-48CB-9120-F703E9FE80BF.jpg",
         prev: 0,
