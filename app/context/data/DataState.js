@@ -280,9 +280,9 @@ export default function DataState(props) {
     addCards([
       {
         color: "#C0392B",
-        data: [0, 1],
+        data: [1, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/85D8B248-B8D8-4C33-B1B3-F172E667B330.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E5130A45-903A-4AB0-80FA-8826B0499280.jpg",
         prev: 0,
         title: "Resistance",
       },
@@ -290,7 +290,7 @@ export default function DataState(props) {
         color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/0821A4D9-1272-4468-AA8D-28CE8291D0F3.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/34615A67-2FBC-457F-B9E0-8732891C4206.jpg",
         prev: 0,
         title: "Books",
       },
@@ -298,7 +298,7 @@ export default function DataState(props) {
         color: "#64CFF7",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/C1C6BD13-60D5-4EDB-A09F-9EC1A8E547BC.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/6A1FB48C-A334-45E6-B307-53C99A68A256.jpg",
         prev: 0,
         title: "Cold shower",
       },
@@ -306,7 +306,7 @@ export default function DataState(props) {
         color: "#FF68A8",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/F45C71B3-6BEF-443E-A363-AC98B54C5690.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/2BBACF74-E424-4E2C-AF88-C49DBEB9A5FC.jpg",
         prev: 0,
         title: "7am",
       },
@@ -314,7 +314,7 @@ export default function DataState(props) {
         color: "#C0392B",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/84F7EA79-AEF3-4128-8648-1744889D2268.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/1BE7B75C-44A3-4B2B-9457-6B0BCD8F87DA.jpg",
         prev: 0,
         title: "Abs",
       },
@@ -322,15 +322,15 @@ export default function DataState(props) {
         color: "#E68E36",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/DA5052B2-C1E2-426A-82AD-35230B5D7A45.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/954F836A-35BE-402E-9F69-8A22276B9D5C.jpg",
         prev: 0,
         title: "Todo",
       },
       {
         color: "#F7E752",
-        data: [0, 1],
+        data: [1, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/B756351E-D283-4788-8AA4-E9D788FCC3CC.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/5A326E1D-3434-4641-A3D0-3CA2FB79FC76.jpg",
         prev: 0,
         title: "LessPhone",
       },
@@ -338,15 +338,15 @@ export default function DataState(props) {
         color: "#93C4D1",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/511F6F43-4F48-4147-8702-445CAE709BBF.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/ED2F71CE-9E05-4853-843C-49BB16672C8C.jpg",
         prev: 0,
         title: "Meditation",
       },
       {
         color: "#64CFF7",
-        data: [0, 1],
+        data: [1, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/79145869-5B22-45EA-A5A3-04A654DC1BD2.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/98F8ACCF-EA72-48CB-9120-F703E9FE80BF.jpg",
         prev: 0,
         title: "Food",
       },
@@ -354,7 +354,7 @@ export default function DataState(props) {
         color: "#93C4D1",
         data: [0, 1],
         image:
-          "file:///var/mobile/Containers/Data/Application/2975EBED-B5BF-4E46-B948-18542E8517EE/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/A7F8DA26-303F-4D9C-9314-1384B8F54ADE.jpg",
+          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/9F5F9332-1570-4D76-9207-A2AE4196E238.jpg",
         prev: 0,
         title: "Coding",
       },
