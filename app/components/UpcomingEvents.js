@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import Line from "./Line";
 import { Swipeable } from "react-native-gesture-handler";
@@ -75,28 +75,34 @@ const RenderEvent = (props) => {
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     return date;
   };
+  const [daysLeft, setdaysLeft] = useState(
+    Math.ceil(
+      (getTimeZoneTime(props.data.due.date) - Date.now()) /
+        (1000 * 60 * 60 * 24)
+    ) - 1
+  );
+
   return (
     <View>
-      <View style={[styles.card]}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          {props.data.due.date.toString().split("-")[1] && (
-            <CalenderIcon date={props.data.due.date} />
-          )}
-          <Text style={styles.title}>{props.data.content}</Text>
+      {daysLeft > -1 && (
+        <View style={[styles.card]}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            {getTimeZoneTime(props.data.due.date).toString().split("-")[1] && (
+              <CalenderIcon date={props.data.due.date} />
+            )}
+            <Text style={styles.title}>{props.data.content}</Text>
+          </View>
+          <Text style={styles.text}>
+            {daysLeft}
+            {" days to go"}
+          </Text>
         </View>
-        <Text style={styles.text}>
-          {Math.ceil(
-            (getTimeZoneTime(props.data.due.date) - Date.now()) /
-              (1000 * 60 * 60 * 24)
-          ) - 1}
-          {" days to go"}
-        </Text>
-      </View>
+      )}
     </View>
   );
 };
