@@ -12,28 +12,28 @@
 
 ## Screen Shots of the app
 
-![](UI-Images/IMG_0333.PNG)
+<img src="UI-Images/IMG_0333.PNG"  height="500">
 
 # Home page
 
-![](UI-Images/IMG_0334.PNG)
+<img src="UI-Images/IMG_0334.PNG"  height="500">
 
 # Tasks and Events
 
-![](UI-Images/IMG_0335.PNG)
+<img src="UI-Images/IMG_0335.PNG"  height="500">
 
 # Motivational Videos
 
-![](UI-Images/IMG_0336.PNG)
+<img src="UI-Images/IMG_0336.PNG"  height="500">
 
 # Side Naviation Bar
 
-![](UI-Images/IMG_0337.PNG)
+<img src="UI-Images/IMG_0337.PNG"  height="500">
 
 # Statistics of the streak
 
-![](UI-Images/IMG_0338.PNG)
+<img src="UI-Images/IMG_0338.PNG"  height="500">
 
 # Settings Page
 
-![](UI-Images/IMG_0339.PNG)
+<img src="UI-Images/IMG_0339.PNG"  height="500">
