@@ -178,7 +178,7 @@ function Stats(props) {
                   backgroundGradientTo: "#A2E3E7",
                   backgroundGradientFromOpacity: 0.1,
                   backgroundGradientToOpacity: 0.4,
-                  color: "#E3CCFE",
+                  color: () => "#E3CCFE",
                   strokeWidth: 2, // optional, default 3
                   barPercentage: 0.5,
                   useShadowColorFromDataset: false, // optional
