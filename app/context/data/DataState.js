@@ -15,6 +15,17 @@ import {
 } from "./LocalStoreNames";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
+import abs from "../../assets/habitBackImages/abs.jpg";
+import food from "../../assets/habitBackImages/food.jpg";
+import meditate from "../../assets/habitBackImages/meditate.jpg";
+import phone from "../../assets/habitBackImages/phone.jpg";
+import program from "../../assets/habitBackImages/program.jpg";
+import read from "../../assets/habitBackImages/read.jpg";
+import resist from "../../assets/habitBackImages/resist.jpg";
+import shower from "../../assets/habitBackImages/shower.jpg";
+import todo from "../../assets/habitBackImages/todo.jpg";
+import wake from "../../assets/habitBackImages/wake.jpg";
+
 export default function DataState(props) {
   const [value, setvalue] = useState(null);
   const [cards, addCards] = useState(null);
@@ -287,80 +298,70 @@ export default function DataState(props) {
       {
         color: "#C0392B",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/E5130A45-903A-4AB0-80FA-8826B0499280.jpg",
+        image: resist,
         prev: 0,
         title: "Resistance",
       },
       {
         color: "#FF68A8",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/34615A67-2FBC-457F-B9E0-8732891C4206.jpg",
+        image: read,
         prev: 0,
         title: "Books",
       },
       {
         color: "#64CFF7",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/6A1FB48C-A334-45E6-B307-53C99A68A256.jpg",
+        image: shower,
         prev: 0,
         title: "Cold shower",
       },
       {
         color: "#FF68A8",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/2BBACF74-E424-4E2C-AF88-C49DBEB9A5FC.jpg",
+        image: wake,
         prev: 0,
         title: "7am",
       },
       {
         color: "#C0392B",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/1BE7B75C-44A3-4B2B-9457-6B0BCD8F87DA.jpg",
+        image: abs,
         prev: 0,
         title: "Abs",
       },
       {
         color: "#E68E36",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/954F836A-35BE-402E-9F69-8A22276B9D5C.jpg",
+        image: todo,
         prev: 0,
         title: "Todo",
       },
       {
         color: "#F7E752",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/5A326E1D-3434-4641-A3D0-3CA2FB79FC76.jpg",
+        image: phone,
         prev: 0,
         title: "LessPhone",
       },
       {
         color: "#93C4D1",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/ED2F71CE-9E05-4853-843C-49BB16672C8C.jpg",
+        image: meditate,
         prev: 0,
         title: "Meditation",
       },
       {
         color: "#64CFF7",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/98F8ACCF-EA72-48CB-9120-F703E9FE80BF.jpg",
+        image: food,
         prev: 0,
         title: "Food",
       },
       {
         color: "#93C4D1",
         data: [0, 1],
-        image:
-          "file:///var/mobile/Containers/Data/Application/2D2DE91E-C474-4A15-BC11-FD8F7BC60E46/Library/Caches/ExponentExperienceData/%2540shvejan%252Fhabitracker/ImagePicker/9F5F9332-1570-4D76-9207-A2AE4196E238.jpg",
+        image: program,
         prev: 0,
         title: "Coding",
       },

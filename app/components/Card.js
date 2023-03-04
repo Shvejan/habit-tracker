@@ -14,7 +14,9 @@ function Card(props) {
     <TouchableOpacity onLongPress={props.showEditModel}>
       <View style={styles.card}>
         <ImageBackground
-          source={{ uri: props.image }}
+          source={
+            typeof props.image == "string" ? { uri: props.image } : props.image
+          }
           resizeMode="cover"
           style={styles.bg}
         >
