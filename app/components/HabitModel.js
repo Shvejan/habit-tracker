@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
   Image,
   TextInput,
 } from "react-native";
@@ -56,7 +55,7 @@ export default function HabitModel(props) {
       onChangeText(cards[props.id].title);
       setSelectedColor(cards[props.id].color);
     }
-  }, [props.id, props.visible]);
+  }, [props.id, props.visible, cards]);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

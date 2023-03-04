@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  Text,
   ScrollView,
   Platform,
   StatusBar,

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 function ProgressBar(props) {
   return (
@@ -8,7 +8,7 @@ function ProgressBar(props) {
         radius={props.radius}
         value={props.value}
         textColor="white"
-        fontSize={20}
+        progressValueFontSize={25}
         valueSuffix={props.maxValue ? `/${props.maxValue}` : "%"}
         inActiveStrokeColor={props.color ? props.color : "pink"}
         activeStrokeColor={props.activeColor}
@@ -18,7 +18,6 @@ function ProgressBar(props) {
         duration={props.duration ? props.duration : 3000}
         showProgressValue={props.hideText ? false : true}
         showTitleValue={true}
-        title="afdf"
       />
     </View>
   );

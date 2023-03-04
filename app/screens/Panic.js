@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, Button, StyleSheet } from "react-native";
-import { useContext } from "react";
-import { TodoContext } from "../context/todo/TodoContext";
-import * as AuthSession from "expo-auth-session";
-import { openAuthSession } from "azure-ad-graph-expo";
+import { View, Pressable, StyleSheet } from "react-native";
 import { fetchTasks } from "../apis/todoistApi";
 import { Picker } from "@react-native-picker/picker";
-function Panic(props) {
-  const [ans, setans] = useState(null);
-
+function Panic() {
   return (
     <View style={styles.container}>
       <Pressable
@@ -27,7 +21,7 @@ const ProjectSelector = () => {
         style={styles.picker}
         itemStyle={styles.pickerItem}
         selectedValue={selectedValue}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        onValueChange={(itemValue) => setSelectedValue(itemValue)}
       >
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="JavaScript" value="js" />

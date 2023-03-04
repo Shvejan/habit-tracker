@@ -5,7 +5,7 @@ import Splash from "../screens/Splash";
 
 const Stack = createNativeStackNavigator();
 
-function AuthStack(props) {
+function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}

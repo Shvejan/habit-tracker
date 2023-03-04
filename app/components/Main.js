@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import AuthStack from "../routes/AuthStack";
 import AppStack from "../routes/AppStack";
@@ -24,5 +23,3 @@ export default function Main() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});

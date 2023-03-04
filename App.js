@@ -1,12 +1,12 @@
 import React from "react";
 import "react-native-gesture-handler";
-import firebase from "firebase";
+import { getApps, initializeApp } from "firebase/app";
 import AuthState from "./app/context/auth/AuthState";
 import Main from "./app/components/Main";
 
 export default function App() {
-  if (!firebase.apps.length) {
-    const app = firebase.initializeApp({
+  if (!getApps().length) {
+    initializeApp({
       apiKey: "AIzaSyCaC5hSUJWnj6y1DLHIFpb-ya2uAK-uvNE",
       authDomain: "habit-tracker-8973e.firebaseapp.com",
       projectId: "habit-tracker-8973e",

@@ -19,7 +19,7 @@ export default function MainProgressBar() {
       setTimer(time);
     }, 1000);
     return () => clearInterval(interval);
-  }, [lastrelapse, streak, timer]);
+  }, [lastrelapse, streak, timer, updateStreak]);
 
   return (
     <View style={{ alignItems: "center" }}>

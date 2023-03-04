@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   createTask,
   deleteTaskApi,
@@ -19,13 +19,13 @@ export default function TodoState(props) {
   );
   useEffect(() => {
     refreshTasks();
-  }, [token]);
+  }, [token, refreshTasks]);
 
   useEffect(() => {
     if (tasks) filterEvents();
-  }, [tasks]);
+  }, [tasks, filterEvents]);
 
-  const filterEvents = () => {
+  const filterEvents = useCallback(() => {
     var temp = tasks.filter((data) => data.project_id == event_project_id);
     temp.sort(function (a, b) {
       var c = new Date(a.due.date);
@@ -34,7 +34,7 @@ export default function TodoState(props) {
       return now - d - (now - c);
     });
     setEvents([...temp]);
-  };
+  }, [tasks]);
 
   const deleteTask = (id, taskId) => {
     var temp = tasks;
@@ -43,10 +43,10 @@ export default function TodoState(props) {
     deleteTaskApi(token, taskId).then(refreshTasks);
   };
 
-  const refreshTasks = () => {
+  const refreshTasks = useCallback(() => {
     fetchTasks(token, setTasks);
     fetchProjects(token, setprojects);
-  };
+  }, [token]);
   const getTaskInfo = (id) => {
     if (tasks) {
       var x = tasks.filter((data) => data.id == id);

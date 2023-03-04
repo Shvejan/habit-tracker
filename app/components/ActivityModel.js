@@ -2,7 +2,6 @@ import {
   Modal,
   Pressable,
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
 } from "react-native";

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -38,5 +38,3 @@ export default function Hamburger(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { fetchVideos } from "../apis/youtubeapi";
 import * as Linking from "expo-linking";

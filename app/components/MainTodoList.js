@@ -130,7 +130,7 @@ const ProjectSelector = (props) => {
         style={styles.pickerbox}
         itemStyle={styles.pickerItem}
         selectedValue={props.selectedProject}
-        onValueChange={(itemValue, itemIndex) => {
+        onValueChange={(itemValue) => {
           props.setSelectedProject(itemValue);
           props.setCurrentProjectId(itemValue);
         }}
@@ -167,7 +167,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 30,
-    alignItems: "center",
     marginBottom: 20,
   },
   header: {

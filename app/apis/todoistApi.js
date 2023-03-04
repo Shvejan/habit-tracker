@@ -5,6 +5,7 @@ const TodoistApi = axios.create({
 });
 
 export const fetchTasks = async (token, setTasks) => {
+  console.log("fetching tasks");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -12,10 +13,11 @@ export const fetchTasks = async (token, setTasks) => {
     .then((res) => {
       setTasks(res.data);
     })
-    .catch(() => console.log("error in the api"));
+    .catch(() => console.log("fetching tasks error"));
 };
 
 export const fetchProjects = async (token, setProjects) => {
+  console.log("fetching projects");
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -23,25 +25,27 @@ export const fetchProjects = async (token, setProjects) => {
     .then((res) => {
       setProjects(res.data);
     })
-    .catch(() => console.log("error in the api"));
+    .catch(() => console.log("fetching projects error"));
 };
 
 export const closeTask = async (token, id) => {
+  console.log("closing taks");
   await fetch(`https://api.todoist.com/rest/v1/tasks/${id}/close`, {
     method: "post",
     headers: new Headers({
       Authorization: `Bearer ${token}`,
     }),
-  }).catch(() => console.log("error in the api"));
+  }).catch(() => console.log("closing task error"));
 };
 
 export const reopenTask = async (token, id) => {
+  console.log("reopen taks");
   await fetch(`https://api.todoist.com/rest/v1/tasks/${id}/reopen`, {
     method: "post",
     headers: new Headers({
       Authorization: `Bearer ${token}`,
     }),
-  }).catch(() => console.log("error in the api"));
+  }).catch(() => console.log("reopen taks error"));
 };
 
 export const deleteTaskApi = async (token, id) => {
@@ -49,7 +53,7 @@ export const deleteTaskApi = async (token, id) => {
     headers: { Authorization: `Bearer ${token}` },
   };
   await TodoistApi.delete(`tasks/${id}`, config)
-    .then((res) => {
+    .then(() => {
       console.log("successful");
     })
     .catch((err) => console.log(err));

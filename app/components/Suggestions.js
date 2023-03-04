@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { fetchSmallQuote } from "../apis/quoteapi";
 import { AuthContext } from "../context/auth/AuthContext";
 import { smallQuotesList } from "../assets/quotesList";
@@ -9,15 +9,15 @@ export default function Suggestions() {
 
   const [quote, setquote] = useState("");
 
-  const generateQuote = () => {
+  const generateQuote = useCallback(() => {
     if (online) fetchSmallQuote(setquote, 50);
     else {
       setquote(smallQuotesList[Math.floor(Math.random() * 20)]);
     }
-  };
+  }, [online]);
   useEffect(() => {
     generateQuote();
-  }, [online]);
+  }, [generateQuote]);
   return (
     <View>
       <TouchableWithoutFeedback onPress={generateQuote}>

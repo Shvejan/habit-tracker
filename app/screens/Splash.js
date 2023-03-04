@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import LottieView from "lottie-react-native";
+import moonrun from "../assets/11755-moon-run.json";
 export default function Splash(props) {
   const [loading, setloading] = useState(false);
 
@@ -17,12 +18,7 @@ export default function Splash(props) {
 
   return (
     <View style={styles.container}>
-      <LottieView
-        source={require("../assets/11755-moon-run.json")}
-        autoPlay
-        loop
-        resizeMode="contain"
-      />
+      <LottieView source={moonrun} autoPlay loop resizeMode="contain" />
     </View>
   );
 }

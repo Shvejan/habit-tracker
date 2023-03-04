@@ -6,8 +6,9 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "../context/auth/AuthContext";
 import { fetchQuote } from "../apis/quoteapi";
 import { quotesList } from "../assets/quotesList";
+import leaves from "../assets/leaves.jpg";
 
-function WelcomeScreen(props) {
+function WelcomeScreen() {
   const { setLogin, online } = React.useContext(AuthContext);
   const [quote, setquote] = useState("");
   useEffect(() => {
@@ -19,11 +20,7 @@ function WelcomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/leaves.jpg")}
-        resizeMode="cover"
-        style={styles.image}
-      >
+      <ImageBackground source={leaves} resizeMode="cover" style={styles.image}>
         <View style={styles.overlay}>
           <BlurView tint="dark" intensity={95} style={styles.quoteContainer}>
             <Text style={styles.quote}>{quote.quote}</Text>
@@ -83,7 +80,6 @@ const styles = StyleSheet.create({
     // borderColor: "black",
   },
   statusincidator: {
-    color: "white",
     alignSelf: "center",
     color: "green",
   },

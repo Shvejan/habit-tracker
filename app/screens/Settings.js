@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   StatusBar,
-  SafeAreaView,
   ScrollView,
   Image,
 } from "react-native";
@@ -18,6 +16,9 @@ import TextButton from "../components/TextButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { DataContext } from "../context/data/DataContext";
 import VariableList from "../components/VariableList";
+import valueFormula from "../assets/value-formula.png";
+import valDecFormula from "../assets/val-dec-formula.png";
+import componentsFormula from "../assets/components-formula.png";
 
 function Settings(props) {
   const {
@@ -73,6 +74,7 @@ function Settings(props) {
   }
 
   const [show, setShow] = useState(false);
+
   return (
     <View style={styles.safearea}>
       <ScrollView
@@ -119,18 +121,9 @@ function Settings(props) {
           >
             {show && <VariableList data={data} />}
           </View>
-          <Image
-            style={styles.tinyLogo}
-            source={require("../assets/value-formula.png")}
-          />
-          <Image
-            style={styles.tinyLogo}
-            source={require("../assets/val-dec-formula.png")}
-          />
-          <Image
-            style={styles.tinyLogo}
-            source={require("../assets/components-formula.png")}
-          />
+          <Image style={styles.tinyLogo} source={valueFormula} />
+          <Image style={styles.tinyLogo} source={valDecFormula} />
+          <Image style={styles.tinyLogo} source={componentsFormula} />
         </View>
       </ScrollView>
     </View>

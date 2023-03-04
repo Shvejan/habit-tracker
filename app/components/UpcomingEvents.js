@@ -43,7 +43,6 @@ export default function UpcomingEvents(props) {
           justifyContent: "space-between",
           alignItems: "center",
           paddingHorizontal: 30,
-          alignItems: "center",
           marginBottom: 20,
         }}
       >
@@ -75,6 +74,7 @@ const RenderEvent = (props) => {
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     return date;
   };
+  // eslint-disable-next-line no-unused-vars
   const [daysLeft, setdaysLeft] = useState(
     Math.ceil(
       (getTimeZoneTime(props.data.due.date) - Date.now()) /

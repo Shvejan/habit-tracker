@@ -12,6 +12,7 @@ const youtubeApi = axios.create({
 });
 
 export const fetchVideos = async (setthumbnailData) => {
+  console.log("fetching videos");
   let returndata = [];
   await youtubeApi
     .get("/search")
@@ -22,5 +23,5 @@ export const fetchVideos = async (setthumbnailData) => {
       });
       setthumbnailData(returndata);
     })
-    .catch(() => console.log("error in the api"));
+    .catch(() => console.log("fetching videos error"));
 };

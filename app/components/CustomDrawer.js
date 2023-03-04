@@ -4,31 +4,26 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import colors from "../config/colors";
 import { BlurView } from "expo-blur";
 import Octicons from "react-native-vector-icons/Octicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { AuthContext } from "../context/auth/AuthContext";
 import { DataContext } from "../context/data/DataContext";
+import dp from "../assets/Shvejan.jpg";
+import leaves from "../assets/leaves.jpg";
 
 export default function CustomDrawer(props) {
   const { setLogin } = useContext(AuthContext);
   const { streak } = useContext(DataContext);
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/leaves.jpg")}
-        style={{ flex: 1 }}
-      >
+      <ImageBackground source={leaves} style={{ flex: 1 }}>
         <View style={styles.overlay}>
           <BlurView tint="dark" intensity={80} style={styles.blur}>
             <DrawerContentScrollView {...props}>
               <View style={styles.profile}>
-                <Image
-                  source={require("../assets/Shvejan.jpg")}
-                  style={styles.profilePhoto}
-                />
+                <Image source={dp} style={styles.profilePhoto} />
                 <Text style={styles.name}>Aromston</Text>
                 <View
                   style={{

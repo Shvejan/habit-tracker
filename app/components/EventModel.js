@@ -6,7 +6,6 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Button,
   Platform,
 } from "react-native";
 import React, { useState, useContext, useEffect } from "react";
@@ -28,7 +27,7 @@ export default function EventModel(props) {
       onChangeText(task.content);
       setDate(new Date(task.due.date));
     }
-  }, [props.editTaskId]);
+  }, [props.editTaskId, getTaskInfo]);
 
   return (
     <Modal animationType="fade" transparent visible={props.visible}>

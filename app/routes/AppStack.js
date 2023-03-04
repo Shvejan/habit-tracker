@@ -7,7 +7,7 @@ import Stats from "../screens/Stats";
 import CustomDrawer from "../components/CustomDrawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
 const Drawer = createDrawerNavigator();
-function AppStack(props) {
+function AppStack() {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}

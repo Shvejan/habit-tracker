@@ -1,5 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView } from "react-native";
+import React, { useContext, useState, useEffect, useCallback } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  ScrollView,
+  Platform,
+} from "react-native";
 import Hamburger from "../components/Hamburger";
 import colors from "../config/colors";
 import { DataContext } from "../context/data/DataContext";
@@ -37,7 +44,7 @@ function Stats(props) {
   const [distractionsData, setdistractionsData] = useState([]);
   const screenWidth = Dimensions.get("window").width - 15;
 
-  const countHabits = () => {
+  const countHabits = useCallback(() => {
     let habitsCount = [0, 0, 0, 0, 0, 0, 0];
 
     const dayCount = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
@@ -57,9 +64,9 @@ function Stats(props) {
         datasets: [{ data: habitsCount }],
       });
     }
-  };
+  }, [periodicData]);
 
-  const countDistractions = () => {
+  const countDistractions = useCallback(() => {
     const pieChartData = [
       {
         name: "9AM-12PM",
@@ -101,7 +108,7 @@ function Stats(props) {
       });
       setdistractionsData(pieChartData);
     }
-  };
+  }, [nonPeriodicData]);
   useEffect(() => {
     if (periodicData != null && periodicData.length > 0) {
       const valdata = periodicData.map((a) => parseFloat(a.value));
@@ -114,13 +121,13 @@ function Stats(props) {
       setvaldata({ labels: [], datasets: [{ data: valdata }] });
       sethabitDateData({ labels: [], datasets: [{ data: habitsCountList }] });
     }
-  }, [periodicData]);
+  }, [periodicData, countDistractions, countHabits]);
 
   useEffect(() => {
     if (nonPeriodicData != null && nonPeriodicData.length > 0) {
       countDistractions();
     }
-  }, [nonPeriodicData]);
+  }, [nonPeriodicData, countDistractions]);
 
   return (
     <View style={styles.safearea}>
@@ -171,7 +178,7 @@ function Stats(props) {
                   backgroundGradientTo: "#A2E3E7",
                   backgroundGradientFromOpacity: 0.1,
                   backgroundGradientToOpacity: 0.4,
-                  color: (opacity = 1) => "#E3CCFE",
+                  color: "#E3CCFE",
                   strokeWidth: 2, // optional, default 3
                   barPercentage: 0.5,
                   useShadowColorFromDataset: false, // optional

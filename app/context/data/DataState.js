@@ -13,7 +13,7 @@ import {
   localstoreperiodicdata,
   localstorenonperiodicdata,
 } from "./LocalStoreNames";
-import * as firebase from "firebase";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import { habitContributor, incValPeriodic } from "../../math/Valuefunctions";
 export default function DataState(props) {
   const [value, setvalue] = useState(null);
@@ -25,7 +25,7 @@ export default function DataState(props) {
   const [fvalue, setfvalue] = useState(null); //[f,tc,mc,pc,baddecisionc]
   const [days, setdays] = useState(null);
   const [isloading, setisloading] = useState(true);
-  const [upcomingEvents, setUpcomingEvents] = useState(null);
+  // const [upcomingEvents, setUpcomingEvents] = useState(null);
 
   const [periodicData, setPeriodicData] = useState(null);
   const [nonPeriodicData, setNonPeriodicData] = useState(null);
@@ -48,14 +48,14 @@ export default function DataState(props) {
 
         data = await AsyncStorage.getItem(localstoreperiodicdata);
         if (data) {
-          tempData = JSON.parse(data);
+          let tempData = JSON.parse(data);
           tempData.map((x) => (x.date = new Date(x.date)));
           setPeriodicData(tempData);
         }
 
         data = await AsyncStorage.getItem(localstorenonperiodicdata);
         if (data) {
-          tempData = JSON.parse(data);
+          let tempData = JSON.parse(data);
           tempData.map((x) => (x.date = new Date(x.date)));
           setNonPeriodicData(tempData);
         }
@@ -89,7 +89,7 @@ export default function DataState(props) {
       }
     }
     load().then(() => setisloading(false));
-  }, []);
+  }, [streak]);
 
   useEffect(() => {
     async function store() {
@@ -116,7 +116,7 @@ export default function DataState(props) {
       }
     }
     store();
-  }, [streak]);
+  }, [streak, best]);
 
   useEffect(() => {
     async function store() {
@@ -254,7 +254,8 @@ export default function DataState(props) {
     });
   };
 
-  const pushToFirebase = () => {
+  const pushToFirebase = async () => {
+    console.log("pushing to firebase");
     const data = {
       value: value,
       cards: cards,
@@ -268,11 +269,16 @@ export default function DataState(props) {
       nonPeriodicData: JSON.stringify(nonPeriodicData),
     };
 
-    firebase
-      .database()
-      .ref("/")
-      .set(data)
-      .then(() => alert("uploaded successfully"));
+    // firebase
+    //   .database()
+    //   .ref("/")
+    //   .set(data)
+    //   .then(() => alert("uploaded successfully"));
+
+    const db = getDatabase();
+    set(ref(db, "/"), data)
+      .then(() => console.log("pushed to firebase"))
+      .catch(() => console.log("failed to push"));
   };
 
   const resetApp = () => {
@@ -371,36 +377,65 @@ export default function DataState(props) {
     console.log("appp resetttuuu");
   };
 
-  const pullFromFirebase = () => {
-    firebase
-      .database()
-      .ref("/")
-      .on("value", (snapshot) => {
-        const cloudData = snapshot.val();
-        setvalue(cloudData.value);
-        setstreak(cloudData.streak);
-        setlastrelapse(cloudData.lastrelapse);
-        setbest(cloudData.best);
-        setattempts(cloudData.attempts);
-        setdays(cloudData.days);
-        if (cloudData.fvalue != null)
-          setfvalue(Object.values(cloudData.fvalue));
-        if (cloudData.cards != undefined) {
-          addCards(Object.values(cloudData.cards));
-          console.log(Object.values(cloudData.cards));
-        }
+  const pullFromFirebase = async () => {
+    console.log("pulling from firebase");
+    const db = getDatabase();
+    const dataStoreRef = ref(db, "/");
+    onValue(dataStoreRef, (snapshot) => {
+      const cloudData = snapshot.val();
+      setvalue(cloudData.value);
+      setstreak(cloudData.streak);
+      setlastrelapse(cloudData.lastrelapse);
+      setbest(cloudData.best);
+      setattempts(cloudData.attempts);
+      setdays(cloudData.days);
+      if (cloudData.fvalue != null) setfvalue(Object.values(cloudData.fvalue));
+      if (cloudData.cards != undefined) {
+        addCards(Object.values(cloudData.cards));
+        console.log(Object.values(cloudData.cards));
+      }
 
-        if (cloudData.periodicData) {
-          tempData = JSON.parse(cloudData.periodicData);
-          tempData.map((x) => (x.date = new Date(x.date)));
-          setPeriodicData(tempData);
-        }
-        if (cloudData.nonPeriodicData) {
-          tempData = JSON.parse(cloudData.nonPeriodicData);
-          tempData.map((x) => (x.date = new Date(x.date)));
-          setNonPeriodicData(tempData);
-        }
-      });
+      if (cloudData.periodicData) {
+        let tempData = JSON.parse(cloudData.periodicData);
+        tempData.map((x) => (x.date = new Date(x.date)));
+        setPeriodicData(tempData);
+      }
+      if (cloudData.nonPeriodicData) {
+        let tempData = JSON.parse(cloudData.nonPeriodicData);
+        tempData.map((x) => (x.date = new Date(x.date)));
+        setNonPeriodicData(tempData);
+      }
+    });
+
+    // firebase
+    //   .database()
+    //   .ref("/")
+    //   .on("value", (snapshot) => {
+    //     const cloudData = snapshot.val();
+    //     setvalue(cloudData.value);
+    //     setstreak(cloudData.streak);
+    //     setlastrelapse(cloudData.lastrelapse);
+    //     setbest(cloudData.best);
+    //     setattempts(cloudData.attempts);
+    //     setdays(cloudData.days);
+    //     if (cloudData.fvalue != null)
+    //       setfvalue(Object.values(cloudData.fvalue));
+    //     if (cloudData.cards != undefined) {
+    //       addCards(Object.values(cloudData.cards));
+    //       console.log(Object.values(cloudData.cards));
+    //     }
+
+    //     if (cloudData.periodicData) {
+    //       tempData = JSON.parse(cloudData.periodicData);
+    //       tempData.map((x) => (x.date = new Date(x.date)));
+    //       setPeriodicData(tempData);
+    //     }
+    //     if (cloudData.nonPeriodicData) {
+    //       tempData = JSON.parse(cloudData.nonPeriodicData);
+    //       tempData.map((x) => (x.date = new Date(x.date)));
+    //       setNonPeriodicData(tempData);
+    //     }
+    //   });
     alert("Data Downloaded successfully");
   };
   const deleteCard = (id) => {
