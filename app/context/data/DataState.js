@@ -92,7 +92,7 @@ export default function DataState(props) {
         }
 
         data = await AsyncStorage.getItem(localstoreStreak);
-        if (data && streak != data) {
+        if (data) {
           setstreak(parseInt(data));
         }
       } catch {
@@ -100,7 +100,7 @@ export default function DataState(props) {
       }
     }
     load().then(() => setisloading(false));
-  }, [streak]);
+  }, []);
 
   useEffect(() => {
     async function store() {
