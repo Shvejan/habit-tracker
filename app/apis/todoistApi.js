@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const TodoistApi = axios.create({
-  baseURL: "https://api.todoist.com/rest/v1",
+  baseURL: "https://api.todoist.com/rest/v2",
 });
 
 export const fetchTasks = async (token, setTasks) => {
@@ -30,7 +30,7 @@ export const fetchProjects = async (token, setProjects) => {
 
 export const closeTask = async (token, id) => {
   console.log("closing taks");
-  await fetch(`https://api.todoist.com/rest/v1/tasks/${id}/close`, {
+  await fetch(`https://api.todoist.com/rest/v2/tasks/${id}/close`, {
     method: "post",
     headers: new Headers({
       Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export const closeTask = async (token, id) => {
 
 export const reopenTask = async (token, id) => {
   console.log("reopen taks");
-  await fetch(`https://api.todoist.com/rest/v1/tasks/${id}/reopen`, {
+  await fetch(`https://api.todoist.com/rest/v2/tasks/${id}/reopen`, {
     method: "post",
     headers: new Headers({
       Authorization: `Bearer ${token}`,
