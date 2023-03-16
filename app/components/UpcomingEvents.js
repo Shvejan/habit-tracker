@@ -79,7 +79,7 @@ const RenderEvent = (props) => {
     Math.ceil(
       (getTimeZoneTime(props.data.due.date) - Date.now()) /
         (1000 * 60 * 60 * 24)
-    ) - 1
+    )
   );
 
   return (
@@ -97,10 +97,14 @@ const RenderEvent = (props) => {
             )}
             <Text style={styles.title}>{props.data.content}</Text>
           </View>
-          <Text style={styles.text}>
-            {daysLeft}
-            {" days to go"}
-          </Text>
+          {daysLeft ? (
+            <Text style={styles.text}>
+              {daysLeft}
+              {" days to go"}
+            </Text>
+          ) : (
+            <Text style={styles.text}>{"Today"}</Text>
+          )}
         </View>
       )}
     </View>
