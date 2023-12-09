@@ -11,7 +11,7 @@ export default function Main() {
   const { login } = useContext(AuthContext);
   if (login) {
     // This will cause an error in React Native
-    throw new Error("This is a simulated error in Main.js");
+    // throw new Error("This is a simulated error in Main.js");
   }
   return (
     <NavigationContainer>

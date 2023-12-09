@@ -25,6 +25,7 @@ class ErrorBoundary extends Component {
         >
           <Text>Something went wrong!</Text>
           <Text>{JSON.stringify(this.state.error)}</Text>
+          <Text>--------------</Text>
           <Text>{JSON.stringify(this.state.errorInfo)}</Text>
         </View>
       );
