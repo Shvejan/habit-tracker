@@ -7,9 +7,12 @@ export default function AuthState(props) {
   const [online, setonline] = useState(false);
   useEffect(() => {
     const getNetStatus = async () => {
-      await Network.getNetworkStateAsync().then((res) => {
+      try {
+        const res = await Network.getNetworkStateAsync();
         setonline(res.isInternetReachable);
-      });
+      } catch (error) {
+        console.error("Error fetching network state:", error);
+      }
     };
     getNetStatus();
   }, []);
