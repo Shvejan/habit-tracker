@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 
 class ErrorBoundary extends Component {
-  state = { hasError: false };
+  state = { hasError: false, error: null, errorInfo: null };
 
   componentDidCatch(error, errorInfo) {
-    this.setState({ hasError: true });
+    this.setState({ hasError: true, error: error, errorInfo: errorInfo });
     // You can also log the error to an error reporting service
-    // console.error("component caught error", error, errorInfo);
+    console.error("component caught error", error, errorInfo);
   }
 
   render() {
@@ -24,6 +24,8 @@ class ErrorBoundary extends Component {
           }}
         >
           <Text>Something went wrong!</Text>
+          <Text>{JSON.stringify(this.state.error)}</Text>
+          {/* <Text>{JSON.stringify(this.state.errorInfo)}</Text> */}
         </View>
       );
     }
