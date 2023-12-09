@@ -3,6 +3,7 @@ import "react-native-gesture-handler";
 import { getApps, initializeApp } from "firebase/app";
 import AuthState from "./app/context/auth/AuthState";
 import Main from "./app/components/Main";
+import ErrorBoundary from "./app/utils/Error";
 
 export default function App() {
   if (!getApps().length) {
@@ -17,8 +18,10 @@ export default function App() {
     });
   }
   return (
-    <AuthState>
-      <Main />
-    </AuthState>
+    <ErrorBoundary>
+      <AuthState>
+        <Main />
+      </AuthState>
+    </ErrorBoundary>
   );
 }

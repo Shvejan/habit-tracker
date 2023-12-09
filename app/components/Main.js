@@ -9,6 +9,10 @@ import TodoState from "../context/todo/TodoState";
 
 export default function Main() {
   const { login } = useContext(AuthContext);
+  if (login) {
+    // This will cause an error in React Native
+    throw new Error("This is a simulated error in Main.js");
+  }
   return (
     <NavigationContainer>
       {login && (
