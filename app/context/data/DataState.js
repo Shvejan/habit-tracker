@@ -47,14 +47,91 @@ export default function DataState(props) {
         let data = await AsyncStorage.getItem(localstoreValue);
         if (data) {
           setvalue(parseFloat(data));
+        } else {
+          setvalue(0);
         }
         data = await AsyncStorage.getItem(localstoredays);
         if (data) {
           setdays(parseInt(data));
+        } else {
+          setdays(1);
         }
         data = await AsyncStorage.getItem(localstorecardsdata);
         if (data) {
           addCards(JSON.parse(data));
+        } else {
+          addCards([
+            {
+              color: "#C0392B",
+              data: [0, 1],
+              image: resist,
+              prev: 0,
+              title: "Resistance",
+            },
+            {
+              color: "#FF68A8",
+              data: [0, 1],
+              image: read,
+              prev: 0,
+              title: "Books",
+            },
+            {
+              color: "#64CFF7",
+              data: [0, 1],
+              image: shower,
+              prev: 0,
+              title: "Cold shower",
+            },
+            {
+              color: "#FF68A8",
+              data: [0, 1],
+              image: wake,
+              prev: 0,
+              title: "7am",
+            },
+            {
+              color: "#C0392B",
+              data: [0, 1],
+              image: abs,
+              prev: 0,
+              title: "Abs",
+            },
+            {
+              color: "#E68E36",
+              data: [0, 1],
+              image: todo,
+              prev: 0,
+              title: "Todo",
+            },
+            {
+              color: "#F7E752",
+              data: [0, 1],
+              image: phone,
+              prev: 0,
+              title: "LessPhone",
+            },
+            {
+              color: "#93C4D1",
+              data: [0, 1],
+              image: meditate,
+              prev: 0,
+              title: "Meditation",
+            },
+            {
+              color: "#64CFF7",
+              data: [0, 1],
+              image: food,
+              prev: 0,
+              title: "Food",
+            },
+            {
+              color: "#93C4D1",
+              data: [0, 1],
+              image: program,
+              prev: 0,
+              title: "Coding",
+            },
+          ]);
         }
 
         data = await AsyncStorage.getItem(localstoreperiodicdata);
@@ -62,6 +139,8 @@ export default function DataState(props) {
           let tempData = JSON.parse(data);
           tempData.map((x) => (x.date = new Date(x.date)));
           setPeriodicData(tempData);
+        } else {
+          setPeriodicData([]);
         }
 
         data = await AsyncStorage.getItem(localstorenonperiodicdata);
@@ -69,19 +148,27 @@ export default function DataState(props) {
           let tempData = JSON.parse(data);
           tempData.map((x) => (x.date = new Date(x.date)));
           setNonPeriodicData(tempData);
+        } else {
+          setNonPeriodicData([]);
         }
 
         data = await AsyncStorage.getItem(localstoreFvalue);
         if (data) {
           setfvalue(data.split(",").map((a) => parseInt(a)));
+        } else {
+          setfvalue([2, 1, 1, 1, 1]);
         }
         data = await AsyncStorage.getItem(localstoreAttempts);
         if (data) {
           setattempts(parseInt(data));
+        } else {
+          setattempts(0);
         }
         data = await AsyncStorage.getItem(localstoreBest);
         if (data) {
           setbest(parseInt(data));
+        } else {
+          setbest(0);
         }
 
         data = await AsyncStorage.getItem(localstoreLastrelapse);
@@ -94,6 +181,8 @@ export default function DataState(props) {
         data = await AsyncStorage.getItem(localstoreStreak);
         if (data) {
           setstreak(parseInt(data));
+        } else {
+          setstreak(0);
         }
       } catch {
         console.log("i'm over it");
